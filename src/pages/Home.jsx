@@ -2,6 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import heroBg from '../assets/devnovatech-bg.jpg'
 
+/* ─── ANIMATION STYLES injected once ───────────────────────── */
+const animStyles = `
+  @keyframes fadeUp {
+    0%   { opacity: 0; transform: translateY(22px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .anim-fade-up-1 { animation: fadeUp 0.65s 0.05s ease both; }
+  .anim-fade-up-2 { animation: fadeUp 0.65s 0.18s ease both; }
+  .anim-fade-up-3 { animation: fadeUp 0.65s 0.30s ease both; }
+  .anim-fade-up-4 { animation: fadeUp 0.65s 0.42s ease both; }
+`
+
 function useReveal() {
   const ref = useRef(null)
   useEffect(() => {
@@ -416,6 +428,9 @@ export default function Home() {
   return (
     <div className="font-sans">
 
+      {/* ── Inject fadeUp keyframe globally once ── */}
+      <style>{animStyles}</style>
+
       {/* ══ HERO ══ */}
       <section className="relative flex flex-col justify-center pt-[70px] overflow-hidden" style={{ minHeight: 'clamp(380px, 50vh, 85vh)' }}>
         <div className="absolute inset-0">
@@ -424,23 +439,29 @@ export default function Home() {
         </div>
         <div className="max-w-6xl mx-auto w-full px-4 pt-4 pb-8 relative z-10">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-3 opacity-0 animate-[fadeUp_0.6s_0.1s_ease_forwards]">
+
+            {/* ✅ FIX: tagline uses .anim-fade-up-1 (defined in <style> above) — always visible */}
+            <div className="flex items-center gap-3 mb-3 anim-fade-up-1">
               <span className="w-6 h-[2px] bg-cyan flex-shrink-0" />
               <span className="text-[11px] font-bold text-cyan tracking-[0.18em] uppercase font-sans">Nairobi's Best · Affordable · Professional · Est. 2020</span>
             </div>
-            <h1 className="font-serif font-black text-white leading-[1.08] tracking-tight mb-3 opacity-0 animate-[fadeUp_0.6s_0.2s_ease_forwards]" style={{ fontSize: 'clamp(24px, 7vw, 60px)' }}>
+
+            <h1 className="font-serif font-black text-white leading-[1.08] tracking-tight mb-3 anim-fade-up-2" style={{ fontSize: 'clamp(24px, 7vw, 60px)' }}>
               We Build<br />
               <span className="text-cyan">{typed}</span>
               <span className="inline-block w-[3px] h-[0.85em] bg-cyan ml-1 animate-pulse align-middle" />
               <br />That Drive Growth.
             </h1>
-            <p className="text-white/70 leading-relaxed mb-7 opacity-0 animate-[fadeUp_0.6s_0.3s_ease_forwards] font-sans" style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', maxWidth: 460 }}>
+
+            <p className="text-white/70 leading-relaxed mb-7 anim-fade-up-3 font-sans" style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', maxWidth: 460 }}>
               Nairobi's best & most affordable web and Android app development company, fast, professional & budget-friendly websites, mobile apps and digital solutions for businesses across Nairobi, Mombasa, Kisumu, Nakuru and all of Kenya.
             </p>
-            <div className="flex flex-wrap gap-3 opacity-0 animate-[fadeUp_0.6s_0.4s_ease_forwards]">
+
+            <div className="flex flex-wrap gap-3 anim-fade-up-4">
               <Link to="/quote" className="px-6 py-3 bg-cyan text-navy font-bold text-[13px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30 hover:-translate-y-1">Get a Free Quote</Link>
               <Link to="/projects" className="px-6 py-3 border-2 border-white/30 text-white font-semibold text-[13px] rounded tracking-wide font-sans transition-all duration-300 hover:border-cyan hover:text-cyan">View Our Work</Link>
             </div>
+
           </div>
         </div>
       </section>

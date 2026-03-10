@@ -37,8 +37,7 @@ function ServiceDropdownItem({ label, slug, onClose, mobile }) {
 
   if (mobile) {
     return (
-      
-      <a  href={'/services#' + slug}
+      <a href={'/services#' + slug}
         onClick={handleClick}
         className="block px-3 py-2.5 text-[13px] text-white/70 font-sans hover:text-cyan transition-colors duration-150"
       >
@@ -48,8 +47,7 @@ function ServiceDropdownItem({ label, slug, onClose, mobile }) {
   }
 
   return (
-    
-    <a  href={'/services#' + slug}
+    <a href={'/services#' + slug}
       onClick={handleClick}
       className="block px-4 py-2.5 text-[13px] text-[#1a2233] font-sans hover:bg-cyan/10 hover:text-cyan transition-colors duration-150 whitespace-nowrap"
     >
@@ -72,9 +70,11 @@ export default function Navbar() {
       isFirstRender.current = false
       return
     }
-    setMenuOpen(false)
-    setServicesOpen(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const t = setTimeout(function () {
+      setMenuOpen(false)
+      setServicesOpen(false)
+    }, 0)
+    return function () { clearTimeout(t) }
   }, [pathname])
 
   useEffect(function () {
@@ -91,13 +91,6 @@ export default function Navbar() {
   function closeDropdown() {
     timeoutRef.current = setTimeout(function () { setServicesOpen(false) }, 150)
   }
-
-  const links = [
-    { to: '/',         label: 'Home' },
-    { to: '/about',    label: 'About' },
-    { to: '/projects', label: 'Projects' },
-    { to: '/contact',  label: 'Contact Us' },
-  ]
 
   return (
     <header className={'fixed top-0 left-0 right-0 z-50 bg-navy transition-shadow duration-300 ' + (scrolled ? 'shadow-lg shadow-black/30' : '')}>
@@ -145,7 +138,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop nav links */}
+        {/* Desktop nav links — unchanged */}
         <nav className="flex items-center gap-1">
           <Link to="/"
             className={'px-3 py-2 text-[13px] font-semibold font-sans rounded transition-all duration-200 ' + (pathname === '/' ? 'text-cyan' : 'text-white/70 hover:text-white')}>
@@ -256,19 +249,23 @@ export default function Navbar() {
       </div>
 
       {/* ── Mobile drawer ── */}
+      {/* ✅ Order: Home → About → Services (expandable) → Contact Us → Request a Quote */}
       {menuOpen && (
         <div className="lg:hidden bg-navy border-t border-white/10 px-4 pb-5 max-h-[calc(100vh-120px)] overflow-y-auto">
 
-          {links.map(function (l) {
-            return (
-              <Link key={l.to} to={l.to}
-                className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname === l.to ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>
-                {l.label}
-              </Link>
-            )
-          })}
+          {/* 1. Home */}
+          <Link to="/"
+            className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname === '/' ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>
+            Home
+          </Link>
 
-          {/* Mobile services expandable */}
+          {/* 2. About */}
+          <Link to="/about"
+            className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname === '/about' ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>
+            About
+          </Link>
+
+          {/* 3. Services — expandable */}
           <div className="border-b border-white/8">
             <button
               onClick={function () { setServicesOpen(function (o) { return !o }) }}
@@ -301,10 +298,18 @@ export default function Navbar() {
             )}
           </div>
 
+          {/* 4. Contact Us */}
+          <Link to="/contact"
+            className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname === '/contact' ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>
+            Contact Us
+          </Link>
+
+          {/* 5. Request a Quote button */}
           <Link to="/quote"
             className="mt-4 block w-full py-3 bg-cyan text-navy font-bold text-[13px] rounded tracking-wide font-sans text-center hover:bg-cyan/90 transition-all duration-200">
             Request a Quote
           </Link>
+
         </div>
       )}
     </header>

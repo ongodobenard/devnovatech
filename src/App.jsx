@@ -17,8 +17,6 @@ function PageLoader() {
     <div className="fixed inset-0 z-[9999] bg-navy flex items-center justify-center">
       <div className="flex flex-col items-center gap-6">
         <div className="flex items-center gap-3">
-
-          {/* Logo image replacing DNS box */}
           <img
             src={logo}
             alt="DevNovaTech Softwares Logo"
@@ -34,7 +32,6 @@ function PageLoader() {
               flexShrink: 0,
             }}
           />
-
           <div>
             <div className="font-serif font-black text-[18px] text-white leading-tight">
               <span className="text-cyan">Dev</span>
@@ -46,8 +43,6 @@ function PageLoader() {
             </div>
           </div>
         </div>
-
-        {/* Spinner */}
         <div className="relative w-12 h-12">
           <div className="absolute inset-0 rounded-full border-2 border-white/10" />
           <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-cyan border-b-[#E8332A] animate-spin" />
@@ -80,8 +75,6 @@ function RouteLoader() {
   return (
     <div className="fixed inset-0 z-[9999] bg-navy/95 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
-
-        {/* Logo in route loader */}
         <img
           src={logo}
           alt="DevNovaTech Softwares Logo"
@@ -97,8 +90,6 @@ function RouteLoader() {
             flexShrink: 0,
           }}
         />
-
-        {/* Spinner */}
         <div className="relative w-14 h-14">
           <div className="absolute inset-0 rounded-full border-2 border-white/10" />
           <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-cyan border-b-[#E8332A] animate-spin" />
@@ -110,6 +101,45 @@ function RouteLoader() {
       </div>
     </div>
   )
+}
+
+// ── WhatsApp config ──
+const WA_PHONE   = '254796038686'
+const WA_MESSAGE = 'Hello%20DevNovaTech%2C%20I%20would%20like%20to%20enquire%20about%20your%20services.'
+const WA_APP     = `whatsapp://send?phone=${WA_PHONE}&text=${WA_MESSAGE}`
+const WA_WEB     = `https://wa.me/${WA_PHONE}?text=${WA_MESSAGE}`
+
+// Returns true only on real mobile/tablet devices
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+}
+
+function handleWhatsApp(e) {
+  e.preventDefault()
+
+  if (isMobileDevice()) {
+    // ── MOBILE: try native app first ──
+    // whatsapp:// deep link opens WhatsApp (or shows chooser if 2 accounts installed)
+    window.location.href = WA_APP
+
+    // Safety fallback: if app not installed, open web after 1.5s
+    const fallback = setTimeout(() => {
+      window.open(WA_WEB, '_blank')
+    }, 1500)
+
+    // If the app DID open, page goes to background — cancel the fallback immediately
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        clearTimeout(fallback)
+        document.removeEventListener('visibilitychange', onVisibilityChange)
+      }
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+
+  } else {
+    // ── DESKTOP: open wa.me in a new browser tab — no deep link, no error ──
+    window.open(WA_WEB, '_blank')
+  }
 }
 
 // ── Floating WhatsApp Button ──
@@ -164,9 +194,9 @@ function FloatingWhatsApp() {
         }
       `}</style>
 
-      
-      <a  href="https://wa.me/254796038686"
-        target="_blank"
+      <a
+        href={WA_WEB}
+        onClick={handleWhatsApp}
         rel="noopener noreferrer"
         aria-label="Chat with DevNovaTech on WhatsApp"
         className="wa-fab"
