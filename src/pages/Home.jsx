@@ -432,7 +432,7 @@ export default function Home() {
       <style>{animStyles}</style>
 
       {/* ══ HERO ══ */}
-      <section className="relative flex flex-col justify-center pt-[70px] overflow-hidden" style={{ minHeight: 'clamp(380px, 50vh, 85vh)' }}>
+      <section className="relative flex flex-col justify-center pt-[108px] lg:pt-[70px] overflow-hidden" style={{ minHeight: 'clamp(380px, 50vh, 85vh)' }}>
         <div className="absolute inset-0">
           <img src={heroBg} alt="Best Affordable Web & App Developers Nairobi Kenya, DevNovaTech" className="w-full h-full object-cover" style={{ objectPosition: 'center 55%' }} />
           <div className="absolute inset-0 bg-navy/75" />
