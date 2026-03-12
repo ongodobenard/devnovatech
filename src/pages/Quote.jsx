@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import emailjs from '@emailjs/browser'
 
 const SERVICE_ID  = 'service_m7p7rsv'
@@ -75,13 +76,6 @@ export default function Quote() {
   const [errors, setErrors] = useState(EMPTY_ERRORS)
   const [status, setStatus] = useState('idle')
 
-  useEffect(() => {
-    document.title = 'Get a Free Quote | Affordable Web & App Development Nairobi Kenya | DevNovaTech'
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      "Get a free, no-obligation quote from DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company. Websites from KSh 25,000. Fast response within 24 hours."
-    )
-  }, [])
-
   function handleChange(e) {
     const { name, value } = e.target
     setForm(f => ({ ...f, [name]: value }))
@@ -156,6 +150,45 @@ ${form.description}`,
 
   return (
     <div className="font-sans">
+
+      {/* ── SEO HEAD ── */}
+      <Helmet>
+        <title>Get a Free Quote | Affordable Web & App Development Nairobi Kenya — DevNovaTech</title>
+        <meta name="description" content="Get a free, no-obligation quote from DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company. Websites from KSh 25,000. Fast response within 24 hours." />
+        <meta name="keywords" content="free website quote Kenya, web development quote Nairobi, affordable website Kenya, DevNovaTech quote, website cost Kenya, web design price Nairobi, Android app quote Kenya" />
+        <link rel="canonical" href="https://devnovatech.com/quote" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devnovatech.com/quote" />
+        <meta property="og:title" content="Get a Free Quote | DevNovaTech — Web & App Development Kenya" />
+        <meta property="og:description" content="Request a free, no-obligation web development quote from DevNovaTech Softwares. Websites from KSh 25,000. Serving all of Kenya from Nairobi." />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Web Development Quote | DevNovaTech Nairobi Kenya" />
+        <meta name="twitter:description" content="Get an affordable KSh quote for your website or app from Nairobi's best web development team. Response within 24 hours." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Get a Free Quote — DevNovaTech Softwares",
+            "url": "https://devnovatech.com/quote",
+            "description": "Request a free, no-obligation web and app development quote from DevNovaTech Softwares, Nairobi's most affordable web development company",
+            "publisher": {
+              "@type": "Organization",
+              "name": "DevNovaTech Softwares",
+              "url": "https://devnovatech.com",
+              "telephone": "+254796038686",
+              "email": "info@devnovatech.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "KE"
+              }
+            }
+          }
+        `}</script>
+      </Helmet>
 
       {/* ══ HERO ══ */}
       <section className="bg-navy pt-[70px]">
@@ -245,7 +278,6 @@ ${form.description}`,
                     Fill in all details below, the more we know, the more accurate your free quote will be.
                   </p>
 
-                  {/* Success banner */}
                   {status === 'success' && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
                       <span className="text-2xl flex-shrink-0">✅</span>
@@ -256,7 +288,6 @@ ${form.description}`,
                     </div>
                   )}
 
-                  {/* Error banner */}
                   {status === 'error' && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
                       <span className="text-2xl flex-shrink-0">❌</span>
@@ -269,7 +300,6 @@ ${form.description}`,
 
                   <div className="space-y-4">
 
-                    {/* Row 1, Name + Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Full Name" />
@@ -285,7 +315,6 @@ ${form.description}`,
                       </div>
                     </div>
 
-                    {/* Row 2, Phone + Company */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Phone / WhatsApp" />
@@ -301,7 +330,6 @@ ${form.description}`,
                       </div>
                     </div>
 
-                    {/* Row 3, Service + Budget */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Service Needed" />
@@ -337,7 +365,6 @@ ${form.description}`,
                       </div>
                     </div>
 
-                    {/* Row 4, Timeline + Has Website */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Timeline" />
@@ -365,7 +392,6 @@ ${form.description}`,
                       </div>
                     </div>
 
-                    {/* Conditional, Website URL */}
                     {hasExistingWebsite && (
                       <div>
                         <FieldLabel text="Current Website URL" />
@@ -375,7 +401,6 @@ ${form.description}`,
                       </div>
                     )}
 
-                    {/* Description */}
                     <div>
                       <FieldLabel text="Project Description" />
                       <textarea name="description" value={form.description} onChange={handleChange}
@@ -385,7 +410,6 @@ ${form.description}`,
                       <FieldError msg={errors.description} />
                     </div>
 
-                    {/* Submit */}
                     <button
                       onClick={handleSubmit}
                       disabled={status === 'sending'}

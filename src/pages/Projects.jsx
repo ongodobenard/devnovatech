@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 function useReveal() {
@@ -203,15 +204,40 @@ export default function Projects() {
   const [active, setActive] = useState('All')
   const filtered = active === 'All' ? PROJECTS : PROJECTS.filter(p => p.cat === active)
 
-  useEffect(() => {
-    document.title = 'Best Web Projects in Kenya | DevNovaTech Softwares Portfolio Nairobi'
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      "View DevNovaTech's portfolio of the best web development projects in Kenya, business websites, e-commerce stores, NGO websites and more delivered across Nairobi and Kenya."
-    )
-  }, [])
-
   return (
     <div className="font-sans">
+
+      {/* ── SEO HEAD ── */}
+      <Helmet>
+        <title>Our Portfolio | Best Web Projects in Kenya — DevNovaTech Nairobi</title>
+        <meta name="description" content="View DevNovaTech's portfolio of the best web development projects in Kenya — business websites, e-commerce stores, NGO platforms, pharmacy sites and more, delivered across Nairobi, Mombasa, Kisumu and Kenya." />
+        <meta name="keywords" content="web development portfolio Kenya, best websites Nairobi, e-commerce Kenya, NGO website Kenya, DevNovaTech projects, web design portfolio Nairobi, Kenya web developer portfolio" />
+        <link rel="canonical" href="https://devnovatech.com/projects" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devnovatech.com/projects" />
+        <meta property="og:title" content="Our Portfolio | Best Web Projects in Kenya — DevNovaTech" />
+        <meta property="og:description" content="Browse DevNovaTech's portfolio of professional websites, e-commerce stores and digital solutions delivered across Kenya." />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DevNovaTech Portfolio | Best Web Projects in Kenya" />
+        <meta name="twitter:description" content="Professional websites, e-commerce and apps delivered across Nairobi and Kenya. View our work." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "DevNovaTech Portfolio — Best Web Projects in Kenya",
+            "url": "https://devnovatech.com/projects",
+            "description": "Portfolio of professional web development projects delivered by DevNovaTech across Kenya",
+            "publisher": {
+              "@type": "Organization",
+              "name": "DevNovaTech Softwares",
+              "url": "https://devnovatech.com"
+            }
+          }
+        `}</script>
+      </Helmet>
 
       {/* ══ HERO ══ */}
       <section className="bg-navy pt-[70px]">

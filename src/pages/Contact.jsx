@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 
@@ -62,11 +63,6 @@ function fieldStyle(error) {
 const EMPTY_FORM   = { name: '', email: '', phone: '', subject: '', message: '' }
 const EMPTY_ERRORS = { name: '', email: '', phone: '', subject: '', message: '' }
 
-/* ─────────────────────────────────────────────────────────────
-   CIRCUIT PATTERN, CTA Band (full-width)
-   Three rows of horizontal traces with 90° bends, dashed
-   vertical connectors, nodes at junctions, cyan glow blooms.
-───────────────────────────────────────────────────────────── */
 function CircuitCTA() {
   return (
     <svg
@@ -87,8 +83,6 @@ function CircuitCTA() {
           <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
         </radialGradient>
       </defs>
-
-      {/* ══ TOP ROW ══ */}
       <line x1="0"    y1="60"  x2="100"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
       <line x1="100"  y1="60"  x2="100"  y2="100" stroke="#00C8CC" strokeWidth="1" />
       <line x1="100"  y1="100" x2="260"  y2="100" stroke="#00C8CC" strokeWidth="1" />
@@ -104,8 +98,6 @@ function CircuitCTA() {
       <line x1="900"  y1="60"  x2="1060" y2="60"  stroke="#00C8CC" strokeWidth="1" />
       <line x1="1060" y1="60"  x2="1060" y2="100" stroke="#00C8CC" strokeWidth="1" />
       <line x1="1060" y1="100" x2="1200" y2="100" stroke="#00C8CC" strokeWidth="1" />
-
-      {/* ══ MIDDLE ROW ══ */}
       <line x1="0"    y1="190" x2="130"  y2="190" stroke="#00C8CC" strokeWidth="1" />
       <line x1="130"  y1="190" x2="130"  y2="230" stroke="#00C8CC" strokeWidth="1" />
       <line x1="130"  y1="230" x2="310"  y2="230" stroke="#00C8CC" strokeWidth="1" />
@@ -119,8 +111,6 @@ function CircuitCTA() {
       <line x1="830"  y1="235" x2="1000" y2="235" stroke="#00C8CC" strokeWidth="1" />
       <line x1="1000" y1="235" x2="1000" y2="190" stroke="#00C8CC" strokeWidth="1" />
       <line x1="1000" y1="190" x2="1200" y2="190" stroke="#00C8CC" strokeWidth="1" />
-
-      {/* ══ BOTTOM ROW ══ */}
       <line x1="50"   y1="310" x2="50"   y2="340" stroke="#00C8CC" strokeWidth="1" />
       <line x1="50"   y1="340" x2="200"  y2="340" stroke="#00C8CC" strokeWidth="1" />
       <line x1="200"  y1="340" x2="200"  y2="310" stroke="#00C8CC" strokeWidth="1" />
@@ -135,8 +125,6 @@ function CircuitCTA() {
       <line x1="930"  y1="310" x2="1100" y2="310" stroke="#00C8CC" strokeWidth="1" />
       <line x1="1100" y1="310" x2="1100" y2="360" stroke="#00C8CC" strokeWidth="1" />
       <line x1="1100" y1="360" x2="1200" y2="360" stroke="#00C8CC" strokeWidth="1" />
-
-      {/* ══ VERTICAL CONNECTORS ══ */}
       <line x1="100"  y1="100" x2="100"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="260"  y1="100" x2="260"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="580"  y1="100" x2="580"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
@@ -145,8 +133,6 @@ function CircuitCTA() {
       <line x1="310"  y1="230" x2="310"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="660"  y1="235" x2="660"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="1000" y1="235" x2="1000" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-
-      {/* ══ NODES ══ */}
       {[
         [100,60],[260,60],[420,60],[580,60],[740,60],[900,60],[1060,60],
         [100,100],[260,100],[420,100],[580,100],[740,100],[900,100],[1060,100],
@@ -155,8 +141,6 @@ function CircuitCTA() {
         [50,340],[200,340],[390,350],[570,350],[750,355],[930,355],[1100,360],
         [200,310],[390,310],[570,310],[750,310],[930,310],[1100,310],
       ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-
-      {/* ══ GLOW NODES ══ */}
       <circle cx="100"  cy="60"  r="16" fill="url(#ctac-bright)" />
       <circle cx="420"  cy="100" r="14" fill="url(#ctac-soft)"   />
       <circle cx="740"  cy="60"  r="18" fill="url(#ctac-bright)" />
@@ -176,13 +160,6 @@ export default function Contact() {
   const [errors, setErrors] = useState(EMPTY_ERRORS)
   const [status, setStatus] = useState('idle')
 
-  useEffect(() => {
-    document.title = 'Contact DevNovaTech Softwares | Affordable Web Development Nairobi Kenya'
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      "Contact DevNovaTech Softwares, Nairobi's best & most affordable web development company. Call, WhatsApp or email us for a free quote on your website or digital project in Kenya."
-    )
-  }, [])
-
   function handleChange(e) {
     const { name, value } = e.target
     setForm(f => ({ ...f, [name]: value }))
@@ -192,31 +169,12 @@ export default function Contact() {
   function validate() {
     const e = { name: '', email: '', phone: '', subject: '', message: '' }
     let valid = true
-
-    if (!form.name.trim()) {
-      e.name = 'Full name is required'
-      valid = false
-    }
-    if (!form.email.trim()) {
-      e.email = 'Email address is required'
-      valid = false
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      e.email = 'Enter a valid email address'
-      valid = false
-    }
-    if (!form.phone.trim()) {
-      e.phone = 'Phone number is required'
-      valid = false
-    }
-    if (!form.subject) {
-      e.subject = 'Please select a subject'
-      valid = false
-    }
-    if (!form.message.trim()) {
-      e.message = 'Please enter your message'
-      valid = false
-    }
-
+    if (!form.name.trim()) { e.name = 'Full name is required'; valid = false }
+    if (!form.email.trim()) { e.email = 'Email address is required'; valid = false }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { e.email = 'Enter a valid email address'; valid = false }
+    if (!form.phone.trim()) { e.phone = 'Phone number is required'; valid = false }
+    if (!form.subject) { e.subject = 'Please select a subject'; valid = false }
+    if (!form.message.trim()) { e.message = 'Please enter your message'; valid = false }
     setErrors(e)
     return valid
   }
@@ -224,7 +182,6 @@ export default function Contact() {
   function handleSubmit() {
     if (!validate()) return
     setStatus('sending')
-
     const templateParams = {
       name:    form.name,
       email:   form.email,
@@ -233,7 +190,6 @@ export default function Contact() {
       message: form.message,
       time:    new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' }),
     }
-
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then(function () {
         setStatus('success')
@@ -248,6 +204,45 @@ export default function Contact() {
 
   return (
     <div className="font-sans">
+
+      {/* ── SEO HEAD ── */}
+      <Helmet>
+        <title>Contact Us | Affordable Web Development Nairobi Kenya — DevNovaTech</title>
+        <meta name="description" content="Contact DevNovaTech Softwares, Nairobi's best & most affordable web development company. Call, WhatsApp or email us for a free quote on your website or digital project in Kenya." />
+        <meta name="keywords" content="contact web developer Nairobi, web development company Kenya, affordable website Kenya, DevNovaTech contact, web design Nairobi quote, web developer Kenya WhatsApp" />
+        <link rel="canonical" href="https://devnovatech.com/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devnovatech.com/contact" />
+        <meta property="og:title" content="Contact DevNovaTech | Nairobi's Best Web Development Company" />
+        <meta property="og:description" content="Reach out to DevNovaTech Softwares for a free consultation and affordable web development quote. Serving all of Kenya from Nairobi." />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact DevNovaTech | Web Development Nairobi Kenya" />
+        <meta name="twitter:description" content="Get a free quote from Nairobi's best web development team. We respond within 24 hours." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact DevNovaTech Softwares",
+            "url": "https://devnovatech.com/contact",
+            "description": "Contact page for DevNovaTech Softwares, Nairobi's best and most affordable web development company",
+            "publisher": {
+              "@type": "Organization",
+              "name": "DevNovaTech Softwares",
+              "url": "https://devnovatech.com",
+              "telephone": "+254796038686",
+              "email": "info@devnovatech.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "KE"
+              }
+            }
+          }
+        `}</script>
+      </Helmet>
 
       {/* ══ HERO ══ */}
       <section className="bg-navy pt-[70px]">
@@ -464,7 +459,6 @@ export default function Contact() {
 
       {/* ══ CTA ══ */}
       <section className="py-12 sm:py-24 bg-navy relative overflow-hidden">
-        {/* Circuit pattern replaces diagonal strips */}
         <CircuitCTA />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <Reveal>

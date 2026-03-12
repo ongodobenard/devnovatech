@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import founderImg from '../assets/founder.jpg'
 import aboutBg from '../assets/about-bg.jpg'
@@ -307,15 +308,49 @@ function LinkedInIcon() {
 }
 
 export default function About() {
-  useEffect(() => {
-    document.title = 'About Us | DevNovaTech Softwares, #1 Web & App Development Company in Nairobi, Kenya'
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      "DevNovaTech Softwares is Nairobi's leading web and Android app development company in Kenya. Learn our story, mission, values and meet the Nairobi-based team building digital solutions for businesses across Kenya, Nairobi, Mombasa, Kisumu, Nakuru & beyond."
-    )
-  }, [])
-
   return (
     <div className="font-sans overflow-x-hidden">
+
+      {/* ── SEO HEAD ── */}
+      <Helmet>
+        <title>About Us | DevNovaTech Softwares — #1 Web & App Developers Nairobi Kenya</title>
+        <meta name="description" content="DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company. Learn our story, mission, values and meet the team building digital solutions for businesses across Kenya — Nairobi, Mombasa, Kisumu, Nakuru & beyond." />
+        <meta name="keywords" content="about DevNovaTech, web developers Nairobi Kenya, software company Nairobi, best web development company Kenya, affordable web developers Kenya, Nairobi app developers, DevNovaTech team" />
+        <link rel="canonical" href="https://devnovatech.com/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devnovatech.com/about" />
+        <meta property="og:title" content="About DevNovaTech | Best Web & App Developers Nairobi Kenya" />
+        <meta property="og:description" content="Meet the Nairobi-based team behind Kenya's best & most affordable web and app development company. Our story, mission and values." />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About DevNovaTech | Web & App Developers Nairobi Kenya" />
+        <meta name="twitter:description" content="Nairobi's best & most affordable web and Android app developers. Learn our story, meet the team." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About DevNovaTech Softwares",
+            "url": "https://devnovatech.com/about",
+            "description": "Learn about DevNovaTech Softwares, Nairobi's best and most affordable web and Android app development company in Kenya",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "DevNovaTech Softwares",
+              "foundingDate": "2020",
+              "foundingLocation": "Nairobi, Kenya",
+              "url": "https://devnovatech.com",
+              "numberOfEmployees": "3",
+              "areaServed": ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Kenya"],
+              "founder": {
+                "@type": "Person",
+                "name": "Benard Ongodo",
+                "jobTitle": "Founder & Lead Developer"
+              }
+            }
+          }
+        `}</script>
+      </Helmet>
 
       {/* ══ PAGE HERO ══ */}
       <section className="bg-navy pt-[70px] relative overflow-hidden"
@@ -386,7 +421,6 @@ export default function About() {
               </div>
             </Reveal>
 
-            {/* Services grid — single col on mobile, 2 col on sm+ */}
             <Reveal delay={0.15}>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -564,7 +598,7 @@ export default function About() {
                 <div className="w-full overflow-hidden bg-[#e8f9f9]" style={{ height: '220px' }}>
                   <img
                     src={founderImg}
-                    alt="Benard Ongoda"
+                    alt="Benard Ongoda - Founder & Lead Developer at DevNovaTech Nairobi Kenya"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }}
                     onError={e => {
                       e.currentTarget.style.display = 'none'
@@ -627,7 +661,7 @@ export default function About() {
                 <div className="w-full overflow-hidden bg-[#fef9ee]" style={{ height: '220px' }}>
                   <img
                     src={brandonImg}
-                    alt="Brandon Jude"
+                    alt="Brandon Jude - SEO & Digital Marketing Expert at DevNovaTech Kenya"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
                     onError={e => {
                       e.currentTarget.style.display = 'none'

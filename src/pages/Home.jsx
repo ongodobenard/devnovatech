@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
 import heroBg from '../assets/devnovatech-bg.jpg'
 
@@ -418,15 +419,65 @@ export default function Home() {
     'LMS Platforms',
   ])
 
-  useEffect(() => {
-    document.title = 'DevNovaTech Softwares | Best & Affordable Web & App Developers in Nairobi, Kenya'
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      "DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company in Kenya. Professional custom websites, Android apps, e-commerce with M-Pesa, POS software, LMS, CRM, SEO & digital marketing. Serving Nairobi, Mombasa, Kisumu, Nakuru & across Kenya. Get a free quote today."
-    )
-  }, [])
-
   return (
     <div className="font-sans">
+
+      {/* ── SEO HEAD ── */}
+      <Helmet>
+        <title>DevNovaTech Softwares | Best & Affordable Web & App Developers Nairobi Kenya</title>
+        <meta name="description" content="DevNovaTech Softwares — Nairobi's best & most affordable web and Android app development company in Kenya. Custom websites, Android apps, e-commerce with M-Pesa, POS software, LMS, CRM, SEO & digital marketing. Serving Nairobi, Mombasa, Kisumu, Nakuru & across Kenya. Get a free quote today." />
+        <meta name="keywords" content="web development Nairobi, affordable websites Kenya, Android app development Kenya, e-commerce Kenya, M-Pesa integration, software company Nairobi, SEO Kenya, web design Nairobi, cheap websites Kenya, best web developers Nairobi" />
+        <link rel="canonical" href="https://devnovatech.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devnovatech.com/" />
+        <meta property="og:title" content="DevNovaTech | Best Affordable Web & App Developers Nairobi Kenya" />
+        <meta property="og:description" content="Nairobi's best & most affordable web and Android app development company. Custom websites, apps, e-commerce with M-Pesa. Free quote today." />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DevNovaTech | Web & App Developers Nairobi Kenya" />
+        <meta name="twitter:description" content="Best affordable web development in Nairobi Kenya. Websites, Android apps, M-Pesa integration. Free quote today." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "DevNovaTech Softwares",
+            "url": "https://devnovatech.com",
+            "description": "Nairobi's best and most affordable web and Android app development company in Kenya",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://devnovatech.com/?s={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        `}</script>
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "DevNovaTech Softwares",
+            "description": "Best and most affordable web development, Android app development and software company in Nairobi Kenya",
+            "url": "https://devnovatech.com",
+            "telephone": "+254796038686",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Nairobi",
+              "addressCountry": "KE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": -1.286389,
+              "longitude": 36.817223
+            },
+            "openingHours": "Mo-Su 08:00-20:00",
+            "priceRange": "KSh 25,000 - KSh 500,000",
+            "sameAs": [
+              "https://wa.me/254796038686"
+            ]
+          }
+        `}</script>
+      </Helmet>
 
       {/* ── Inject fadeUp keyframe globally once ── */}
       <style>{animStyles}</style>
@@ -440,7 +491,6 @@ export default function Home() {
         <div className="max-w-6xl mx-auto w-full px-4 pt-4 pb-8 relative z-10">
           <div className="max-w-2xl">
 
-            {/* ✅ FIX: tagline uses .anim-fade-up-1 (defined in <style> above) — always visible */}
             <div className="flex items-center gap-3 mb-3 anim-fade-up-1">
               <span className="w-6 h-[2px] bg-cyan flex-shrink-0" />
               <span className="text-[11px] font-bold text-cyan tracking-[0.18em] uppercase font-sans">Nairobi's Best · Affordable · Professional · Est. 2020</span>

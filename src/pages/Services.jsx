@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 function useReveal() {
@@ -284,15 +285,56 @@ const SERVICES = [
 ]
 
 export default function Services() {
-  useEffect(() => {
-    document.title = "Affordable Web & App Development Services Nairobi Kenya | DevNovaTech Softwares"
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      "DevNovaTech offers Kenya's best & most affordable web design, Android app development, e-commerce, POS software, SEO, LMS, CRM, graphic design and website maintenance services in Nairobi. Get a free quote today."
-    )
-  }, [])
-
   return (
     <div className="font-sans">
+
+      {/* ── SEO HEAD ── */}
+      <Helmet>
+        <title>Affordable Web & App Development Services Nairobi Kenya | DevNovaTech</title>
+        <meta name="description" content="DevNovaTech offers Kenya's best & most affordable web design, Android app development, e-commerce with M-Pesa, POS software, SEO, LMS, CRM, graphic design and website maintenance in Nairobi. Get a free quote today." />
+        <meta name="keywords" content="affordable web design Nairobi, Android app development Kenya, e-commerce M-Pesa Kenya, POS software Nairobi, SEO services Kenya, LMS development Kenya, CRM software Nairobi, graphic design Nairobi, website maintenance Kenya" />
+        <link rel="canonical" href="https://devnovatech.com/services" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://devnovatech.com/services" />
+        <meta property="og:title" content="Affordable Web & App Services Nairobi Kenya | DevNovaTech" />
+        <meta property="og:description" content="Kenya's best & most affordable web design, Android apps, e-commerce, POS software, SEO, LMS, CRM and graphic design. Serving Nairobi, Mombasa, Kisumu & all of Kenya." />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Affordable Web & App Services Nairobi Kenya | DevNovaTech" />
+        <meta name="twitter:description" content="Best affordable web design, Android apps, e-commerce with M-Pesa, SEO & more in Nairobi Kenya." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Web Development, Android App Development, E-Commerce, SEO, Graphic Design",
+            "provider": {
+              "@type": "LocalBusiness",
+              "name": "DevNovaTech Softwares",
+              "url": "https://devnovatech.com",
+              "telephone": "+254796038686",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "KE"
+              }
+            },
+            "areaServed": ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Kenya"],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "DevNovaTech Digital Services",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Affordable Web Design & Development", "description": "Custom responsive websites from KSh 25,000" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Android App Development", "description": "Custom Android apps with M-Pesa from KSh 55,000" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-Commerce Development", "description": "M-Pesa integrated online stores from KSh 45,000" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "POS Software", "description": "Custom POS software from KSh 35,000" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO & Digital Marketing", "description": "Local SEO for Nairobi & Kenya from KSh 15,000/mo" } }
+              ]
+            }
+          }
+        `}</script>
+      </Helmet>
 
       {/* ══ HERO ══ */}
       <section className="bg-navy pt-[70px]">
@@ -398,13 +440,12 @@ export default function Services() {
                 </Reveal>
               </div>
 
-              {/* Visual card — classy number replaces emoji */}
+              {/* Visual card */}
               <div className="hidden sm:block">
                 <Reveal delay={0.1}>
                   <div className="bg-navy rounded-xl p-8 sm:p-10 relative overflow-hidden aspect-square flex flex-col justify-center items-center">
                     <CircuitCard />
                     <div className="relative z-10 text-center">
-                      {/* Classy number */}
                       <div className="flex items-end justify-center gap-3 mb-5">
                         <span
                           className="font-serif font-black leading-none"
@@ -477,7 +518,6 @@ export default function Services() {
             ].map((p, i) => (
               <Reveal key={p.step} delay={i * 0.1}>
                 <div className="bg-white/4 border border-white/8 rounded-xl p-6 sm:p-8 hover:bg-white/6 transition-all duration-300 h-full">
-                  {/* Classy number in red/transparent */}
                   <div className="mb-4 flex items-end gap-2">
                     <span
                       className="font-serif font-black leading-none"
