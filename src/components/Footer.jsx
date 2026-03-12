@@ -166,7 +166,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-1 px-4 py-2.5 bg-[#25D366] text-white font-bold text-[12px] rounded font-sans hover:bg-[#1db954] transition-colors duration-200"
               >
-                💬 WhatsApp Us
+                 WhatsApp Us
               </a>
             </div>
           </div>
