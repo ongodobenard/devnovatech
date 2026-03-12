@@ -13,7 +13,10 @@ if (root.hasChildNodes()) {
       <HelmetProvider>
         <App />
       </HelmetProvider>
-    </StrictMode>
+    </StrictMode>,
+    {
+      onRecoverableError: () => {},
+    }
   )
 } else {
   createRoot(root).render(

@@ -213,16 +213,23 @@ export default function Projects() {
         <meta name="description" content="View DevNovaTech's portfolio of the best web development projects in Kenya — business websites, e-commerce stores, NGO platforms, pharmacy sites and more, delivered across Nairobi, Mombasa, Kisumu and Kenya." />
         <meta name="keywords" content="web development portfolio Kenya, best websites Nairobi, e-commerce Kenya, NGO website Kenya, DevNovaTech projects, web design portfolio Nairobi, Kenya web developer portfolio" />
         <link rel="canonical" href="https://devnovatech.com/projects" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devnovatech.com/projects" />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Our Portfolio | Best Web Projects in Kenya — DevNovaTech" />
         <meta property="og:description" content="Browse DevNovaTech's portfolio of professional websites, e-commerce stores and digital solutions delivered across Kenya." />
-        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DevNovaTech Softwares - Web Development Portfolio Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="DevNovaTech Portfolio | Best Web Projects in Kenya" />
         <meta name="twitter:description" content="Professional websites, e-commerce and apps delivered across Nairobi and Kenya. View our work." />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DevNovaTech Softwares" />
+        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image:alt" content="DevNovaTech Softwares - Portfolio of Web Projects in Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",

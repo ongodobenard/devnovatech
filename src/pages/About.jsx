@@ -317,16 +317,23 @@ export default function About() {
         <meta name="description" content="DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company. Learn our story, mission, values and meet the team building digital solutions for businesses across Kenya — Nairobi, Mombasa, Kisumu, Nakuru & beyond." />
         <meta name="keywords" content="about DevNovaTech, web developers Nairobi Kenya, software company Nairobi, best web development company Kenya, affordable web developers Kenya, Nairobi app developers, DevNovaTech team" />
         <link rel="canonical" href="https://devnovatech.com/about" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devnovatech.com/about" />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="About DevNovaTech | Best Web & App Developers Nairobi Kenya" />
         <meta property="og:description" content="Meet the Nairobi-based team behind Kenya's best & most affordable web and app development company. Our story, mission and values." />
-        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DevNovaTech Softwares - Web & App Developers Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About DevNovaTech | Web & App Developers Nairobi Kenya" />
         <meta name="twitter:description" content="Nairobi's best & most affordable web and Android app developers. Learn our story, meet the team." />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DevNovaTech Softwares" />
+        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",

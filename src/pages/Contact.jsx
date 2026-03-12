@@ -65,13 +65,7 @@ const EMPTY_ERRORS = { name: '', email: '', phone: '', subject: '', message: '' 
 
 function CircuitCTA() {
   return (
-    <svg
-      className="absolute inset-0 w-full h-full"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 380"
-      preserveAspectRatio="xMidYMid slice"
-      style={{ opacity: 0.14 }}
-    >
+    <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.14 }}>
       <defs>
         <radialGradient id="ctac-bright" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
@@ -83,74 +77,12 @@ function CircuitCTA() {
           <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <line x1="0"    y1="60"  x2="100"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="60"  x2="100"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="100" x2="260"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="260"  y1="100" x2="260"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="260"  y1="60"  x2="420"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="420"  y1="60"  x2="420"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="420"  y1="100" x2="580"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="580"  y1="100" x2="580"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="580"  y1="60"  x2="740"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="740"  y1="60"  x2="740"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="740"  y1="100" x2="900"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="900"  y1="100" x2="900"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="900"  y1="60"  x2="1060" y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1060" y1="60"  x2="1060" y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1060" y1="100" x2="1200" y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="0"    y1="190" x2="130"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="130"  y1="190" x2="130"  y2="230" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="130"  y1="230" x2="310"  y2="230" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310"  y1="230" x2="310"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310"  y1="190" x2="490"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="490"  y1="190" x2="490"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="490"  y1="235" x2="660"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="660"  y1="235" x2="660"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="660"  y1="190" x2="830"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="830"  y1="190" x2="830"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="830"  y1="235" x2="1000" y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1000" y1="235" x2="1000" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1000" y1="190" x2="1200" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="50"   y1="310" x2="50"   y2="340" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="50"   y1="340" x2="200"  y2="340" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200"  y1="340" x2="200"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200"  y1="310" x2="390"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="390"  y1="310" x2="390"  y2="350" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="390"  y1="350" x2="570"  y2="350" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="570"  y1="350" x2="570"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="570"  y1="310" x2="750"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="750"  y1="310" x2="750"  y2="355" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="750"  y1="355" x2="930"  y2="355" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="930"  y1="355" x2="930"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="930"  y1="310" x2="1100" y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1100" y1="310" x2="1100" y2="360" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1100" y1="360" x2="1200" y2="360" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="100" x2="100"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="260"  y1="100" x2="260"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="580"  y1="100" x2="580"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="740"  y1="100" x2="740"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="1060" y1="100" x2="1060" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="310"  y1="230" x2="310"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="660"  y1="235" x2="660"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="1000" y1="235" x2="1000" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      {[
-        [100,60],[260,60],[420,60],[580,60],[740,60],[900,60],[1060,60],
-        [100,100],[260,100],[420,100],[580,100],[740,100],[900,100],[1060,100],
-        [130,190],[310,190],[490,190],[660,190],[830,190],[1000,190],
-        [130,230],[310,230],[490,235],[660,235],[830,235],[1000,235],
-        [50,340],[200,340],[390,350],[570,350],[750,355],[930,355],[1100,360],
-        [200,310],[390,310],[570,310],[750,310],[930,310],[1100,310],
-      ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-      <circle cx="100"  cy="60"  r="16" fill="url(#ctac-bright)" />
-      <circle cx="420"  cy="100" r="14" fill="url(#ctac-soft)"   />
-      <circle cx="740"  cy="60"  r="18" fill="url(#ctac-bright)" />
-      <circle cx="1060" cy="100" r="14" fill="url(#ctac-soft)"   />
-      <circle cx="130"  cy="230" r="16" fill="url(#ctac-bright)" />
-      <circle cx="490"  cy="190" r="14" fill="url(#ctac-soft)"   />
-      <circle cx="830"  cy="235" r="16" fill="url(#ctac-bright)" />
-      <circle cx="310"  cy="310" r="14" fill="url(#ctac-soft)"   />
-      <circle cx="750"  cy="355" r="16" fill="url(#ctac-bright)" />
-      <circle cx="1100" cy="310" r="14" fill="url(#ctac-soft)"   />
+      <line x1="0" y1="60" x2="100" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="100" y1="60" x2="100" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="100" y1="100" x2="260" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="260" y1="100" x2="260" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="260" y1="60" x2="420" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="420" y1="60" x2="420" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="420" y1="100" x2="580" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="580" y1="100" x2="580" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="580" y1="60" x2="740" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="740" y1="60" x2="740" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="740" y1="100" x2="900" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="900" y1="100" x2="900" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="900" y1="60" x2="1060" y2="60" stroke="#00C8CC" strokeWidth="1" /><line x1="1060" y1="60" x2="1060" y2="100" stroke="#00C8CC" strokeWidth="1" /><line x1="1060" y1="100" x2="1200" y2="100" stroke="#00C8CC" strokeWidth="1" />
+      <line x1="0" y1="190" x2="130" y2="190" stroke="#00C8CC" strokeWidth="1" /><line x1="130" y1="190" x2="130" y2="230" stroke="#00C8CC" strokeWidth="1" /><line x1="130" y1="230" x2="310" y2="230" stroke="#00C8CC" strokeWidth="1" /><line x1="310" y1="230" x2="310" y2="190" stroke="#00C8CC" strokeWidth="1" /><line x1="310" y1="190" x2="490" y2="190" stroke="#00C8CC" strokeWidth="1" /><line x1="490" y1="190" x2="490" y2="235" stroke="#00C8CC" strokeWidth="1" /><line x1="490" y1="235" x2="660" y2="235" stroke="#00C8CC" strokeWidth="1" /><line x1="660" y1="235" x2="660" y2="190" stroke="#00C8CC" strokeWidth="1" /><line x1="660" y1="190" x2="830" y2="190" stroke="#00C8CC" strokeWidth="1" /><line x1="830" y1="190" x2="830" y2="235" stroke="#00C8CC" strokeWidth="1" /><line x1="830" y1="235" x2="1000" y2="235" stroke="#00C8CC" strokeWidth="1" /><line x1="1000" y1="235" x2="1000" y2="190" stroke="#00C8CC" strokeWidth="1" /><line x1="1000" y1="190" x2="1200" y2="190" stroke="#00C8CC" strokeWidth="1" />
+      <line x1="50" y1="310" x2="50" y2="340" stroke="#00C8CC" strokeWidth="1" /><line x1="50" y1="340" x2="200" y2="340" stroke="#00C8CC" strokeWidth="1" /><line x1="200" y1="340" x2="200" y2="310" stroke="#00C8CC" strokeWidth="1" /><line x1="200" y1="310" x2="390" y2="310" stroke="#00C8CC" strokeWidth="1" /><line x1="390" y1="310" x2="390" y2="350" stroke="#00C8CC" strokeWidth="1" /><line x1="390" y1="350" x2="570" y2="350" stroke="#00C8CC" strokeWidth="1" /><line x1="570" y1="350" x2="570" y2="310" stroke="#00C8CC" strokeWidth="1" /><line x1="570" y1="310" x2="750" y2="310" stroke="#00C8CC" strokeWidth="1" /><line x1="750" y1="310" x2="750" y2="355" stroke="#00C8CC" strokeWidth="1" /><line x1="750" y1="355" x2="930" y2="355" stroke="#00C8CC" strokeWidth="1" /><line x1="930" y1="355" x2="930" y2="310" stroke="#00C8CC" strokeWidth="1" /><line x1="930" y1="310" x2="1100" y2="310" stroke="#00C8CC" strokeWidth="1" /><line x1="1100" y1="310" x2="1100" y2="360" stroke="#00C8CC" strokeWidth="1" /><line x1="1100" y1="360" x2="1200" y2="360" stroke="#00C8CC" strokeWidth="1" />
+      <line x1="100" y1="100" x2="100" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="260" y1="100" x2="260" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="580" y1="100" x2="580" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="740" y1="100" x2="740" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="1060" y1="100" x2="1060" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="310" y1="230" x2="310" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="660" y1="235" x2="660" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" /><line x1="1000" y1="235" x2="1000" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
+      {[[100,60],[260,60],[420,60],[580,60],[740,60],[900,60],[1060,60],[100,100],[260,100],[420,100],[580,100],[740,100],[900,100],[1060,100],[130,190],[310,190],[490,190],[660,190],[830,190],[1000,190],[130,230],[310,230],[490,235],[660,235],[830,235],[1000,235],[50,340],[200,340],[390,350],[570,350],[750,355],[930,355],[1100,360],[200,310],[390,310],[570,310],[750,310],[930,310],[1100,310]].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
+      <circle cx="100" cy="60" r="16" fill="url(#ctac-bright)" /><circle cx="420" cy="100" r="14" fill="url(#ctac-soft)" /><circle cx="740" cy="60" r="18" fill="url(#ctac-bright)" /><circle cx="1060" cy="100" r="14" fill="url(#ctac-soft)" /><circle cx="130" cy="230" r="16" fill="url(#ctac-bright)" /><circle cx="490" cy="190" r="14" fill="url(#ctac-soft)" /><circle cx="830" cy="235" r="16" fill="url(#ctac-bright)" /><circle cx="310" cy="310" r="14" fill="url(#ctac-soft)" /><circle cx="750" cy="355" r="16" fill="url(#ctac-bright)" /><circle cx="1100" cy="310" r="14" fill="url(#ctac-soft)" />
     </svg>
   )
 }
@@ -211,16 +143,23 @@ export default function Contact() {
         <meta name="description" content="Contact DevNovaTech Softwares, Nairobi's best & most affordable web development company. Call, WhatsApp or email us for a free quote on your website or digital project in Kenya." />
         <meta name="keywords" content="contact web developer Nairobi, web development company Kenya, affordable website Kenya, DevNovaTech contact, web design Nairobi quote, web developer Kenya WhatsApp" />
         <link rel="canonical" href="https://devnovatech.com/contact" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devnovatech.com/contact" />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Contact DevNovaTech | Nairobi's Best Web Development Company" />
         <meta property="og:description" content="Reach out to DevNovaTech Softwares for a free consultation and affordable web development quote. Serving all of Kenya from Nairobi." />
-        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DevNovaTech Softwares - Contact Web Development Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contact DevNovaTech | Web Development Nairobi Kenya" />
         <meta name="twitter:description" content="Get a free quote from Nairobi's best web development team. We respond within 24 hours." />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DevNovaTech Softwares" />
+        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -299,7 +238,7 @@ export default function Contact() {
                   </p>
                   <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer"
                     className="w-full py-3 bg-[#25D366] text-white font-bold text-[13px] rounded tracking-wide font-sans transition-all duration-200 hover:bg-[#1db954] flex items-center justify-center gap-2">
-                    💬 Chat on WhatsApp
+                     Chat on WhatsApp
                   </a>
                 </div>
               </Reveal>
@@ -338,22 +277,12 @@ export default function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Full Name" />
-                        <input
-                          name="name" value={form.name} onChange={handleChange}
-                          placeholder="John Kamau"
-                          className={inputBase}
-                          style={fieldStyle(errors.name)}
-                        />
+                        <input name="name" value={form.name} onChange={handleChange} placeholder="John Kamau" className={inputBase} style={fieldStyle(errors.name)} />
                         <FieldError msg={errors.name} />
                       </div>
                       <div>
                         <FieldLabel text="Email Address" />
-                        <input
-                          name="email" value={form.email} onChange={handleChange}
-                          placeholder="john@company.co.ke"
-                          className={inputBase}
-                          style={fieldStyle(errors.email)}
-                        />
+                        <input name="email" value={form.email} onChange={handleChange} placeholder="john@company.co.ke" className={inputBase} style={fieldStyle(errors.email)} />
                         <FieldError msg={errors.email} />
                       </div>
                     </div>
@@ -361,11 +290,7 @@ export default function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Subject" />
-                        <select
-                          name="subject" value={form.subject} onChange={handleChange}
-                          className={inputBase}
-                          style={fieldStyle(errors.subject)}
-                        >
+                        <select name="subject" value={form.subject} onChange={handleChange} className={inputBase} style={fieldStyle(errors.subject)}>
                           <option value="">Select a service...</option>
                           <option>Web Design &amp; Development</option>
                           <option>E-Commerce Development</option>
@@ -382,25 +307,14 @@ export default function Contact() {
                       </div>
                       <div>
                         <FieldLabel text="Phone / WhatsApp" />
-                        <input
-                          name="phone" value={form.phone} onChange={handleChange}
-                          placeholder="+254 7XX XXX XXX"
-                          className={inputBase}
-                          style={fieldStyle(errors.phone)}
-                        />
+                        <input name="phone" value={form.phone} onChange={handleChange} placeholder="+254 7XX XXX XXX" className={inputBase} style={fieldStyle(errors.phone)} />
                         <FieldError msg={errors.phone} />
                       </div>
                     </div>
 
                     <div>
                       <FieldLabel text="Message" />
-                      <textarea
-                        name="message" value={form.message} onChange={handleChange}
-                        rows={5}
-                        placeholder="Tell us about your project, what you need, your budget and timeline..."
-                        className={inputBase + ' resize-none'}
-                        style={fieldStyle(errors.message)}
-                      />
+                      <textarea name="message" value={form.message} onChange={handleChange} rows={5} placeholder="Tell us about your project, what you need, your budget and timeline..." className={inputBase + ' resize-none'} style={fieldStyle(errors.message)} />
                       <FieldError msg={errors.message} />
                     </div>
 
@@ -470,12 +384,10 @@ export default function Contact() {
                 Get a free consultation and affordable quote from Nairobi's best web development team. We respond within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link to="/quote"
-                  className="px-8 py-4 bg-cyan text-navy font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30 text-center">
+                <Link to="/quote" className="px-8 py-4 bg-cyan text-navy font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30 text-center">
                   Get a Free Quote
                 </Link>
-                <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer"
-                  className="px-8 py-4 bg-[#25D366] text-white font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-[#1db954] text-center">
+                <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-[#25D366] text-white font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-[#1db954] text-center">
                   Chat on WhatsApp
                 </a>
               </div>

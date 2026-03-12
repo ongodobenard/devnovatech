@@ -157,16 +157,23 @@ ${form.description}`,
         <meta name="description" content="Get a free, no-obligation quote from DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company. Websites from KSh 25,000. Fast response within 24 hours." />
         <meta name="keywords" content="free website quote Kenya, web development quote Nairobi, affordable website Kenya, DevNovaTech quote, website cost Kenya, web design price Nairobi, Android app quote Kenya" />
         <link rel="canonical" href="https://devnovatech.com/quote" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devnovatech.com/quote" />
+        <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Get a Free Quote | DevNovaTech — Web & App Development Kenya" />
         <meta property="og:description" content="Request a free, no-obligation web development quote from DevNovaTech Softwares. Websites from KSh 25,000. Serving all of Kenya from Nairobi." />
-        <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DevNovaTech Softwares - Free Web Development Quote Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Web Development Quote | DevNovaTech Nairobi Kenya" />
         <meta name="twitter:description" content="Get an affordable KSh quote for your website or app from Nairobi's best web development team. Response within 24 hours." />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DevNovaTech Softwares" />
+        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image:alt" content="DevNovaTech Softwares - Free Quote Web Development Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",

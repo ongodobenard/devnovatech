@@ -6,7 +6,6 @@ import path from 'path'
 const ROUTES = ['/', '/about', '/services', '/projects', '/contact', '/quote']
 
 async function prerender() {
-  // Start vite preview server on the dist folder
   const server = await preview({
     preview: { port: 5999, open: false },
   })
@@ -23,7 +22,17 @@ async function prerender() {
     console.log(`📄 Prerendering ${url}...`)
 
     const page = await browser.newPage()
-    await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 })
+
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 })
+
+    // Wait for the loading spinner to disappear
+    await page.waitForFunction(
+      () => !document.querySelector('.fixed.inset-0.z-\\[9999\\]'),
+      { timeout: 30000 }
+    ).catch(() => console.log(`⚠️  Spinner timeout on ${route}, saving anyway...`))
+
+    // Extra wait to ensure React has fully rendered
+    await new Promise(resolve => setTimeout(resolve, 3000))
 
     const html = await page.content()
 

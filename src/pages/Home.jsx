@@ -427,53 +427,287 @@ export default function Home() {
         <title>DevNovaTech Softwares | Best & Affordable Web & App Developers Nairobi Kenya</title>
         <meta name="description" content="DevNovaTech Softwares — Nairobi's best & most affordable web and Android app development company in Kenya. Custom websites, Android apps, e-commerce with M-Pesa, POS software, LMS, CRM, SEO & digital marketing. Serving Nairobi, Mombasa, Kisumu, Nakuru & across Kenya. Get a free quote today." />
         <meta name="keywords" content="web development Nairobi, affordable websites Kenya, Android app development Kenya, e-commerce Kenya, M-Pesa integration, software company Nairobi, SEO Kenya, web design Nairobi, cheap websites Kenya, best web developers Nairobi" />
+        <meta name="author" content="DevNovaTech Softwares" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
         <link rel="canonical" href="https://devnovatech.com/" />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devnovatech.com/" />
         <meta property="og:title" content="DevNovaTech | Best Affordable Web & App Developers Nairobi Kenya" />
         <meta property="og:description" content="Nairobi's best & most affordable web and Android app development company. Custom websites, apps, e-commerce with M-Pesa. Free quote today." />
+        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DevNovaTech Softwares - Nairobi's Best Web Development Company" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
+        <meta property="og:locale" content="en_KE" />
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://devnovatech.com/" />
         <meta name="twitter:title" content="DevNovaTech | Web & App Developers Nairobi Kenya" />
         <meta name="twitter:description" content="Best affordable web development in Nairobi Kenya. Websites, Android apps, M-Pesa integration. Free quote today." />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DevNovaTech Softwares" />
+        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
+
+        {/* Schema: WebSite */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
+            "@id": "https://devnovatech.com/#website",
             "name": "DevNovaTech Softwares",
             "url": "https://devnovatech.com",
             "description": "Nairobi's best and most affordable web and Android app development company in Kenya",
+            "inLanguage": "en-KE",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://devnovatech.com/?s={search_term_string}",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://devnovatech.com/?s={search_term_string}"
+              },
               "query-input": "required name=search_term_string"
             }
           }
         `}</script>
+
+        {/* Schema: Organization */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://devnovatech.com/#organization",
+            "name": "DevNovaTech Softwares",
+            "url": "https://devnovatech.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://devnovatech.com/favicon.jpg",
+              "width": 512,
+              "height": 512
+            },
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+254796038686",
+                "contactType": "customer service",
+                "areaServed": "KE",
+                "availableLanguage": ["English", "Swahili"]
+              },
+              {
+                "@type": "ContactPoint",
+                "telephone": "+254796038686",
+                "contactType": "sales",
+                "areaServed": "KE"
+              }
+            ],
+            "sameAs": ["https://wa.me/254796038686"]
+          }
+        `}</script>
+
+        {/* Schema: LocalBusiness */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
+            "@id": "https://devnovatech.com/#business",
             "name": "DevNovaTech Softwares",
-            "description": "Best and most affordable web development, Android app development and software company in Nairobi Kenya",
+            "alternateName": "DevNovaTech",
+            "description": "Nairobi's best and most affordable web development company, serving businesses across Kenya since 2020. We build custom websites, e-commerce stores with M-Pesa integration, POS software, LMS, CRM and digital marketing solutions.",
             "url": "https://devnovatech.com",
+            "logo": "https://devnovatech.com/favicon.jpg",
+            "image": "https://devnovatech.com/og-image.jpg",
             "telephone": "+254796038686",
+            "email": "info@devnovatech.com",
+            "foundingDate": "2020",
+            "numberOfEmployees": { "@type": "QuantitativeValue", "value": "5" },
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Nairobi",
+              "addressRegion": "Nairobi County",
               "addressCountry": "KE"
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": -1.286389,
-              "longitude": 36.817223
+              "latitude": "-1.2921",
+              "longitude": "36.8219"
             },
-            "openingHours": "Mo-Su 08:00-20:00",
-            "priceRange": "KSh 25,000 - KSh 500,000",
-            "sameAs": [
-              "https://wa.me/254796038686"
+            "areaServed": [
+              { "@type": "City", "name": "Nairobi" },
+              { "@type": "City", "name": "Mombasa" },
+              { "@type": "City", "name": "Kisumu" },
+              { "@type": "City", "name": "Nakuru" },
+              { "@type": "City", "name": "Eldoret" },
+              { "@type": "Country", "name": "Kenya" }
+            ],
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "08:00",
+                "closes": "18:00"
+              }
+            ],
+            "priceRange": "KSh 25,000 - Custom",
+            "currenciesAccepted": "KES",
+            "paymentAccepted": "M-Pesa, Bank Transfer, Cash",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "50",
+              "bestRating": "5"
+            },
+            "sameAs": ["https://wa.me/254796038686"],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Web Development & Digital Services Kenya",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "name": "Starter Website Package",
+                  "description": "5-page mobile responsive website with basic SEO, contact form and 2 months support",
+                  "price": "25000",
+                  "priceCurrency": "KES",
+                  "itemOffered": { "@type": "Service", "name": "Web Design & Development" }
+                },
+                {
+                  "@type": "Offer",
+                  "name": "Growth Website Package",
+                  "description": "Up to 15 pages, e-commerce ready, advanced SEO, CMS and 4 months support",
+                  "price": "60000",
+                  "priceCurrency": "KES",
+                  "itemOffered": { "@type": "Service", "name": "E-Commerce Development" }
+                },
+                {
+                  "@type": "Offer",
+                  "name": "POS Software",
+                  "description": "Custom POS for Kenyan shops, restaurants and pharmacies with M-Pesa integration",
+                  "price": "35000",
+                  "priceCurrency": "KES",
+                  "itemOffered": { "@type": "Service", "name": "Point of Sale Software" }
+                },
+                {
+                  "@type": "Offer",
+                  "name": "Monthly Maintenance",
+                  "description": "SEO monitoring, security updates, speed optimization and 24/7 support",
+                  "price": "15000",
+                  "priceCurrency": "KES",
+                  "itemOffered": { "@type": "Service", "name": "Website Maintenance" }
+                },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO & Digital Marketing Kenya" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LMS Development Kenya" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM & Custom Software Kenya" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design Kenya" } }
+              ]
+            }
+          }
+        `}</script>
+
+        {/* Schema: BreadcrumbList */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://devnovatech.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Services",    "item": "https://devnovatech.com/services" },
+              { "@type": "ListItem", "position": 3, "name": "Projects",    "item": "https://devnovatech.com/projects" },
+              { "@type": "ListItem", "position": 4, "name": "About",       "item": "https://devnovatech.com/about" },
+              { "@type": "ListItem", "position": 5, "name": "Contact",     "item": "https://devnovatech.com/contact" },
+              { "@type": "ListItem", "position": 6, "name": "Get a Quote", "item": "https://devnovatech.com/quote" }
+            ]
+          }
+        `}</script>
+
+        {/* Schema: FAQ */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much does a website cost in Kenya?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "DevNovaTech offers websites starting from KSh 25,000 for a 5-page starter site, KSh 60,000 for a growth package with e-commerce, and KSh 35,000 for POS software. Enterprise and custom projects are quoted on request."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you build websites with M-Pesa integration in Kenya?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. DevNovaTech specializes in M-Pesa integration for e-commerce stores, POS software and business websites across Kenya."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which is the best web development company in Nairobi?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "DevNovaTech Softwares is widely regarded as Nairobi's best and most affordable web development company, with 150+ projects delivered and 50+ happy clients since 2020."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you offer website maintenance in Kenya?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Our monthly maintenance package starts at KSh 15,000 and includes SEO monitoring, security updates, plugin updates, speed optimization and 24/7 support."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you serve businesses outside Nairobi?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. DevNovaTech serves businesses across all of Kenya including Mombasa, Kisumu, Nakuru, Eldoret and beyond, fully remotely."
+                }
+              }
+            ]
+          }
+        `}</script>
+
+        {/* Schema: Reviews */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Web Development Services, DevNovaTech Softwares",
+            "brand": { "@type": "Brand", "name": "DevNovaTech Softwares" },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "50",
+              "bestRating": "5"
+            },
+            "review": [
+              {
+                "@type": "Review",
+                "author": { "@type": "Organization", "name": "Cuma Refrigeration" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "DevNovaTech built us a sleek, professional website that perfectly represents our brand. Enquiries from new clients have increased significantly since we went live."
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Organization", "name": "Family Drugmart Kenya" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "Our online pharmacy is seamless and easy to use. DevNovaTech understood our industry and delivered a platform our customers trust and use daily. Exceptional work."
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Organization", "name": "Pamoja2Sustain" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "DevNovaTech gave our organization a powerful digital presence. The website communicates our mission clearly and has helped us reach more donors and partners across Africa."
+              },
+              {
+                "@type": "Review",
+                "author": { "@type": "Organization", "name": "ISC2 Kenya Chapter" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+                "reviewBody": "The team at DevNovaTech delivered a world-class website for our chapter. Clean, professional and easy to navigate, exactly what a cybersecurity community deserves."
+              }
             ]
           }
         `}</script>
@@ -601,7 +835,7 @@ export default function Home() {
                   <span className="text-[11px] font-bold text-cyan tracking-[0.18em] uppercase font-sans">Nairobi's Best & Most Affordable</span>
                 </div>
                 <h2 className="font-serif font-black text-navy mb-5 leading-tight" style={{ fontSize: 'clamp(28px, 3.5vw, 42px)' }}>Kenya's Trusted<br />Web & App Development Partner.</h2>
-                <p className="text-[#6b7280] text-[15px] leading-relaxed mb-4 font-sans">DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company, proudly serving businesses across Nairobi CBD, Westlands, Mombasa, Kisumu, Nakuru, Eldoret and all of Kenya since 2017.</p>
+                <p className="text-[#6b7280] text-[15px] leading-relaxed mb-4 font-sans">DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company, proudly serving businesses across Nairobi CBD, Westlands, Mombasa, Kisumu, Nakuru, Eldoret and all of Kenya since 2020.</p>
                 <p className="text-[#6b7280] text-[15px] leading-relaxed mb-8 font-sans">We build fast, professional & budget-friendly websites, Android apps, e-commerce platforms with M-Pesa integration, POS software, LMS and CRM systems that grow with your Kenyan business long after launch.</p>
               </Reveal>
               <Reveal delay={0.1}>
