@@ -125,6 +125,138 @@ function CountUp({ target, suffix = '' }) {
   )
 }
 
+/* ─── SVG ICON COMPONENTS ───────────────────────────────────── */
+
+function IconWeb({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  )
+}
+
+function IconSmartphone({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+      <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2.5" />
+    </svg>
+  )
+}
+
+function IconShoppingCart({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="21" r="1" />
+      <circle cx="20" cy="21" r="1" />
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+    </svg>
+  )
+}
+
+function IconMonitor({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </svg>
+  )
+}
+
+function IconTrendingUp({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+      <polyline points="17 6 23 6 23 12" />
+    </svg>
+  )
+}
+
+function IconBookOpen({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  )
+}
+
+function IconUsers({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  )
+}
+
+function IconPenTool({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 19l7-7 3 3-7 7-3-3z" />
+      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+      <path d="M2 2l7.586 7.586" />
+      <circle cx="11" cy="11" r="2" />
+    </svg>
+  )
+}
+
+function IconWrench({ size = 20, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  )
+}
+
+function IconTarget({ size = 24, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  )
+}
+
+function IconTelescope({ size = 24, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="2" />
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+    </svg>
+  )
+}
+
+/* ─── STORY GRID ITEMS ──────────────────────────────────────── */
+const STORY_ITEMS = [
+  { label: 'Web Development',  icon: <IconWeb /> },
+  { label: 'Android App Dev',  icon: <IconSmartphone /> },
+  { label: 'E-Commerce',       icon: <IconShoppingCart /> },
+  { label: 'POS Software',     icon: <IconMonitor /> },
+  { label: 'SEO & Marketing',  icon: <IconTrendingUp /> },
+  { label: 'LMS Platforms',    icon: <IconBookOpen /> },
+  { label: 'CRM Software',     icon: <IconUsers /> },
+  { label: 'Graphic Design',   icon: <IconPenTool /> },
+  { label: '24/7 Support',     icon: <IconWrench /> },
+]
+
 function CircuitMission() {
   return (
     <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"
@@ -430,19 +562,9 @@ export default function About() {
 
             <Reveal delay={0.15}>
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  { label: 'Web Development',  icon: '🌐' },
-                  { label: 'Android App Dev',  icon: '📱' },
-                  { label: 'E-Commerce',       icon: '🛒' },
-                  { label: 'POS Software',     icon: '🖥️' },
-                  { label: 'SEO & Marketing',  icon: '📈' },
-                  { label: 'LMS Platforms',    icon: '🎓' },
-                  { label: 'CRM Software',     icon: '🤝' },
-                  { label: 'Graphic Design',   icon: '🎨' },
-                  { label: '24/7 Support',     icon: '🔧' },
-                ].map(item => (
+                {STORY_ITEMS.map(item => (
                   <div key={item.label} className="bg-[#f5f6f8] border border-[#e2e5ea] rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3 hover:border-cyan hover:bg-cyan/5 transition-all duration-200 min-w-0">
-                    <span className="text-lg sm:text-xl flex-shrink-0">{item.icon}</span>
+                    <span className="flex items-center justify-center flex-shrink-0">{item.icon}</span>
                     <span className="text-[12px] sm:text-[13px] font-semibold text-[#1a2233] font-sans leading-snug">{item.label}</span>
                   </div>
                 ))}
@@ -473,7 +595,9 @@ export default function About() {
               <div className="bg-navy rounded-xl p-7 sm:p-10 h-full relative overflow-hidden">
                 <CircuitMission />
                 <div className="relative z-10">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan/20 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-5 sm:mb-6">🎯</div>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan/20 rounded-xl flex items-center justify-center mb-5 sm:mb-6">
+                    <IconTarget size={24} color="#00C8CC" />
+                  </div>
                   <h3 className="font-serif font-black text-white text-[20px] sm:text-[24px] mb-3 sm:mb-4">Our Mission</h3>
                   <p className="text-white/60 text-[14px] sm:text-[15px] leading-relaxed font-sans">
                     To be Nairobi's best & most affordable web and app development company, empowering Kenyan businesses with fast, professional and budget-friendly websites, Android apps and digital solutions that drive growth, increase online visibility and create lasting competitive advantages across Kenya.
@@ -485,7 +609,9 @@ export default function About() {
             <Reveal delay={0.2}>
               <div className="bg-white border border-[#e2e5ea] rounded-xl p-7 sm:p-10 h-full relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-cyan/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan/10 border border-cyan/20 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-5 sm:mb-6">🔭</div>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan/10 border border-cyan/20 rounded-xl flex items-center justify-center mb-5 sm:mb-6">
+                  <IconTelescope size={24} color="#00C8CC" />
+                </div>
                 <h3 className="font-serif font-black text-navy text-[20px] sm:text-[24px] mb-3 sm:mb-4">Our Vision</h3>
                 <p className="text-[#6b7280] text-[14px] sm:text-[15px] leading-relaxed font-sans">
                   To be Kenya's most trusted web and app development company, recognized for transforming businesses in Nairobi and across Kenya through technology, creativity and a relentless commitment to excellence and client success.

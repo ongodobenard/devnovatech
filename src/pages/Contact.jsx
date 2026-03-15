@@ -63,6 +63,89 @@ function fieldStyle(error) {
 const EMPTY_FORM   = { name: '', email: '', phone: '', subject: '', message: '' }
 const EMPTY_ERRORS = { name: '', email: '', phone: '', subject: '', message: '' }
 
+/* ─── SVG ICON COMPONENTS ───────────────────────────────────── */
+
+function IconMapPin({ size = 18, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  )
+}
+
+function IconPhone({ size = 18, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 5.99 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z" />
+    </svg>
+  )
+}
+
+function IconGlobe({ size = 18, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  )
+}
+
+function IconMail({ size = 18, color = '#00C8CC' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  )
+}
+
+function IconCheckCircle({ size = 22, color = '#16a34a' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0 }}>
+      <circle cx="12" cy="12" r="10" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  )
+}
+
+function IconXCircle({ size = 22, color = '#dc2626' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0 }}>
+      <circle cx="12" cy="12" r="10" />
+      <path d="m15 9-6 6" />
+      <path d="m9 9 6 6" />
+    </svg>
+  )
+}
+
+function IconLoader({ size = 18, color = '#0a1228' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0, animation: 'spin 1s linear infinite' }}>
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </svg>
+  )
+}
+
+/* ─── CONTACT INFO DATA ─────────────────────────────────────── */
+const CONTACT_ITEMS = [
+  { icon: <IconMapPin />, label: 'Location', value: 'Nairobi, Kenya',      sub: 'Serving all of Kenya' },
+  { icon: <IconPhone />,  label: 'Phone',    value: '+254 796 038 686',     sub: 'Mon–Fri, 8am–5pm EAT' },
+  { icon: <IconGlobe />,  label: 'Website',  value: 'devnovatech.com',      sub: 'Available 24/7' },
+  { icon: <IconMail />,   label: 'Email',    value: 'info@devnovatech.com', sub: 'We reply within 24 hours' },
+]
+
 function CircuitCTA() {
   return (
     <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.14 }}>
@@ -183,6 +266,9 @@ export default function Contact() {
         `}</script>
       </Helmet>
 
+      {/* Spin keyframe for loader icon */}
+      <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+
       {/* ══ HERO ══ */}
       <section className="bg-navy pt-[70px]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
@@ -212,14 +298,11 @@ export default function Contact() {
               <Reveal>
                 <h2 className="font-serif font-black text-navy text-[20px] sm:text-[24px] mb-6">Contact Details</h2>
                 <div className="space-y-3 sm:space-y-4">
-                  {[
-                    { icon: '📍', label: 'Location', value: 'Nairobi, Kenya',      sub: 'Serving all of Kenya' },
-                    { icon: '📞', label: 'Phone',    value: '+254 796 038 686',     sub: 'Mon–Fri, 8am–5pm EAT' },
-                    { icon: '🌐', label: 'Website',  value: 'devnovatech.com',      sub: 'Available 24/7' },
-                    { icon: '✉️', label: 'Email',    value: 'info@devnovatech.com', sub: 'We reply within 24 hours' },
-                  ].map(c => (
+                  {CONTACT_ITEMS.map(c => (
                     <div key={c.label} className="flex items-center gap-3 p-3 sm:p-4 bg-[#f5f6f8] border border-[#e2e5ea] rounded-xl hover:border-cyan transition-colors duration-200">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 bg-cyan/10 border border-cyan/20 rounded-lg flex items-center justify-center text-base sm:text-lg flex-shrink-0">{c.icon}</div>
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 bg-cyan/10 border border-cyan/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        {c.icon}
+                      </div>
                       <div className="min-w-0">
                         <div className="text-[10px] text-[#6b7280] font-sans uppercase tracking-[0.08em] mb-0.5">{c.label}</div>
                         <div className="font-serif font-bold text-navy text-[13px] sm:text-[15px] truncate">{c.value}</div>
@@ -238,7 +321,7 @@ export default function Contact() {
                   </p>
                   <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer"
                     className="w-full py-3 bg-[#25D366] text-white font-bold text-[13px] rounded tracking-wide font-sans transition-all duration-200 hover:bg-[#1db954] flex items-center justify-center gap-2">
-                     Chat on WhatsApp
+                    Chat on WhatsApp
                   </a>
                 </div>
               </Reveal>
@@ -255,7 +338,7 @@ export default function Contact() {
 
                   {status === 'success' && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
-                      <span className="text-2xl flex-shrink-0">✅</span>
+                      <IconCheckCircle />
                       <div>
                         <div className="font-serif font-bold text-green-800 text-[15px] mb-1">Message Sent Successfully!</div>
                         <p className="text-green-700 text-[13px] font-sans">Thank you for reaching out. We will get back to you within 24 hours.</p>
@@ -265,7 +348,7 @@ export default function Contact() {
 
                   {status === 'error' && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
-                      <span className="text-2xl flex-shrink-0">❌</span>
+                      <IconXCircle />
                       <div>
                         <div className="font-serif font-bold text-red-800 text-[15px] mb-1">Failed to Send</div>
                         <p className="text-red-700 text-[13px] font-sans">Something went wrong. Please try again or WhatsApp us directly.</p>
@@ -277,12 +360,12 @@ export default function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel text="Full Name" />
-                        <input name="name" value={form.name} onChange={handleChange} placeholder="John Kamau" className={inputBase} style={fieldStyle(errors.name)} />
+                        <input name="name" value={form.name} onChange={handleChange} placeholder="Felix Kamau" className={inputBase} style={fieldStyle(errors.name)} />
                         <FieldError msg={errors.name} />
                       </div>
                       <div>
                         <FieldLabel text="Email Address" />
-                        <input name="email" value={form.email} onChange={handleChange} placeholder="john@company.co.ke" className={inputBase} style={fieldStyle(errors.email)} />
+                        <input name="email" value={form.email} onChange={handleChange} placeholder="felix@company.co.ke" className={inputBase} style={fieldStyle(errors.email)} />
                         <FieldError msg={errors.email} />
                       </div>
                     </div>
@@ -321,11 +404,13 @@ export default function Contact() {
                     <button
                       onClick={handleSubmit}
                       disabled={status === 'sending'}
-                      className={'w-full py-3.5 sm:py-4 font-bold text-[13px] sm:text-[14px] rounded tracking-wide font-sans transition-all duration-300 ' +
+                      className={'w-full py-3.5 sm:py-4 font-bold text-[13px] sm:text-[14px] rounded tracking-wide font-sans transition-all duration-300 flex items-center justify-center gap-2 ' +
                         (status === 'sending'
                           ? 'bg-cyan/50 text-navy cursor-not-allowed'
                           : 'bg-cyan text-navy hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30')}>
-                      {status === 'sending' ? '⏳ Sending...' : 'Send Message'}
+                      {status === 'sending' ? (
+                        <><IconLoader size={16} color="#0a1228" /> Sending...</>
+                      ) : 'Send Message'}
                     </button>
                   </div>
                 </div>

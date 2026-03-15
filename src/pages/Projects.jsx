@@ -32,145 +32,101 @@ function Reveal({ children, delay = 0 }) {
   )
 }
 
+/* ── SVG Icons ── */
+function IconPin() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', verticalAlign: 'middle', marginRight: '3px', flexShrink: 0 }}>
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+  )
+}
+
+function IconHospital() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><line x1="12" y1="8" x2="12" y2="8"/><line x1="10" y1="10" x2="14" y2="10"/><line x1="12" y1="8" x2="12" y2="12"/></svg>
+}
+
+function IconBank() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+}
+
+function IconEducation() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+}
+
+function IconHome() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+}
+
+function IconCart() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.97 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
+}
+
+function IconLeaf() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.11a1 1 0 001.66 1.11C7.39 18.07 11 17 14 17c3 0 5-2 5-5V3S17 8 17 8z"/></svg>
+}
+
+function IconShield() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+}
+
+function IconSnowflake() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 7l-5-5-5 5"/><path d="M17 17l-5 5-5-5"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M7 7l-5 5 5 5"/><path d="M17 7l5 5-5 5"/></svg>
+}
+
+function IconCar() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+}
+
+function IconBriefcase() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg>
+}
+
+function IconCoffee() {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+}
+
+function IconArrowRight() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  )
+}
+
+function IconWhatsApp() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  )
+}
+
 function CircuitCardSmall() {
   return (
-    <svg
-      className="absolute inset-0 w-full h-full"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 500 180"
-      preserveAspectRatio="xMidYMid slice"
-      style={{ opacity: 0.2 }}
-    >
+    <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.2 }}>
       <defs>
-        <radialGradient id="pcs-bright" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-          <stop offset="40%" stopColor="#00C8CC" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="pcs-soft" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#00C8CC" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
+        <radialGradient id="pcs-bright" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#ffffff" stopOpacity="0.95"/><stop offset="40%" stopColor="#00C8CC" stopOpacity="0.7"/><stop offset="100%" stopColor="#00C8CC" stopOpacity="0"/></radialGradient>
+        <radialGradient id="pcs-soft" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#00C8CC" stopOpacity="0.85"/><stop offset="100%" stopColor="#00C8CC" stopOpacity="0"/></radialGradient>
       </defs>
-      <line x1="0"   y1="35"  x2="70"  y2="35"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="70"  y1="35"  x2="70"  y2="65"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="70"  y1="65"  x2="180" y2="65"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="180" y1="65"  x2="180" y2="35"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="180" y1="35"  x2="310" y2="35"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310" y1="35"  x2="310" y2="65"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310" y1="65"  x2="500" y2="65"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="0"   y1="115" x2="110" y2="115" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="110" y1="115" x2="110" y2="145" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="110" y1="145" x2="250" y2="145" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="250" y1="145" x2="250" y2="115" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="250" y1="115" x2="400" y2="115" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="400" y1="115" x2="400" y2="148" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="400" y1="148" x2="500" y2="148" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="70"  y1="65"  x2="70"  y2="115" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      <line x1="250" y1="65"  x2="250" y2="115" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      <line x1="400" y1="65"  x2="400" y2="115" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      {[
-        [70,35],[180,35],[310,35],
-        [70,65],[180,65],[310,65],
-        [110,115],[250,115],[400,115],
-        [110,145],[250,145],[400,148],
-      ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-      <circle cx="70"  cy="35"  r="13" fill="url(#pcs-bright)" />
-      <circle cx="310" cy="65"  r="11" fill="url(#pcs-soft)"   />
-      <circle cx="110" cy="145" r="13" fill="url(#pcs-bright)" />
-      <circle cx="400" cy="115" r="11" fill="url(#pcs-soft)"   />
+      <line x1="0" y1="35" x2="70" y2="35" stroke="#00C8CC" strokeWidth="1"/><line x1="70" y1="35" x2="70" y2="65" stroke="#00C8CC" strokeWidth="1"/><line x1="70" y1="65" x2="180" y2="65" stroke="#00C8CC" strokeWidth="1"/><line x1="180" y1="65" x2="180" y2="35" stroke="#00C8CC" strokeWidth="1"/><line x1="180" y1="35" x2="310" y2="35" stroke="#00C8CC" strokeWidth="1"/><line x1="310" y1="35" x2="310" y2="65" stroke="#00C8CC" strokeWidth="1"/><line x1="310" y1="65" x2="500" y2="65" stroke="#00C8CC" strokeWidth="1"/><line x1="0" y1="115" x2="110" y2="115" stroke="#00C8CC" strokeWidth="1"/><line x1="110" y1="115" x2="110" y2="145" stroke="#00C8CC" strokeWidth="1"/><line x1="110" y1="145" x2="250" y2="145" stroke="#00C8CC" strokeWidth="1"/><line x1="250" y1="145" x2="250" y2="115" stroke="#00C8CC" strokeWidth="1"/><line x1="250" y1="115" x2="400" y2="115" stroke="#00C8CC" strokeWidth="1"/><line x1="400" y1="115" x2="400" y2="148" stroke="#00C8CC" strokeWidth="1"/><line x1="400" y1="148" x2="500" y2="148" stroke="#00C8CC" strokeWidth="1"/><line x1="70" y1="65" x2="70" y2="115" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5"/><line x1="250" y1="65" x2="250" y2="115" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5"/><line x1="400" y1="65" x2="400" y2="115" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5"/>
+      {[[70,35],[180,35],[310,35],[70,65],[180,65],[310,65],[110,115],[250,115],[400,115],[110,145],[250,145],[400,148]].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC"/>)}
+      <circle cx="70" cy="35" r="13" fill="url(#pcs-bright)"/><circle cx="310" cy="65" r="11" fill="url(#pcs-soft)"/><circle cx="110" cy="145" r="13" fill="url(#pcs-bright)"/><circle cx="400" cy="115" r="11" fill="url(#pcs-soft)"/>
     </svg>
   )
 }
 
 function CircuitCTA() {
   return (
-    <svg
-      className="absolute inset-0 w-full h-full"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 360"
-      preserveAspectRatio="xMidYMid slice"
-      style={{ opacity: 0.14 }}
-    >
+    <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.14 }}>
       <defs>
-        <radialGradient id="cta-bright" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-          <stop offset="45%" stopColor="#00C8CC" stopOpacity="0.65" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="cta-soft" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#00C8CC" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
+        <radialGradient id="cta-bright" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#ffffff" stopOpacity="0.95"/><stop offset="45%" stopColor="#00C8CC" stopOpacity="0.65"/><stop offset="100%" stopColor="#00C8CC" stopOpacity="0"/></radialGradient>
+        <radialGradient id="cta-soft" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#00C8CC" stopOpacity="0.85"/><stop offset="100%" stopColor="#00C8CC" stopOpacity="0"/></radialGradient>
       </defs>
-      <line x1="0"    y1="60"  x2="100"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="60"  x2="100"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="100" x2="260"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="260"  y1="100" x2="260"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="260"  y1="60"  x2="420"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="420"  y1="60"  x2="420"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="420"  y1="100" x2="580"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="580"  y1="100" x2="580"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="580"  y1="60"  x2="740"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="740"  y1="60"  x2="740"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="740"  y1="100" x2="900"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="900"  y1="100" x2="900"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="900"  y1="60"  x2="1060" y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1060" y1="60"  x2="1060" y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1060" y1="100" x2="1200" y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="0"    y1="190" x2="130"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="130"  y1="190" x2="130"  y2="230" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="130"  y1="230" x2="310"  y2="230" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310"  y1="230" x2="310"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310"  y1="190" x2="490"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="490"  y1="190" x2="490"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="490"  y1="235" x2="660"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="660"  y1="235" x2="660"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="660"  y1="190" x2="830"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="830"  y1="190" x2="830"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="830"  y1="235" x2="1000" y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1000" y1="235" x2="1000" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1000" y1="190" x2="1200" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="50"   y1="310" x2="50"   y2="340" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="50"   y1="340" x2="200"  y2="340" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200"  y1="340" x2="200"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200"  y1="310" x2="390"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="390"  y1="310" x2="390"  y2="350" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="390"  y1="350" x2="570"  y2="350" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="570"  y1="350" x2="570"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="570"  y1="310" x2="750"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="750"  y1="310" x2="750"  y2="355" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="750"  y1="355" x2="930"  y2="355" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="930"  y1="355" x2="930"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="930"  y1="310" x2="1100" y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1100" y1="310" x2="1100" y2="360" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1100" y1="360" x2="1200" y2="360" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="100" x2="100"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="260"  y1="100" x2="260"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="580"  y1="100" x2="580"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="740"  y1="100" x2="740"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="1060" y1="100" x2="1060" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="310"  y1="230" x2="310"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="660"  y1="235" x2="660"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="1000" y1="235" x2="1000" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      {[
-        [100,60],[260,60],[420,60],[580,60],[740,60],[900,60],[1060,60],
-        [100,100],[260,100],[420,100],[580,100],[740,100],[900,100],[1060,100],
-        [130,190],[310,190],[490,190],[660,190],[830,190],[1000,190],
-        [130,230],[310,230],[490,235],[660,235],[830,235],[1000,235],
-        [50,340],[200,340],[390,350],[570,350],[750,355],[930,355],[1100,360],
-        [200,310],[390,310],[570,310],[750,310],[930,310],[1100,310],
-      ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-      <circle cx="100"  cy="60"  r="16" fill="url(#cta-bright)" />
-      <circle cx="420"  cy="100" r="14" fill="url(#cta-soft)"   />
-      <circle cx="740"  cy="60"  r="18" fill="url(#cta-bright)" />
-      <circle cx="1060" cy="100" r="14" fill="url(#cta-soft)"   />
-      <circle cx="130"  cy="230" r="16" fill="url(#cta-bright)" />
-      <circle cx="490"  cy="190" r="14" fill="url(#cta-soft)"   />
-      <circle cx="830"  cy="235" r="16" fill="url(#cta-bright)" />
-      <circle cx="310"  cy="310" r="14" fill="url(#cta-soft)"   />
-      <circle cx="750"  cy="355" r="16" fill="url(#cta-bright)" />
-      <circle cx="1100" cy="310" r="14" fill="url(#cta-soft)"   />
+      <line x1="0" y1="60" x2="100" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="100" y1="60" x2="100" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="100" y1="100" x2="260" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="260" y1="100" x2="260" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="260" y1="60" x2="420" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="420" y1="60" x2="420" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="420" y1="100" x2="580" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="580" y1="100" x2="580" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="580" y1="60" x2="740" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="740" y1="60" x2="740" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="740" y1="100" x2="900" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="900" y1="100" x2="900" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="900" y1="60" x2="1060" y2="60" stroke="#00C8CC" strokeWidth="1"/><line x1="1060" y1="60" x2="1060" y2="100" stroke="#00C8CC" strokeWidth="1"/><line x1="1060" y1="100" x2="1200" y2="100" stroke="#00C8CC" strokeWidth="1"/>
+      {[[100,60],[260,60],[420,60],[580,60],[740,60],[900,60],[1060,60],[100,100],[260,100],[420,100],[580,100],[740,100],[900,100],[1060,100],[130,190],[310,190],[490,190],[660,190],[830,190],[1000,190],[130,230],[310,230],[490,235],[660,235],[830,235],[1000,235],[50,340],[200,340],[390,350],[570,350],[750,355],[930,355],[1100,360],[200,310],[390,310],[570,310],[750,310],[930,310],[1100,310]].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC"/>)}
+      <circle cx="100" cy="60" r="16" fill="url(#cta-bright)"/><circle cx="420" cy="100" r="14" fill="url(#cta-soft)"/><circle cx="740" cy="60" r="18" fill="url(#cta-bright)"/><circle cx="1060" cy="100" r="14" fill="url(#cta-soft)"/><circle cx="130" cy="230" r="16" fill="url(#cta-bright)"/><circle cx="490" cy="190" r="14" fill="url(#cta-soft)"/><circle cx="830" cy="235" r="16" fill="url(#cta-bright)"/><circle cx="310" cy="310" r="14" fill="url(#cta-soft)"/><circle cx="750" cy="355" r="16" fill="url(#cta-bright)"/><circle cx="1100" cy="310" r="14" fill="url(#cta-soft)"/>
     </svg>
   )
 }
@@ -187,17 +143,17 @@ const PROJECTS = [
 const FILTERS = ['All', 'Business Website', 'E-Commerce Website', 'NGO Website', 'Company Website', 'Professional Chapter Website']
 
 const INDUSTRIES = [
-  { icon: '🏥', name: 'Healthcare' },
-  { icon: '🏦', name: 'Banking' },
-  { icon: '🎓', name: 'Education' },
-  { icon: '🏠', name: 'Real Estate' },
-  { icon: '🛒', name: 'E-Commerce' },
-  { icon: '🌿', name: 'NGO' },
-  { icon: '🔒', name: 'Cybersecurity' },
-  { icon: '❄️', name: 'Engineering' },
-  { icon: '🚗', name: 'Transport' },
-  { icon: '💼', name: 'Pro Services' },
-  { icon: '🍽️', name: 'Hospitality' },
+  { icon: <IconHospital />,   name: 'Healthcare' },
+  { icon: <IconBank />,       name: 'Banking' },
+  { icon: <IconEducation />,  name: 'Education' },
+  { icon: <IconHome />,       name: 'Real Estate' },
+  { icon: <IconCart />,       name: 'E-Commerce' },
+  { icon: <IconLeaf />,       name: 'NGO' },
+  { icon: <IconShield />,     name: 'Cybersecurity' },
+  { icon: <IconSnowflake />,  name: 'Engineering' },
+  { icon: <IconCar />,        name: 'Transport' },
+  { icon: <IconBriefcase />,  name: 'Pro Services' },
+  { icon: <IconCoffee />,     name: 'Hospitality' },
 ]
 
 export default function Projects() {
@@ -207,7 +163,6 @@ export default function Projects() {
   return (
     <div className="font-sans">
 
-      {/* ── SEO HEAD ── */}
       <Helmet>
         <title>Our Portfolio | Best Web Projects in Kenya — DevNovaTech Nairobi</title>
         <meta name="description" content="View DevNovaTech's portfolio of the best web development projects in Kenya — business websites, e-commerce stores, NGO platforms, pharmacy sites and more, delivered across Nairobi, Mombasa, Kisumu and Kenya." />
@@ -320,8 +275,8 @@ export default function Projects() {
                       <div className="font-serif font-black text-white text-[17px] sm:text-[20px] mb-1 group-hover:text-cyan transition-colors duration-200 leading-snug">{p.title}</div>
                       <div className="text-[10px] sm:text-[11px] font-sans" style={{ color: p.color }}>{p.cat}</div>
                     </div>
-                    <div className="absolute bottom-3 right-3 text-white/20 text-base group-hover:text-cyan group-hover:translate-x-1 transition-all duration-200 z-10">
-                      &#8594;
+                    <div className="absolute bottom-3 right-3 text-white/20 group-hover:text-cyan group-hover:translate-x-1 transition-all duration-200 z-10">
+                      <IconArrowRight />
                     </div>
                   </div>
 
@@ -329,12 +284,14 @@ export default function Projects() {
                   <div className="p-4 sm:p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-1.5 mb-3 flex-wrap">
                       <span className="px-2 py-1 bg-[#f5f6f8] border border-[#e2e5ea] rounded text-[10px] font-semibold text-[#6b7280] font-sans">{p.cat}</span>
-                      <span className="px-2 py-1 bg-[#f5f6f8] border border-[#e2e5ea] rounded text-[10px] font-semibold text-[#6b7280] font-sans">📍 {p.location}</span>
+                      <span className="px-2 py-1 bg-[#f5f6f8] border border-[#e2e5ea] rounded text-[10px] font-semibold text-[#6b7280] font-sans flex items-center">
+                        <IconPin />{p.location}
+                      </span>
                       <span className="px-2 py-1 bg-[#f5f6f8] border border-[#e2e5ea] rounded text-[10px] font-semibold text-[#6b7280] font-sans">{p.year}</span>
                     </div>
                     <p className="text-[13px] text-[#6b7280] leading-relaxed font-sans flex-1">{p.desc}</p>
                     <div className="mt-4 text-[12px] font-bold text-cyan font-sans flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-200">
-                      Visit Website &#8594;
+                      Visit Website <IconArrowRight />
                     </div>
                   </div>
                 </a>
@@ -367,7 +324,7 @@ export default function Projects() {
             {INDUSTRIES.map((ind, i) => (
               <Reveal key={ind.name} delay={i * 0.05}>
                 <div className="bg-white border border-[#e2e5ea] rounded-xl p-4 sm:p-5 flex flex-col items-center justify-center text-center min-h-[100px] hover:border-cyan hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="text-3xl leading-none mb-2 flex-shrink-0">{ind.icon}</div>
+                  <div className="mb-2 flex items-center justify-center text-[#1a2233]" style={{ opacity: 0.7 }}>{ind.icon}</div>
                   <div className="text-[12px] font-semibold text-[#1a2233] font-sans leading-tight">{ind.name}</div>
                 </div>
               </Reveal>
@@ -394,7 +351,8 @@ export default function Projects() {
                   Get a Free Quote
                 </Link>
                 <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer"
-                  className="px-8 py-4 bg-[#25D366] text-white font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-[#1db954] text-center">
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-[#1db954] text-center">
+                  <IconWhatsApp />
                   Chat on WhatsApp
                 </a>
               </div>

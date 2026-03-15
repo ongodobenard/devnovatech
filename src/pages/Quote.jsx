@@ -37,6 +37,75 @@ function Reveal({ children, delay = 0 }) {
   )
 }
 
+/* ── SVG Icons ── */
+function IconMoney() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+      <line x1="12" y1="1" x2="12" y2="23"/>
+      <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+    </svg>
+  )
+}
+
+function IconBolt() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+  )
+}
+
+function IconMapPin() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+  )
+}
+
+function IconWrench() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+      <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+    </svg>
+  )
+}
+
+function IconCheck() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  )
+}
+
+function IconX() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  )
+}
+
+function IconClock() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </svg>
+  )
+}
+
+function IconWhatsApp() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  )
+}
+
 function FieldLabel({ text }) {
   return (
     <label className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
@@ -70,6 +139,13 @@ const EMPTY_ERRORS = {
   service: '', budget: '', timeline: '',
   hasWebsite: '', websiteUrl: '', description: '',
 }
+
+const WHY_ITEMS = [
+  { icon: <IconMoney />,  title: 'Affordable Pricing',  desc: "Websites from KSh 25,000. Kenya's most transparent pricing." },
+  { icon: <IconBolt />,   title: 'Fast Delivery',       desc: 'Most projects live in 1–2 weeks. We respect your timeline.' },
+  { icon: <IconMapPin />, title: 'Kenya Specialists',   desc: 'M-Pesa, local SEO & Kenya-specific solutions built in.' },
+  { icon: <IconWrench />, title: 'Ongoing Support',     desc: 'We stay with you after launch. No abandoned projects.' },
+]
 
 export default function Quote() {
   const [form, setForm]     = useState(EMPTY_FORM)
@@ -151,7 +227,6 @@ ${form.description}`,
   return (
     <div className="font-sans">
 
-      {/* ── SEO HEAD ── */}
       <Helmet>
         <title>Get a Free Quote | Affordable Web & App Development Nairobi Kenya — DevNovaTech</title>
         <meta name="description" content="Get a free, no-obligation quote from DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company. Websites from KSh 25,000. Fast response within 24 hours." />
@@ -227,14 +302,9 @@ ${form.description}`,
                 <div className="bg-navy rounded-xl p-5 sm:p-8">
                   <h3 className="font-serif font-bold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-6">Why Choose Us?</h3>
                   <div className="space-y-3 sm:space-y-4">
-                    {[
-                      { icon: '💰', title: 'Affordable Pricing',  desc: "Websites from KSh 25,000. Kenya's most transparent pricing." },
-                      { icon: '⚡', title: 'Fast Delivery',       desc: 'Most projects live in 1–2 weeks. We respect your timeline.' },
-                      { icon: '🇰🇪', title: 'Kenya Specialists', desc: 'M-Pesa, local SEO & Kenya-specific solutions built in.' },
-                      { icon: '🔧', title: 'Ongoing Support',     desc: 'We stay with you after launch. No abandoned projects.' },
-                    ].map(w => (
+                    {WHY_ITEMS.map(w => (
                       <div key={w.title} className="flex items-start gap-3">
-                        <span className="text-lg sm:text-xl flex-shrink-0 mt-0.5">{w.icon}</span>
+                        <div className="text-cyan flex-shrink-0 mt-0.5">{w.icon}</div>
                         <div>
                           <div className="font-serif font-bold text-white text-[13px] sm:text-[14px] mb-0.5">{w.title}</div>
                           <div className="text-white/45 text-[11px] sm:text-[12px] font-sans leading-relaxed">{w.desc}</div>
@@ -271,7 +341,8 @@ ${form.description}`,
               <Reveal delay={0.15}>
                 <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer"
                   className="w-full py-3.5 bg-[#25D366] text-white font-bold text-[13px] sm:text-[14px] rounded tracking-wide font-sans transition-all duration-200 hover:bg-[#1db954] flex items-center justify-center gap-2">
-                   Prefer WhatsApp?
+                  <IconWhatsApp />
+                  Prefer WhatsApp?
                 </a>
               </Reveal>
             </div>
@@ -285,9 +356,10 @@ ${form.description}`,
                     Fill in all details below, the more we know, the more accurate your free quote will be.
                   </p>
 
+                  {/* Success message */}
                   {status === 'success' && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
-                      <span className="text-2xl flex-shrink-0">✅</span>
+                      <IconCheck />
                       <div>
                         <div className="font-serif font-bold text-green-800 text-[15px] mb-1">Quote Request Sent!</div>
                         <p className="text-green-700 text-[13px] font-sans">Thank you! We will review your project and send you an affordable quote within 24 hours.</p>
@@ -295,9 +367,10 @@ ${form.description}`,
                     </div>
                   )}
 
+                  {/* Error message */}
                   {status === 'error' && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
-                      <span className="text-2xl flex-shrink-0">❌</span>
+                      <IconX />
                       <div>
                         <div className="font-serif font-bold text-red-800 text-[15px] mb-1">Failed to Send</div>
                         <p className="text-red-700 text-[13px] font-sans">Something went wrong. Please try again or WhatsApp us directly.</p>
@@ -311,13 +384,13 @@ ${form.description}`,
                       <div>
                         <FieldLabel text="Full Name" />
                         <input name="name" value={form.name} onChange={handleChange}
-                          placeholder="John Kamau" className={inputBase} style={fieldStyle(errors.name)} />
+                          placeholder="Sandra Wanjiru" className={inputBase} style={fieldStyle(errors.name)} />
                         <FieldError msg={errors.name} />
                       </div>
                       <div>
                         <FieldLabel text="Email Address" />
                         <input name="email" value={form.email} onChange={handleChange}
-                          placeholder="john@company.co.ke" className={inputBase} style={fieldStyle(errors.email)} />
+                          placeholder="wanjiru@company.co.ke" className={inputBase} style={fieldStyle(errors.email)} />
                         <FieldError msg={errors.email} />
                       </div>
                     </div>
@@ -424,7 +497,10 @@ ${form.description}`,
                         (status === 'sending'
                           ? 'bg-cyan/50 text-navy cursor-not-allowed'
                           : 'bg-cyan text-navy hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30')}>
-                      {status === 'sending' ? '⏳ Sending...' : 'Request My Free Quote'}
+                      {status === 'sending'
+                        ? <span className="inline-flex items-center justify-center gap-2"><IconClock /> Sending...</span>
+                        : 'Request My Free Quote'
+                      }
                     </button>
 
                     <p className="text-center text-[11px] sm:text-[12px] text-[#9ca3af] font-sans">

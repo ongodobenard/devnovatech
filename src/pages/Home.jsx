@@ -89,6 +89,142 @@ function useCounter(target, duration = 2000) {
   return { count, ref }
 }
 
+/* ─── SVG ICON COMPONENTS ───────────────────────────────────── */
+
+function IconWeb({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  )
+}
+
+function IconShoppingCart({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9" cy="21" r="1" />
+      <circle cx="20" cy="21" r="1" />
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+    </svg>
+  )
+}
+
+function IconSmartphone({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+      <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function IconMonitor({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </svg>
+  )
+}
+
+function IconTrendingUp({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+      <polyline points="17 6 23 6 23 12" />
+    </svg>
+  )
+}
+
+function IconBookOpen({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  )
+}
+
+function IconUsers({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  )
+}
+
+function IconPenTool({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 19l7-7 3 3-7 7-3-3z" />
+      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+      <path d="M2 2l7.586 7.586" />
+      <circle cx="11" cy="11" r="2" />
+    </svg>
+  )
+}
+
+/* ─── PRICING ICONS ─────────────────────────────────────────── */
+
+function IconRocket({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+    </svg>
+  )
+}
+
+function IconBuilding({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M3 9h18" />
+      <path d="M3 15h18" />
+      <path d="M9 3v18" />
+      <path d="M15 3v18" />
+    </svg>
+  )
+}
+
+function IconWrench({ size = 22, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  )
+}
+
 function CircuitPatternSmall() {
   return (
     <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +292,6 @@ function CircuitPatternWide() {
           <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
         </radialGradient>
       </defs>
-      {/* LEFT */}
       <line x1="0"   y1="70"  x2="90"  y2="70"  stroke="#00C8CC" strokeWidth="1" />
       <line x1="90"  y1="70"  x2="90"  y2="120" stroke="#00C8CC" strokeWidth="1" />
       <line x1="90"  y1="120" x2="210" y2="120" stroke="#00C8CC" strokeWidth="1" />
@@ -178,7 +313,6 @@ function CircuitPatternWide() {
       <line x1="90"  y1="120" x2="90"  y2="200" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="210" y1="120" x2="210" y2="200" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="190" y1="250" x2="190" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      {/* CENTRE */}
       <line x1="460" y1="55"  x2="570" y2="55"  stroke="#00C8CC" strokeWidth="1" />
       <line x1="570" y1="55"  x2="570" y2="110" stroke="#00C8CC" strokeWidth="1" />
       <line x1="570" y1="110" x2="700" y2="110" stroke="#00C8CC" strokeWidth="1" />
@@ -199,7 +333,6 @@ function CircuitPatternWide() {
       <line x1="570" y1="110" x2="570" y2="195" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="700" y1="110" x2="700" y2="195" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="730" y1="250" x2="730" y2="315" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      {/* RIGHT */}
       <line x1="900"  y1="70"  x2="1000" y2="70"  stroke="#00C8CC" strokeWidth="1" />
       <line x1="1000" y1="70"  x2="1000" y2="120" stroke="#00C8CC" strokeWidth="1" />
       <line x1="1000" y1="120" x2="1120" y2="120" stroke="#00C8CC" strokeWidth="1" />
@@ -217,7 +350,6 @@ function CircuitPatternWide() {
       <line x1="1000" y1="120" x2="1000" y2="200" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="1120" y1="120" x2="1120" y2="200" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
       <line x1="1160" y1="255" x2="1160" y2="320" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      {/* NODES */}
       {[
         [90,70],[210,70],[340,70],[90,120],[210,120],[340,120],
         [70,200],[190,200],[310,200],[70,250],[190,250],[310,255],
@@ -229,7 +361,6 @@ function CircuitPatternWide() {
         [1040,200],[1160,200],[1040,255],[1160,255],
         [1020,320],[1180,340],
       ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-      {/* GLOWS */}
       <circle cx="90"   cy="70"  r="15" fill="url(#gw-bright)" />
       <circle cx="210"  cy="120" r="13" fill="url(#gw-soft)"   />
       <circle cx="190"  cy="200" r="15" fill="url(#gw-bright)" />
@@ -274,42 +405,50 @@ function ServiceLearnMore({ slug }) {
 
 const SERVICES = [
   {
-    icon: '🌐', title: 'Affordable Web Design & Development', slug: 'web-design',
+    icon: <IconWeb size={20} color="#00C8CC" />,
+    title: 'Affordable Web Design & Development', slug: 'web-design',
     desc: "Nairobi's best & most affordable web design service, cheap, responsive, high-performance custom websites professionally built to convert visitors into loyal clients and grow your Kenyan business online.",
     perks: ['1 Year Free Hosting', 'Professional Email Address'],
   },
   {
-    icon: '🛒', title: 'Affordable E-Commerce Development', slug: 'ecommerce',
+    icon: <IconShoppingCart size={20} color="#00C8CC" />,
+    title: 'Affordable E-Commerce Development', slug: 'ecommerce',
     desc: 'Cheap, responsive & affordable e-commerce websites for Kenyan businesses, full-stack online stores with M-Pesa integration, seamless checkout, secure payments and easy product management.',
     perks: ['1 Year Free Hosting', 'Professional Email Address'],
   },
   {
-    icon: '📱', title: 'Android App Development', slug: 'android-app',
+    icon: <IconSmartphone size={20} color="#00C8CC" />,
+    title: 'Android App Development', slug: 'android-app',
     desc: 'Custom Android app development for Kenyan businesses, affordable, high-performance mobile apps for logistics, banking, healthcare, retail and more, built with M-Pesa integration and Kenya-specific features.',
     perks: [],
   },
   {
-    icon: '🖥️', title: 'Point of Sale (POS) Software', slug: 'pos',
+    icon: <IconMonitor size={20} color="#00C8CC" />,
+    title: 'Point of Sale (POS) Software', slug: 'pos',
     desc: 'Affordable, custom-built POS software for Kenyan retail shops, restaurants, pharmacies and supermarkets, fast, easy-to-use systems with M-Pesa integration, inventory management and real-time sales reports.',
     perks: [],
   },
   {
-    icon: '📈', title: 'Affordable SEO & Digital Marketing', slug: 'seo',
+    icon: <IconTrendingUp size={20} color="#00C8CC" />,
+    title: 'Affordable SEO & Digital Marketing', slug: 'seo',
     desc: "Kenya's best & most affordable SEO services in Nairobi, cheap, data-driven strategies that push your business to the top of Google search results and keep it there.",
     perks: [],
   },
   {
-    icon: '🎓', title: 'Affordable LMS Development', slug: 'lms',
+    icon: <IconBookOpen size={20} color="#00C8CC" />,
+    title: 'Affordable LMS Development', slug: 'lms',
     desc: 'Cheap, responsive & affordable LMS platforms for Kenyan schools, universities and corporate training teams, branded e-learning systems built to scale across Kenya.',
     perks: [],
   },
   {
-    icon: '🤝', title: 'Affordable CRM & Software Dev', slug: 'crm',
+    icon: <IconUsers size={20} color="#00C8CC" />,
+    title: 'Affordable CRM & Software Dev', slug: 'crm',
     desc: "Nairobi's best & most affordable CRM and custom business software, cheap, scalable platforms that streamline your Kenyan business operations and grow with your team.",
     perks: [],
   },
   {
-    icon: '🎨', title: 'Affordable Graphic Design', slug: 'graphic-design',
+    icon: <IconPenTool size={20} color="#00C8CC" />,
+    title: 'Affordable Graphic Design', slug: 'graphic-design',
     desc: 'Cheap & affordable graphic design in Nairobi, professional logos, brand identities and marketing assets for Kenyan businesses that make a strong, lasting first impression.',
     perks: [],
   },
@@ -326,27 +465,33 @@ const PROJECTS = [
 
 const PRICING = [
   {
-    name: 'Starter', price: 'KSh 25,000', note: 'Perfect for small Kenyan businesses', hot: false, icon: '🌐',
+    name: 'Starter', price: 'KSh 25,000', note: 'Perfect for small Kenyan businesses', hot: false,
+    icon: <IconWeb size={18} color="#00C8CC" />,
     features: ['5-Page Website', 'Mobile Responsive', 'Basic SEO Setup', 'Contact Form', '2 Months Support'],
   },
   {
-    name: 'Growth', price: 'KSh 60,000', note: 'Best value for growing businesses', hot: true, icon: '🚀',
+    name: 'Growth', price: 'KSh 60,000', note: 'Best value for growing businesses', hot: true,
+    icon: <IconRocket size={18} color="#00C8CC" />,
     features: ['Up to 15 Pages', 'E-Commerce Ready', 'Advanced SEO', 'CMS Integration', '4 Months Support', '3 Revision Rounds'],
   },
   {
-    name: 'Android App', price: 'KSh 55,000', note: 'For logistics, banking, healthcare & more', hot: false, icon: '📱',
+    name: 'Android App', price: 'KSh 55,000', note: 'For logistics, banking, healthcare & more', hot: false,
+    icon: <IconSmartphone size={18} color="#00C8CC" />,
     features: ['Custom Android App', 'M-Pesa Integration', 'Logistics / Banking Ready', 'Google Play Publishing', 'Offline Support', '3 Months Support'],
   },
   {
-    name: 'POS Software', price: 'KSh 35,000', note: 'For shops, restaurants & pharmacies', hot: false, icon: '🖥️',
+    name: 'POS Software', price: 'KSh 35,000', note: 'For shops, restaurants & pharmacies', hot: false,
+    icon: <IconMonitor size={18} color="#00C8CC" />,
     features: ['M-Pesa Integration', 'Inventory Management', 'Real-Time Sales Reports', 'Receipt Printing', 'Multi-User Access', '3 Months Support'],
   },
   {
-    name: 'Enterprise', price: 'Custom', note: 'For large-scale Kenyan projects', hot: false, icon: '🏢',
+    name: 'Enterprise', price: 'Custom', note: 'For large-scale Kenyan projects', hot: false,
+    icon: <IconBuilding size={18} color="#00C8CC" />,
     features: ['Unlimited Pages', 'CRM / LMS / App Integration', 'Full-Stack Dev', 'Priority Support', 'Dedicated Team', 'Ongoing Maintenance'],
   },
   {
-    name: 'Maintenance', price: 'KSh 15,000', note: 'Affordable monthly website care', hot: false, icon: '🔧',
+    name: 'Maintenance', price: 'KSh 15,000', note: 'Affordable monthly website care', hot: false,
+    icon: <IconWrench size={18} color="#00C8CC" />,
     features: ['SEO Monitoring', 'Security Updates', 'Plugin & CMS Updates', 'Speed Optimization', 'Monthly Report', '24/7 Support'],
   },
 ]
@@ -381,7 +526,7 @@ function PricingCard({ p, delay }) {
           <div className="absolute -top-3 left-4 px-2.5 py-0.5 bg-cyan text-navy text-[9px] font-black rounded tracking-[0.1em] uppercase font-sans">Best Value in Kenya</div>
         )}
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-lg">{p.icon}</span>
+          <span className="flex items-center justify-center">{p.icon}</span>
           <div className="text-[10px] font-bold text-[#6b7280] uppercase tracking-[0.15em] font-sans">{p.name}</div>
         </div>
         <div className="font-serif font-black text-[#1a2233] leading-none mb-0.5" style={{ fontSize: 'clamp(20px, 2.2vw, 26px)' }}>{p.price}</div>
@@ -432,7 +577,6 @@ export default function Home() {
         <meta name="googlebot" content="index, follow" />
         <link rel="canonical" href="https://devnovatech.com/" />
 
-        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://devnovatech.com/" />
         <meta property="og:title" content="DevNovaTech | Best Affordable Web & App Developers Nairobi Kenya" />
@@ -444,7 +588,6 @@ export default function Home() {
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:locale" content="en_KE" />
 
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://devnovatech.com/" />
         <meta name="twitter:title" content="DevNovaTech | Web & App Developers Nairobi Kenya" />
@@ -452,7 +595,6 @@ export default function Home() {
         <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
         <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
 
-        {/* Schema: WebSite */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -473,7 +615,6 @@ export default function Home() {
           }
         `}</script>
 
-        {/* Schema: Organization */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -494,19 +635,12 @@ export default function Home() {
                 "contactType": "customer service",
                 "areaServed": "KE",
                 "availableLanguage": ["English", "Swahili"]
-              },
-              {
-                "@type": "ContactPoint",
-                "telephone": "+254796038686",
-                "contactType": "sales",
-                "areaServed": "KE"
               }
             ],
             "sameAs": ["https://wa.me/254796038686"]
           }
         `}</script>
 
-        {/* Schema: LocalBusiness */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -514,113 +648,25 @@ export default function Home() {
             "@id": "https://devnovatech.com/#business",
             "name": "DevNovaTech Softwares",
             "alternateName": "DevNovaTech",
-            "description": "Nairobi's best and most affordable web development company, serving businesses across Kenya since 2020. We build custom websites, e-commerce stores with M-Pesa integration, POS software, LMS, CRM and digital marketing solutions.",
+            "description": "Nairobi's best and most affordable web development company, serving businesses across Kenya since 2020.",
             "url": "https://devnovatech.com",
-            "logo": "https://devnovatech.com/favicon.jpg",
-            "image": "https://devnovatech.com/og-image.jpg",
             "telephone": "+254796038686",
-            "email": "info@devnovatech.com",
             "foundingDate": "2020",
-            "numberOfEmployees": { "@type": "QuantitativeValue", "value": "5" },
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Nairobi",
               "addressRegion": "Nairobi County",
               "addressCountry": "KE"
             },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "-1.2921",
-              "longitude": "36.8219"
-            },
-            "areaServed": [
-              { "@type": "City", "name": "Nairobi" },
-              { "@type": "City", "name": "Mombasa" },
-              { "@type": "City", "name": "Kisumu" },
-              { "@type": "City", "name": "Nakuru" },
-              { "@type": "City", "name": "Eldoret" },
-              { "@type": "Country", "name": "Kenya" }
-            ],
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-                "opens": "08:00",
-                "closes": "18:00"
-              }
-            ],
-            "priceRange": "KSh 25,000 - Custom",
-            "currenciesAccepted": "KES",
-            "paymentAccepted": "M-Pesa, Bank Transfer, Cash",
             "aggregateRating": {
               "@type": "AggregateRating",
               "ratingValue": "4.9",
               "reviewCount": "50",
               "bestRating": "5"
-            },
-            "sameAs": ["https://wa.me/254796038686"],
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Web Development & Digital Services Kenya",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "name": "Starter Website Package",
-                  "description": "5-page mobile responsive website with basic SEO, contact form and 2 months support",
-                  "price": "25000",
-                  "priceCurrency": "KES",
-                  "itemOffered": { "@type": "Service", "name": "Web Design & Development" }
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Growth Website Package",
-                  "description": "Up to 15 pages, e-commerce ready, advanced SEO, CMS and 4 months support",
-                  "price": "60000",
-                  "priceCurrency": "KES",
-                  "itemOffered": { "@type": "Service", "name": "E-Commerce Development" }
-                },
-                {
-                  "@type": "Offer",
-                  "name": "POS Software",
-                  "description": "Custom POS for Kenyan shops, restaurants and pharmacies with M-Pesa integration",
-                  "price": "35000",
-                  "priceCurrency": "KES",
-                  "itemOffered": { "@type": "Service", "name": "Point of Sale Software" }
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Monthly Maintenance",
-                  "description": "SEO monitoring, security updates, speed optimization and 24/7 support",
-                  "price": "15000",
-                  "priceCurrency": "KES",
-                  "itemOffered": { "@type": "Service", "name": "Website Maintenance" }
-                },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO & Digital Marketing Kenya" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LMS Development Kenya" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM & Custom Software Kenya" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design Kenya" } }
-              ]
             }
           }
         `}</script>
 
-        {/* Schema: BreadcrumbList */}
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://devnovatech.com/" },
-              { "@type": "ListItem", "position": 2, "name": "Services",    "item": "https://devnovatech.com/services" },
-              { "@type": "ListItem", "position": 3, "name": "Projects",    "item": "https://devnovatech.com/projects" },
-              { "@type": "ListItem", "position": 4, "name": "About",       "item": "https://devnovatech.com/about" },
-              { "@type": "ListItem", "position": 5, "name": "Contact",     "item": "https://devnovatech.com/contact" },
-              { "@type": "ListItem", "position": 6, "name": "Get a Quote", "item": "https://devnovatech.com/quote" }
-            ]
-          }
-        `}</script>
-
-        {/* Schema: FAQ */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -631,7 +677,7 @@ export default function Home() {
                 "name": "How much does a website cost in Kenya?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "DevNovaTech offers websites starting from KSh 25,000 for a 5-page starter site, KSh 60,000 for a growth package with e-commerce, and KSh 35,000 for POS software. Enterprise and custom projects are quoted on request."
+                  "text": "DevNovaTech offers websites starting from KSh 25,000 for a 5-page starter site, KSh 60,000 for a growth package with e-commerce, and KSh 35,000 for POS software."
                 }
               },
               {
@@ -641,79 +687,12 @@ export default function Home() {
                   "@type": "Answer",
                   "text": "Yes. DevNovaTech specializes in M-Pesa integration for e-commerce stores, POS software and business websites across Kenya."
                 }
-              },
-              {
-                "@type": "Question",
-                "name": "Which is the best web development company in Nairobi?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "DevNovaTech Softwares is widely regarded as Nairobi's best and most affordable web development company, with 150+ projects delivered and 50+ happy clients since 2020."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you offer website maintenance in Kenya?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Our monthly maintenance package starts at KSh 15,000 and includes SEO monitoring, security updates, plugin updates, speed optimization and 24/7 support."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you serve businesses outside Nairobi?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Absolutely. DevNovaTech serves businesses across all of Kenya including Mombasa, Kisumu, Nakuru, Eldoret and beyond, fully remotely."
-                }
-              }
-            ]
-          }
-        `}</script>
-
-        {/* Schema: Reviews */}
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": "Web Development Services, DevNovaTech Softwares",
-            "brand": { "@type": "Brand", "name": "DevNovaTech Softwares" },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "50",
-              "bestRating": "5"
-            },
-            "review": [
-              {
-                "@type": "Review",
-                "author": { "@type": "Organization", "name": "Cuma Refrigeration" },
-                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-                "reviewBody": "DevNovaTech built us a sleek, professional website that perfectly represents our brand. Enquiries from new clients have increased significantly since we went live."
-              },
-              {
-                "@type": "Review",
-                "author": { "@type": "Organization", "name": "Family Drugmart Kenya" },
-                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-                "reviewBody": "Our online pharmacy is seamless and easy to use. DevNovaTech understood our industry and delivered a platform our customers trust and use daily. Exceptional work."
-              },
-              {
-                "@type": "Review",
-                "author": { "@type": "Organization", "name": "Pamoja2Sustain" },
-                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-                "reviewBody": "DevNovaTech gave our organization a powerful digital presence. The website communicates our mission clearly and has helped us reach more donors and partners across Africa."
-              },
-              {
-                "@type": "Review",
-                "author": { "@type": "Organization", "name": "ISC2 Kenya Chapter" },
-                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-                "reviewBody": "The team at DevNovaTech delivered a world-class website for our chapter. Clean, professional and easy to navigate, exactly what a cybersecurity community deserves."
               }
             ]
           }
         `}</script>
       </Helmet>
 
-      {/* ── Inject fadeUp keyframe globally once ── */}
       <style>{animStyles}</style>
 
       {/* ══ HERO ══ */}
@@ -784,7 +763,9 @@ export default function Home() {
               <Reveal key={s.title} delay={i * 0.06}>
                 <div className="group bg-white border border-[#e2e5ea] rounded-xl p-6 hover:shadow-xl hover:shadow-black/6 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer relative overflow-hidden h-full flex flex-col">
                   <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-xl" />
-                  <div className="w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/20 flex items-center justify-center text-xl mb-4 group-hover:bg-cyan/20 group-hover:scale-110 transition-all duration-300">{s.icon}</div>
+                  <div className="w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/20 flex items-center justify-center mb-4 group-hover:bg-cyan/20 group-hover:scale-110 transition-all duration-300">
+                    {s.icon}
+                  </div>
                   <h3 className="font-serif font-bold text-[15px] text-[#1a2233] mb-2 leading-snug group-hover:text-navy transition-colors duration-200">{s.title}</h3>
                   <p className="text-[13px] text-[#6b7280] leading-relaxed font-sans flex-1">{s.desc}</p>
                   {s.perks.length > 0 && (
