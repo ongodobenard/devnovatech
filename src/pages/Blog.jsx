@@ -450,7 +450,7 @@ export default function Blog() {
             Expert articles on web development, SEO, hosting, WordPress and digital strategy, written by our Nairobi team to help Kenyan businesses rank higher, grow faster and convert more customers online.
           </p>
           <div className="flex flex-wrap gap-8 mt-8 anim-fade-up-4">
-            {[['10', 'Expert Articles'], ['6', 'Authors'], ['2025', 'Updated']].map(([v, l]) => (
+            {[['10', 'Expert Articles'], ['6', 'Authors'], ['2026', 'Updated']].map(([v, l]) => (
               <div key={l}>
                 <div className="font-serif font-black text-cyan text-2xl">{v}</div>
                 <div className="text-white/40 text-[11px] font-sans">{l}</div>
