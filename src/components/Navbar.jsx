@@ -116,6 +116,7 @@ export default function Navbar() {
           </div>
 
           <Link to="/projects" className={'px-3 py-2 text-[13px] font-semibold font-sans rounded transition-all duration-200 ' + (pathname==='/projects' ? 'text-cyan' : 'text-white/70 hover:text-white')}>Projects</Link>
+          <Link to="/blog" className={'px-3 py-2 text-[13px] font-semibold font-sans rounded transition-all duration-200 ' + (pathname==='/blog' ? 'text-cyan' : 'text-white/70 hover:text-white')}>Blog</Link>
           <Link to="/contact" className={'px-3 py-2 text-[13px] font-semibold font-sans rounded transition-all duration-200 ' + (pathname==='/contact' ? 'text-cyan' : 'text-white/70 hover:text-white')}>Contact Us</Link>
           <Link to="/quote" className="ml-3 px-5 py-2.5 bg-cyan text-navy font-bold text-[12px] rounded tracking-wide font-sans hover:bg-cyan/90 transition-all duration-200">Request Quote</Link>
         </nav>
@@ -215,6 +216,7 @@ export default function Navbar() {
           </div>
 
           <Link to="/projects" className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname==='/projects' ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>Projects</Link>
+          <Link to="/blog" className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname==='/blog' ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>Blog</Link>
           <Link to="/contact" className={'block py-3.5 text-[14px] font-semibold font-sans border-b border-white/8 transition-colors duration-200 ' + (pathname==='/contact' ? 'text-cyan' : 'text-white/70 hover:text-cyan')}>Contact Us</Link>
           <Link to="/quote" className="mt-4 block w-full py-3 bg-cyan text-navy font-bold text-[13px] rounded tracking-wide font-sans text-center hover:bg-cyan/90 transition-all duration-200">Request a Quote</Link>
 

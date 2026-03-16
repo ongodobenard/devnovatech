@@ -3,7 +3,8 @@ import { preview } from 'vite'
 import fs from 'fs'
 import path from 'path'
 
-const ROUTES = ['/', '/about', '/services', '/projects', '/contact', '/quote']
+// ─── ADD /blog HERE ──────────────────────────────────────────
+const ROUTES = ['/', '/about', '/services', '/projects', '/blog', '/contact', '/quote']
 
 function cleanHtml(html) {
   // Fix encoding — ensure UTF-8 charset is declared first in head

@@ -16,11 +16,11 @@ const COMPANY = [
   { label: 'Home',          to: '/' },
   { label: 'About',         to: '/about' },
   { label: 'Projects',      to: '/projects' },
+  { label: 'Blog',          to: '/blog' },
   { label: 'Contact Us',    to: '/contact' },
   { label: 'Request Quote', to: '/quote' },
 ]
 
-// SVG icon components — no emojis
 function IconPin() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.6 }}>
@@ -56,12 +56,6 @@ function IconWhatsApp() {
   )
 }
 
-const CONTACT = [
-  { icon: <IconPin />,   text: 'Nairobi, Kenya' },
-  { icon: <IconPhone />, text: '+254 796 038 686' },
-  { icon: <IconGlobe />, text: 'devnovatech.com' },
-]
-
 function ServiceLink({ label, slug }) {
   const navigate = useNavigate()
 
@@ -93,6 +87,12 @@ function ServiceLink({ label, slug }) {
     </a>
   )
 }
+
+const CONTACT = [
+  { icon: <IconPin />,   text: 'Nairobi, Kenya' },
+  { icon: <IconPhone />, text: '+254 796 038 686' },
+  { icon: <IconGlobe />, text: 'devnovatech.com' },
+]
 
 export default function Footer() {
   return (
@@ -197,7 +197,6 @@ export default function Footer() {
                   </div>
                 )
               })}
-
               <a
                 href="https://wa.me/254796038686"
                 target="_blank"
@@ -215,9 +214,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[11px] sm:text-[12px] text-white/25 font-sans text-center sm:text-left">
-            © 2025 DevNovaTech Softwares · Best Web Development Company in Nairobi, Kenya
+            2025 DevNovaTech Softwares. Best Web Development Company in Nairobi, Kenya
           </p>
-
           <Link to="/" className="flex items-center gap-2 group">
             <img
               src={logo}
