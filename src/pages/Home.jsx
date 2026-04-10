@@ -496,9 +496,10 @@ export default function Home() {
               <br />That Drive Growth.
             </h1>
             <p className="text-white/70 leading-relaxed mb-7 anim-fade-up-3 font-sans" style={{ fontSize: 'clamp(13px, 1.6vw, 16px)', maxWidth: 460 }}>
-              Nairobi's best ben & most affordable web and Android app development company, fast, professional & budget-friendly websites, mobile apps and digital solutions for businesses across Nairobi, Mombasa, Kisumu, Nakuru and all of Kenya.
+              Nairobi's best & most affordable web and Android app development company, fast, professional & budget-friendly websites, mobile apps and digital solutions for businesses across Nairobi, Mombasa, Kisumu, Nakuru and all of Kenya.
             </p>
             <div className="flex flex-wrap gap-3 anim-fade-up-4">
+        
               <Link to="/quote" className="px-6 py-3 bg-cyan text-navy font-bold text-[13px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30 hover:-translate-y-1">Get a Free Quote</Link>
               <Link to="/projects" className="px-6 py-3 border-2 border-white/30 text-white font-semibold text-[13px] rounded tracking-wide font-sans transition-all duration-300 hover:border-cyan hover:text-cyan">View Our Work</Link>
             </div>
