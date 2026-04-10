@@ -143,13 +143,13 @@ export default function Navbar() {
 
         <span className="w-[3px] h-[3px] rounded-full bg-white/20"/>
 
-        {/* Email */}
-        <a href="mailto:info@devnovatech.com" className="flex items-center gap-1.5 text-white/45 hover:text-cyan transition-colors duration-200">
+        {/* Email — UPDATED */}
+        <a href="mailto:info@devnovatech.co.ke" className="flex items-center gap-1.5 text-white/45 hover:text-cyan transition-colors duration-200">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
-          <span className="text-[10px] font-sans font-semibold tracking-wide">info@devnovatech.com</span>
+          <span className="text-[10px] font-sans font-semibold tracking-wide">info@devnovatech.co.ke</span>
         </a>
 
         <span className="w-[3px] h-[3px] rounded-full bg-white/20"/>

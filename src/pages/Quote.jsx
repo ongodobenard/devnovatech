@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import emailjs from '@emailjs/browser'
 
-const SERVICE_ID  = 'service_m7p7rsv'
-const TEMPLATE_ID = 'template_qci0huq'
-const PUBLIC_KEY  = 'ZXtyl-tLi5b1oXgeX'
+const SERVICE_ID  = 'service_sk5f7rt'
+const TEMPLATE_ID = 'template_kadmijg'
+const PUBLIC_KEY  = 'FNAGc1pbFDhQNUduJ'
 const RED         = '#ef4444'
+
+emailjs.init(PUBLIC_KEY)
 
 function useReveal() {
   const ref = useRef(null)
@@ -210,7 +212,7 @@ ${form.description}`,
       time: new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' }),
     }
 
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
       .then(function () {
         setStatus('success')
         setTimeout(function () { setForm(EMPTY_FORM) }, 4000)
@@ -231,37 +233,37 @@ ${form.description}`,
         <title>Get a Free Quote | Affordable Web & App Development Nairobi Kenya — DevNovaTech</title>
         <meta name="description" content="Get a free, no-obligation quote from DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company. Websites from KSh 25,000. Fast response within 24 hours." />
         <meta name="keywords" content="free website quote Kenya, web development quote Nairobi, affordable website Kenya, DevNovaTech quote, website cost Kenya, web design price Nairobi, Android app quote Kenya" />
-        <link rel="canonical" href="https://devnovatech.com/quote" />
+        <link rel="canonical" href="https://devnovatech.co.ke/quote" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.com/quote" />
+        <meta property="og:url" content="https://devnovatech.co.ke/quote" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Get a Free Quote | DevNovaTech — Web & App Development Kenya" />
         <meta property="og:description" content="Request a free, no-obligation web development quote from DevNovaTech Softwares. Websites from KSh 25,000. Serving all of Kenya from Nairobi." />
-        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="DevNovaTech Softwares - Free Web Development Quote Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Web Development Quote | DevNovaTech Nairobi Kenya" />
         <meta name="twitter:description" content="Get an affordable KSh quote for your website or app from Nairobi's best web development team. Response within 24 hours." />
-        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta name="twitter:image:alt" content="DevNovaTech Softwares - Free Quote Web Development Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Get a Free Quote — DevNovaTech Softwares",
-            "url": "https://devnovatech.com/quote",
+            "url": "https://devnovatech.co.ke/quote",
             "description": "Request a free, no-obligation web and app development quote from DevNovaTech Softwares, Nairobi's most affordable web development company",
             "publisher": {
               "@type": "Organization",
               "name": "DevNovaTech Softwares",
-              "url": "https://devnovatech.com",
+              "url": "https://devnovatech.co.ke",
               "telephone": "+254796038686",
-              "email": "info@devnovatech.com",
+              "email": "info@devnovatech.co.ke",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Nairobi",
@@ -355,28 +357,6 @@ ${form.description}`,
                   <p className="text-[#6b7280] text-[13px] sm:text-[14px] font-sans mb-6">
                     Fill in all details below, the more we know, the more accurate your free quote will be.
                   </p>
-
-                  {/* Success message */}
-                  {status === 'success' && (
-                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
-                      <IconCheck />
-                      <div>
-                        <div className="font-serif font-bold text-green-800 text-[15px] mb-1">Quote Request Sent!</div>
-                        <p className="text-green-700 text-[13px] font-sans">Thank you! We will review your project and send you an affordable quote within 24 hours.</p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Error message */}
-                  {status === 'error' && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
-                      <IconX />
-                      <div>
-                        <div className="font-serif font-bold text-red-800 text-[15px] mb-1">Failed to Send</div>
-                        <p className="text-red-700 text-[13px] font-sans">Something went wrong. Please try again or WhatsApp us directly.</p>
-                      </div>
-                    </div>
-                  )}
 
                   <div className="space-y-4">
 
@@ -506,6 +486,28 @@ ${form.description}`,
                     <p className="text-center text-[11px] sm:text-[12px] text-[#9ca3af] font-sans">
                       No commitment required. We respond within 24 hours with a detailed, affordable KSh quote.
                     </p>
+
+                    {/* Success message */}
+                    {status === 'success' && (
+                      <div className="p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
+                        <IconCheck />
+                        <div>
+                          <div className="font-serif font-bold text-green-800 text-[15px] mb-1">Quote Request Sent!</div>
+                          <p className="text-green-700 text-[13px] font-sans">Thank you for reaching out! Our professionals will review your project details and get back to you shortly with a detailed, affordable quote.</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Error message */}
+                    {status === 'error' && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
+                        <IconX />
+                        <div>
+                          <div className="font-serif font-bold text-red-800 text-[15px] mb-1">Failed to Send</div>
+                          <p className="text-red-700 text-[13px] font-sans">Something went wrong. Please try again or WhatsApp us directly.</p>
+                        </div>
+                      </div>
+                    )}
 
                   </div>
                 </div>

@@ -448,37 +448,37 @@ export default function About() {
         <title>About Us | DevNovaTech Softwares — #1 Web & App Developers Nairobi Kenya</title>
         <meta name="description" content="DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company. Learn our story, mission, values and meet the team building digital solutions for businesses across Kenya — Nairobi, Mombasa, Kisumu, Nakuru & beyond." />
         <meta name="keywords" content="about DevNovaTech, web developers Nairobi Kenya, software company Nairobi, best web development company Kenya, affordable web developers Kenya, Nairobi app developers, DevNovaTech team" />
-        <link rel="canonical" href="https://devnovatech.com/about" />
+        <link rel="canonical" href="https://devnovatech.co.ke/about" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.com/about" />
+        <meta property="og:url" content="https://devnovatech.co.ke/about" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="About DevNovaTech | Best Web & App Developers Nairobi Kenya" />
         <meta property="og:description" content="Meet the Nairobi-based team behind Kenya's best & most affordable web and app development company. Our story, mission and values." />
-        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="DevNovaTech Softwares - Web & App Developers Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About DevNovaTech | Web & App Developers Nairobi Kenya" />
         <meta name="twitter:description" content="Nairobi's best & most affordable web and Android app developers. Learn our story, meet the team." />
-        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "AboutPage",
             "name": "About DevNovaTech Softwares",
-            "url": "https://devnovatech.com/about",
+            "url": "https://devnovatech.co.ke/about",
             "description": "Learn about DevNovaTech Softwares, Nairobi's best and most affordable web and Android app development company in Kenya",
             "mainEntity": {
               "@type": "Organization",
               "name": "DevNovaTech Softwares",
               "foundingDate": "2020",
               "foundingLocation": "Nairobi, Kenya",
-              "url": "https://devnovatech.com",
+              "url": "https://devnovatech.co.ke",
               "numberOfEmployees": "3",
               "areaServed": ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Kenya"],
               "founder": {
@@ -754,7 +754,7 @@ export default function About() {
                     Nairobi's best & most affordable software and Android app developer. Benard leads Kenya's top web and app development team delivering fast, professional & budget-friendly websites, Android apps, e-commerce stores, POS software and custom software for businesses across Kenya.
                   </p>
                   <div className="flex items-center justify-center gap-3 pt-4 border-t border-[#e2e5ea] w-full">
-                    <a href="mailto:info@devnovatech.com" title="Email Benard"
+                    <a href="mailto:info@devnovatech.co.ke" title="Email Benard"
                       className="w-9 h-9 rounded-lg bg-[#f5f6f8] border border-[#e2e5ea] flex items-center justify-center text-[#6b7280] hover:bg-cyan hover:text-white hover:border-cyan transition-all duration-200">
                       <EmailIcon />
                     </a>

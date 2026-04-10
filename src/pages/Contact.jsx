@@ -3,10 +3,12 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 
-const SERVICE_ID  = 'service_m7p7rsv'
-const TEMPLATE_ID = 'template_qci0huq'
-const PUBLIC_KEY  = 'ZXtyl-tLi5b1oXgeX'
+const SERVICE_ID  = 'service_sk5f7rt'
+const TEMPLATE_ID = 'template_kadmijg'
+const PUBLIC_KEY  = 'FNAGc1pbFDhQNUduJ'
 const RED         = '#ef4444'
+
+emailjs.init(PUBLIC_KEY)
 
 function useReveal() {
   const ref = useRef(null)
@@ -38,14 +40,6 @@ function Reveal({ children, delay = 0 }) {
   )
 }
 
-function FieldLabel({ text }) {
-  return (
-    <label className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
-      {text} <span style={{ color: RED }}>*</span>
-    </label>
-  )
-}
-
 function FieldError({ msg }) {
   if (!msg) return null
   return <p className="mt-1 text-[11px] font-sans font-medium" style={{ color: RED }}>{msg}</p>
@@ -62,8 +56,6 @@ function fieldStyle(error) {
 
 const EMPTY_FORM   = { name: '', email: '', phone: '', subject: '', message: '' }
 const EMPTY_ERRORS = { name: '', email: '', phone: '', subject: '', message: '' }
-
-/* ─── SVG ICON COMPONENTS ───────────────────────────────────── */
 
 function IconMapPin({ size = 18, color = '#00C8CC' }) {
   return (
@@ -138,12 +130,11 @@ function IconLoader({ size = 18, color = '#0a1228' }) {
   )
 }
 
-/* ─── CONTACT INFO DATA ─────────────────────────────────────── */
 const CONTACT_ITEMS = [
-  { icon: <IconMapPin />, label: 'Location', value: 'Nairobi, Kenya',      sub: 'Serving all of Kenya' },
-  { icon: <IconPhone />,  label: 'Phone',    value: '+254 796 038 686',     sub: 'Mon–Fri, 8am–5pm EAT' },
-  { icon: <IconGlobe />,  label: 'Website',  value: 'devnovatech.com',      sub: 'Available 24/7' },
-  { icon: <IconMail />,   label: 'Email',    value: 'info@devnovatech.com', sub: 'We reply within 24 hours' },
+  { icon: <IconMapPin />, label: 'Location', value: 'Nairobi, Kenya',        sub: 'Serving all of Kenya' },
+  { icon: <IconPhone />,  label: 'Phone',    value: '+254 796 038 686',       sub: 'Mon–Fri, 8am–5pm EAT' },
+  { icon: <IconGlobe />,  label: 'Website',  value: 'devnovatech.co.ke',      sub: 'Available 24/7' },
+  { icon: <IconMail />,   label: 'Email',    value: 'info@devnovatech.co.ke', sub: 'We reply within 24 hours' },
 ]
 
 function CircuitCTA() {
@@ -174,6 +165,7 @@ export default function Contact() {
   const [form, setForm]     = useState(EMPTY_FORM)
   const [errors, setErrors] = useState(EMPTY_ERRORS)
   const [status, setStatus] = useState('idle')
+  const [debugMsg, setDebugMsg] = useState('')
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -197,6 +189,7 @@ export default function Contact() {
   function handleSubmit() {
     if (!validate()) return
     setStatus('sending')
+    setDebugMsg('')
     const templateParams = {
       name:    form.name,
       email:   form.email,
@@ -205,57 +198,61 @@ export default function Contact() {
       message: form.message,
       time:    new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' }),
     }
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
-      .then(function () {
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+      .then(function (response) {
+        console.log('EMAILJS SUCCESS:', response.status, response.text)
         setStatus('success')
+        setDebugMsg('')
         setTimeout(function () { setForm(EMPTY_FORM) }, 4000)
         setTimeout(function () { setStatus('idle') }, 5000)
       })
-      .catch(function () {
+      .catch(function (error) {
+        const msg = JSON.stringify(error)
+        console.log('EMAILJS FAILED:', msg)
+        setDebugMsg(msg)
         setStatus('error')
-        setTimeout(function () { setStatus('idle') }, 5000)
+        setTimeout(function () { setStatus('idle') }, 8000)
       })
   }
 
   return (
     <div className="font-sans">
 
-      {/* ── SEO HEAD ── */}
       <Helmet>
         <title>Contact Us | Affordable Web Development Nairobi Kenya — DevNovaTech</title>
         <meta name="description" content="Contact DevNovaTech Softwares, Nairobi's best & most affordable web development company. Call, WhatsApp or email us for a free quote on your website or digital project in Kenya." />
         <meta name="keywords" content="contact web developer Nairobi, web development company Kenya, affordable website Kenya, DevNovaTech contact, web design Nairobi quote, web developer Kenya WhatsApp" />
-        <link rel="canonical" href="https://devnovatech.com/contact" />
+        <link rel="canonical" href="https://devnovatech.co.ke/contact" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.com/contact" />
+        <meta property="og:url" content="https://devnovatech.co.ke/contact" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Contact DevNovaTech | Nairobi's Best Web Development Company" />
         <meta property="og:description" content="Reach out to DevNovaTech Softwares for a free consultation and affordable web development quote. Serving all of Kenya from Nairobi." />
-        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="DevNovaTech Softwares - Contact Web Development Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contact DevNovaTech | Web Development Nairobi Kenya" />
         <meta name="twitter:description" content="Get a free quote from Nairobi's best web development team. We respond within 24 hours." />
-        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "ContactPage",
             "name": "Contact DevNovaTech Softwares",
-            "url": "https://devnovatech.com/contact",
+            "url": "https://devnovatech.co.ke/contact",
             "description": "Contact page for DevNovaTech Softwares, Nairobi's best and most affordable web development company",
             "publisher": {
               "@type": "Organization",
               "name": "DevNovaTech Softwares",
-              "url": "https://devnovatech.com",
+              "url": "https://devnovatech.co.ke",
               "telephone": "+254796038686",
-              "email": "info@devnovatech.com",
+              "email": "info@devnovatech.co.ke",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Nairobi",
@@ -266,7 +263,6 @@ export default function Contact() {
         `}</script>
       </Helmet>
 
-      {/* Spin keyframe for loader icon */}
       <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
 
       {/* ══ HERO ══ */}
@@ -336,44 +332,56 @@ export default function Contact() {
                     Tell us about your project and we will get back to you with a free consultation and affordable quote.
                   </p>
 
-                  {status === 'success' && (
-                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
-                      <IconCheckCircle />
-                      <div>
-                        <div className="font-serif font-bold text-green-800 text-[15px] mb-1">Message Sent Successfully!</div>
-                        <p className="text-green-700 text-[13px] font-sans">Thank you for reaching out. We will get back to you within 24 hours.</p>
-                      </div>
-                    </div>
-                  )}
-
-                  {status === 'error' && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
-                      <IconXCircle />
-                      <div>
-                        <div className="font-serif font-bold text-red-800 text-[15px] mb-1">Failed to Send</div>
-                        <p className="text-red-700 text-[13px] font-sans">Something went wrong. Please try again or WhatsApp us directly.</p>
-                      </div>
-                    </div>
-                  )}
-
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <FieldLabel text="Full Name" />
-                        <input name="name" value={form.name} onChange={handleChange} placeholder="Felix Kamau" className={inputBase} style={fieldStyle(errors.name)} />
+                        <label htmlFor="name" className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
+                          Full Name <span style={{ color: RED }}>*</span>
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          autoComplete="name"
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder="Felix Kamau"
+                          className={inputBase}
+                          style={fieldStyle(errors.name)}
+                        />
                         <FieldError msg={errors.name} />
                       </div>
                       <div>
-                        <FieldLabel text="Email Address" />
-                        <input name="email" value={form.email} onChange={handleChange} placeholder="felix@company.co.ke" className={inputBase} style={fieldStyle(errors.email)} />
+                        <label htmlFor="email" className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
+                          Email Address <span style={{ color: RED }}>*</span>
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          autoComplete="email"
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder="felix@company.co.ke"
+                          className={inputBase}
+                          style={fieldStyle(errors.email)}
+                        />
                         <FieldError msg={errors.email} />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <FieldLabel text="Subject" />
-                        <select name="subject" value={form.subject} onChange={handleChange} className={inputBase} style={fieldStyle(errors.subject)}>
+                        <label htmlFor="subject" className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
+                          Subject <span style={{ color: RED }}>*</span>
+                        </label>
+                        <select
+                          id="subject"
+                          name="subject"
+                          autoComplete="off"
+                          value={form.subject}
+                          onChange={handleChange}
+                          className={inputBase}
+                          style={fieldStyle(errors.subject)}
+                        >
                           <option value="">Select a service...</option>
                           <option>Web Design &amp; Development</option>
                           <option>E-Commerce Development</option>
@@ -389,18 +397,42 @@ export default function Contact() {
                         <FieldError msg={errors.subject} />
                       </div>
                       <div>
-                        <FieldLabel text="Phone / WhatsApp" />
-                        <input name="phone" value={form.phone} onChange={handleChange} placeholder="+254 7XX XXX XXX" className={inputBase} style={fieldStyle(errors.phone)} />
+                        <label htmlFor="phone" className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
+                          Phone / WhatsApp <span style={{ color: RED }}>*</span>
+                        </label>
+                        <input
+                          id="phone"
+                          name="phone"
+                          autoComplete="tel"
+                          value={form.phone}
+                          onChange={handleChange}
+                          placeholder="+254 7XX XXX XXX"
+                          className={inputBase}
+                          style={fieldStyle(errors.phone)}
+                        />
                         <FieldError msg={errors.phone} />
                       </div>
                     </div>
 
                     <div>
-                      <FieldLabel text="Message" />
-                      <textarea name="message" value={form.message} onChange={handleChange} rows={5} placeholder="Tell us about your project, what you need, your budget and timeline..." className={inputBase + ' resize-none'} style={fieldStyle(errors.message)} />
+                      <label htmlFor="message" className="block text-[10px] sm:text-[11px] font-bold text-[#1a2233] font-sans uppercase tracking-[0.08em] sm:tracking-[0.1em] mb-1.5">
+                        Message <span style={{ color: RED }}>*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        autoComplete="off"
+                        value={form.message}
+                        onChange={handleChange}
+                        rows={5}
+                        placeholder="Tell us about your project, what you need, your budget and timeline..."
+                        className={inputBase + ' resize-none'}
+                        style={fieldStyle(errors.message)}
+                      />
                       <FieldError msg={errors.message} />
                     </div>
 
+                    {/* ── Send button ── */}
                     <button
                       onClick={handleSubmit}
                       disabled={status === 'sending'}
@@ -412,6 +444,32 @@ export default function Contact() {
                         <><IconLoader size={16} color="#0a1228" /> Sending...</>
                       ) : 'Send Message'}
                     </button>
+
+                    {/* ── Success feedback ── */}
+                    {status === 'success' && (
+                      <div className="p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
+                        <IconCheckCircle />
+                        <div>
+                          <div className="font-serif font-bold text-green-800 text-[15px] mb-1">Message Sent Successfully!</div>
+                          <p className="text-green-700 text-[13px] font-sans">Thank you for reaching out! Our professionals will review your message and get back to you shortly.</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ── Error feedback with debug message ── */}
+                    {status === 'error' && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
+                        <IconXCircle />
+                        <div className="w-full">
+                          <div className="font-serif font-bold text-red-800 text-[15px] mb-1">Failed to Send</div>
+                          <p className="text-red-700 text-[13px] font-sans mb-2">Something went wrong. Please try again or WhatsApp us directly.</p>
+                          {debugMsg && (
+                            <p className="text-red-600 text-[11px] font-mono bg-red-100 p-2 rounded break-all">{debugMsg}</p>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
                   </div>
                 </div>
               </Reveal>

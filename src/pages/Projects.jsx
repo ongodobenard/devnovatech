@@ -32,7 +32,6 @@ function Reveal({ children, delay = 0 }) {
   )
 }
 
-/* ── SVG Icons ── */
 function IconPin() {
   return (
     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', verticalAlign: 'middle', marginRight: '3px', flexShrink: 0 }}>
@@ -132,12 +131,13 @@ function CircuitCTA() {
 }
 
 const PROJECTS = [
-  { title: 'DevNovaTech',           cat: 'Company Website',              location: 'Nairobi', year: '2025', color: '#00C8CC', link: 'http://devnovatech.com/',            desc: "Full company website for DevNovaTech Softwares, showcasing services, portfolio and digital presence for Nairobi's leading web development company." },
-  { title: 'Cuma Refrigeration',    cat: 'Business Website',             location: 'Nairobi', year: '2025', color: '#a855f7', link: 'https://www.cumarefrigeration.com/', desc: 'Professional business website for a leading refrigeration and HVAC company in Nairobi, Kenya, built to attract new clients and showcase their services.' },
-  { title: 'Family Drugmart Kenya', cat: 'E-Commerce Website',           location: 'Kenya',   year: '2025', color: '#E8332A', link: 'https://familydrugmartkenya.com/',   desc: 'Full e-commerce pharmacy platform for Family Drugmart Kenya, featuring online ordering, product management and seamless customer experience.' },
-  { title: 'Pamoja2Sustain',        cat: 'NGO Website',                  location: 'Kenya',   year: '2025', color: '#f59e0b', link: 'https://www.pamoja2sustain.org/',    desc: 'Powerful NGO website for Pamoja2Sustain, built to communicate their sustainability mission, attract donors and expand their reach across Africa.' },
-  { title: 'ISC2 Kenya Chapter',    cat: 'Professional Chapter Website', location: 'Kenya',   year: '2026', color: '#00C8CC', link: 'https://isc2kenya.com/',             desc: 'Professional website for the ISC2 Kenya Chapter, a cybersecurity community platform featuring events, membership and industry resources.' },
-  { title: 'BetterLife Kenya',      cat: 'E-Commerce Website',           location: 'Kenya',   year: '2025', color: '#a855f7', link: 'https://betterlifekenya.co.ke/',    desc: 'Full e-commerce platform for BetterLife Kenya, an online pharmaceutical store delivering health and wellness products across Kenya with a seamless shopping experience.' },
+  { title: 'DevNovaTech',           cat: 'Company Website',              location: 'Nairobi', year: '2025', color: '#00C8CC', link: 'http://devnovatech.co.ke/',             desc: "Full company website for DevNovaTech Softwares, showcasing services, portfolio and digital presence for Nairobi's leading web development company." },
+  { title: 'Cuma Refrigeration',    cat: 'Business Website',             location: 'Nairobi', year: '2025', color: '#a855f7', link: 'https://www.cumarefrigeration.com/',  desc: 'Professional business website for a leading refrigeration and HVAC company in Nairobi, Kenya, built to attract new clients and showcase their services.' },
+  { title: 'Family Drugmart Kenya', cat: 'E-Commerce Website',           location: 'Kenya',   year: '2025', color: '#E8332A', link: 'https://familydrugmartkenya.com/',    desc: 'Full e-commerce pharmacy platform for Family Drugmart Kenya, featuring online ordering, product management and seamless customer experience.' },
+  { title: 'Careveee Kenya',        cat: 'E-Commerce Website',           location: 'Kenya',   year: '2025', color: '#10b981', link: 'https://www.careveekenya.co.ke/',     desc: 'Online pharmacy e-commerce platform for Careveee Kenya, offering a seamless shopping experience for health and wellness products delivered across Kenya.' },
+  { title: 'Pamoja2Sustain',        cat: 'NGO Website',                  location: 'Kenya',   year: '2025', color: '#f59e0b', link: 'https://www.pamoja2sustain.org/',     desc: 'Powerful NGO website for Pamoja2Sustain, built to communicate their sustainability mission, attract donors and expand their reach across Africa.' },
+  { title: 'ISC2 Kenya Chapter',    cat: 'Professional Chapter Website', location: 'Kenya',   year: '2026', color: '#00C8CC', link: 'https://isc2kenya.com/',              desc: 'Professional website for the ISC2 Kenya Chapter, a cybersecurity community platform featuring events, membership and industry resources.' },
+  { title: 'BetterLife Kenya',      cat: 'E-Commerce Website',           location: 'Kenya',   year: '2025', color: '#a855f7', link: 'https://betterlifekenya.co.ke/',     desc: 'Full e-commerce platform for BetterLife Kenya, an online pharmaceutical store delivering health and wellness products across Kenya with a seamless shopping experience.' },
 ]
 
 const FILTERS = ['All', 'Business Website', 'E-Commerce Website', 'NGO Website', 'Company Website', 'Professional Chapter Website']
@@ -167,35 +167,35 @@ export default function Projects() {
         <title>Our Portfolio | Best Web Projects in Kenya — DevNovaTech Nairobi</title>
         <meta name="description" content="View DevNovaTech's portfolio of the best web development projects in Kenya — business websites, e-commerce stores, NGO platforms, pharmacy sites and more, delivered across Nairobi, Mombasa, Kisumu and Kenya." />
         <meta name="keywords" content="web development portfolio Kenya, best websites Nairobi, e-commerce Kenya, NGO website Kenya, DevNovaTech projects, web design portfolio Nairobi, Kenya web developer portfolio" />
-        <link rel="canonical" href="https://devnovatech.com/projects" />
+        <link rel="canonical" href="https://devnovatech.co.ke/projects" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.com/projects" />
+        <meta property="og:url" content="https://devnovatech.co.ke/projects" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Our Portfolio | Best Web Projects in Kenya — DevNovaTech" />
         <meta property="og:description" content="Browse DevNovaTech's portfolio of professional websites, e-commerce stores and digital solutions delivered across Kenya." />
-        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="DevNovaTech Softwares - Web Development Portfolio Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="DevNovaTech Portfolio | Best Web Projects in Kenya" />
         <meta name="twitter:description" content="Professional websites, e-commerce and apps delivered across Nairobi and Kenya. View our work." />
-        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta name="twitter:image:alt" content="DevNovaTech Softwares - Portfolio of Web Projects in Kenya" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": "DevNovaTech Portfolio — Best Web Projects in Kenya",
-            "url": "https://devnovatech.com/projects",
+            "url": "https://devnovatech.co.ke/projects",
             "description": "Portfolio of professional web development projects delivered by DevNovaTech across Kenya",
             "publisher": {
               "@type": "Organization",
               "name": "DevNovaTech Softwares",
-              "url": "https://devnovatech.com"
+              "url": "https://devnovatech.co.ke"
             }
           }
         `}</script>

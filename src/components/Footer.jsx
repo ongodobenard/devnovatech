@@ -91,7 +91,7 @@ function ServiceLink({ label, slug }) {
 const CONTACT = [
   { icon: <IconPin />,   text: 'Nairobi, Kenya' },
   { icon: <IconPhone />, text: '+254 796 038 686' },
-  { icon: <IconGlobe />, text: 'devnovatech.com' },
+  { icon: <IconGlobe />, text: 'devnovatech.co.ke' },
 ]
 
 export default function Footer() {
@@ -145,8 +145,8 @@ export default function Footer() {
             <p className="text-white/40 text-[13px] font-sans leading-relaxed mb-5">
               Kenya's leading web development and software solutions company based in Nairobi.
             </p>
-
-            <a
+           <a
+            
               href="https://wa.me/254796038686"
               target="_blank"
               rel="noopener noreferrer"
@@ -197,6 +197,16 @@ export default function Footer() {
                   </div>
                 )
               })}
+              <a
+                href="mailto:info@devnovatech.co.ke"
+                className="flex items-center gap-2 text-[13px] text-white/40 font-sans hover:text-cyan transition-colors duration-200"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.6 }}>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                info@devnovatech.co.ke
+              </a>
               <a
                 href="https://wa.me/254796038686"
                 target="_blank"

@@ -431,26 +431,26 @@ export default function Services() {
         <title>Affordable Web &amp; App Development Services Nairobi Kenya | DevNovaTech</title>
         <meta name="description" content="DevNovaTech offers Kenya's best & most affordable web design, Android app development, e-commerce with M-Pesa, POS software, SEO, LMS, CRM, graphic design and website maintenance in Nairobi. Get a free quote today." />
         <meta name="keywords" content="affordable web design Nairobi, Android app development Kenya, e-commerce M-Pesa Kenya, POS software Nairobi, SEO services Kenya, LMS development Kenya, CRM software Nairobi, graphic design Nairobi, website maintenance Kenya" />
-        <link rel="canonical" href="https://devnovatech.com/services" />
+        <link rel="canonical" href="https://devnovatech.co.ke/services" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.com/services" />
+        <meta property="og:url" content="https://devnovatech.co.ke/services" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Affordable Web &amp; App Services Nairobi Kenya | DevNovaTech" />
         <meta property="og:description" content="Kenya's best & most affordable web design, Android apps, e-commerce, POS software, SEO, LMS, CRM and graphic design. Serving Nairobi, Mombasa, Kisumu & all of Kenya." />
-        <meta property="og:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="DevNovaTech Softwares - Affordable Web & App Services Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://devnovatech.com/services" />
+        <meta name="twitter:url" content="https://devnovatech.co.ke/services" />
         <meta name="twitter:title" content="Affordable Web &amp; App Services Nairobi Kenya | DevNovaTech" />
         <meta name="twitter:description" content="Best affordable web design, Android apps, e-commerce with M-Pesa, SEO & more in Nairobi Kenya." />
-        <meta name="twitter:image" content="https://devnovatech.com/og-image.jpg" />
+        <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />
         <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web & App Services Nairobi Kenya" />
-        <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"Service","serviceType":"Web Development, Android App Development, E-Commerce, SEO, Graphic Design","provider":{"@type":"LocalBusiness","name":"DevNovaTech Softwares","url":"https://devnovatech.com","telephone":"+254796038686","address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"}},"areaServed":["Nairobi","Mombasa","Kisumu","Nakuru","Kenya"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"DevNovaTech Digital Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Affordable Web Design & Development","description":"Custom responsive websites from KSh 25,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Android App Development","description":"Custom Android apps with M-Pesa from KSh 55,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"E-Commerce Development","description":"M-Pesa integrated online stores from KSh 45,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"POS Software","description":"Custom POS software from KSh 35,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"SEO & Digital Marketing","description":"Local SEO for Nairobi & Kenya from KSh 15,000/mo"}}]}}`}</script>
+        <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"Service","serviceType":"Web Development, Android App Development, E-Commerce, SEO, Graphic Design","provider":{"@type":"LocalBusiness","name":"DevNovaTech Softwares","url":"https://devnovatech.co.ke","telephone":"+254796038686","address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"}},"areaServed":["Nairobi","Mombasa","Kisumu","Nakuru","Kenya"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"DevNovaTech Digital Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Affordable Web Design & Development","description":"Custom responsive websites from KSh 25,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Android App Development","description":"Custom Android apps with M-Pesa from KSh 55,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"E-Commerce Development","description":"M-Pesa integrated online stores from KSh 45,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"POS Software","description":"Custom POS software from KSh 35,000"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"SEO & Digital Marketing","description":"Local SEO for Nairobi & Kenya from KSh 15,000/mo"}}]}}`}</script>
         <script type="application/ld+json">{`{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does it take to build a website in Nairobi?","acceptedAnswer":{"@type":"Answer","text":"A standard business website takes 7-14 days. E-commerce sites with M-Pesa integration take 2-4 weeks."}},{"@type":"Question","name":"Do you integrate M-Pesa into websites and apps?","acceptedAnswer":{"@type":"Answer","text":"Yes. We integrate M-Pesa STK Push, C2B, and B2C into all e-commerce, POS, LMS and app projects."}},{"@type":"Question","name":"What is included in the 1 Year Free Hosting?","acceptedAnswer":{"@type":"Answer","text":"All web design packages include 1 year of cPanel shared hosting, a free SSL certificate, daily backups and a professional email address."}},{"@type":"Question","name":"Do you offer website maintenance after launch?","acceptedAnswer":{"@type":"Answer","text":"Yes. Monthly maintenance plans start at KSh 15,000/month covering SEO monitoring, security scans and 24/7 WhatsApp support."}}]}`}</script>
       </Helmet>
 
