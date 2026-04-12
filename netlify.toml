@@ -1,0 +1,39 @@
+[build]
+  command = "npm run build && node prerender.mjs"
+  publish = "dist"
+
+[[redirects]]
+  from = "/services"
+  to = "/services/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/quote"
+  to = "/quote/"
+  status = 301
+  force = true
