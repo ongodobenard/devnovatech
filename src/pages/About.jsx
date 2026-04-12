@@ -448,12 +448,12 @@ export default function About() {
         <title>About Us | DevNovaTech Softwares — #1 Web & App Developers Nairobi Kenya</title>
         <meta name="description" content="DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company. Learn our story, mission, values and meet the team building digital solutions for businesses across Kenya — Nairobi, Mombasa, Kisumu, Nakuru & beyond." />
         <meta name="keywords" content="about DevNovaTech, web developers Nairobi Kenya, software company Nairobi, best web development company Kenya, affordable web developers Kenya, Nairobi app developers, DevNovaTech team" />
-        <link rel="canonical" href="https://devnovatech.co.ke/about" />
+        <link rel="canonical" href="https://devnovatech.co.ke/about/" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.co.ke/about" />
+        <meta property="og:url" content="https://devnovatech.co.ke/about/" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="About DevNovaTech | Best Web & App Developers Nairobi Kenya" />
         <meta property="og:description" content="Meet the Nairobi-based team behind Kenya's best & most affordable web and app development company. Our story, mission and values." />
@@ -471,7 +471,7 @@ export default function About() {
             "@context": "https://schema.org",
             "@type": "AboutPage",
             "name": "About DevNovaTech Softwares",
-            "url": "https://devnovatech.co.ke/about",
+            "url": "https://devnovatech.co.ke/about/",
             "description": "Learn about DevNovaTech Softwares, Nairobi's best and most affordable web and Android app development company in Kenya",
             "mainEntity": {
               "@type": "Organization",

@@ -431,12 +431,12 @@ export default function Services() {
         <title>Affordable Web &amp; App Development Services Nairobi Kenya | DevNovaTech</title>
         <meta name="description" content="DevNovaTech offers Kenya's best & most affordable web design, Android app development, e-commerce with M-Pesa, POS software, SEO, LMS, CRM, graphic design and website maintenance in Nairobi. Get a free quote today." />
         <meta name="keywords" content="affordable web design Nairobi, Android app development Kenya, e-commerce M-Pesa Kenya, POS software Nairobi, SEO services Kenya, LMS development Kenya, CRM software Nairobi, graphic design Nairobi, website maintenance Kenya" />
-        <link rel="canonical" href="https://devnovatech.co.ke/services" />
+        <link rel="canonical" href="https://devnovatech.co.ke/services/" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.co.ke/services" />
+        <meta property="og:url" content="https://devnovatech.co.ke/services/" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Affordable Web &amp; App Services Nairobi Kenya | DevNovaTech" />
         <meta property="og:description" content="Kenya's best & most affordable web design, Android apps, e-commerce, POS software, SEO, LMS, CRM and graphic design. Serving Nairobi, Mombasa, Kisumu & all of Kenya." />
@@ -445,7 +445,7 @@ export default function Services() {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="DevNovaTech Softwares - Affordable Web & App Services Nairobi Kenya" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://devnovatech.co.ke/services" />
+        <meta name="twitter:url" content="https://devnovatech.co.ke/services/" />
         <meta name="twitter:title" content="Affordable Web &amp; App Services Nairobi Kenya | DevNovaTech" />
         <meta name="twitter:description" content="Best affordable web design, Android apps, e-commerce with M-Pesa, SEO & more in Nairobi Kenya." />
         <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />

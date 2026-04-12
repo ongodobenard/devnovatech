@@ -222,12 +222,12 @@ export default function Contact() {
         <title>Contact Us | Affordable Web Development Nairobi Kenya — DevNovaTech</title>
         <meta name="description" content="Contact DevNovaTech Softwares, Nairobi's best & most affordable web development company. Call, WhatsApp or email us for a free quote on your website or digital project in Kenya." />
         <meta name="keywords" content="contact web developer Nairobi, web development company Kenya, affordable website Kenya, DevNovaTech contact, web design Nairobi quote, web developer Kenya WhatsApp" />
-        <link rel="canonical" href="https://devnovatech.co.ke/contact" />
+        <link rel="canonical" href="https://devnovatech.co.ke/contact/" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.co.ke/contact" />
+        <meta property="og:url" content="https://devnovatech.co.ke/contact/" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Contact DevNovaTech | Nairobi's Best Web Development Company" />
         <meta property="og:description" content="Reach out to DevNovaTech Softwares for a free consultation and affordable web development quote. Serving all of Kenya from Nairobi." />
@@ -245,7 +245,7 @@ export default function Contact() {
             "@context": "https://schema.org",
             "@type": "ContactPage",
             "name": "Contact DevNovaTech Softwares",
-            "url": "https://devnovatech.co.ke/contact",
+            "url": "https://devnovatech.co.ke/contact/",
             "description": "Contact page for DevNovaTech Softwares, Nairobi's best and most affordable web development company",
             "publisher": {
               "@type": "Organization",

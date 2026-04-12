@@ -357,13 +357,13 @@ export default function Blog() {
         <title>Blog | Best Web Developers Nairobi, Android Apps, LMS, CRM, SEO, POS &amp; Graphic Design Kenya 2025-2026 - DevNovaTech</title>
         <meta name="description" content="DevNovaTech blog: Best web developers Nairobi, most affordable WordPress websites Kenya, POS software Nairobi with M-Pesa, cheapest graphic design Nairobi, SEO services Kenya, CRM software Nairobi, Android app development Kenya, e-commerce Nairobi and digital marketing Kenya 2025." />
         <meta name="keywords" content="best web developers Nairobi, affordable web design Nairobi, web development Kenya, most affordable WordPress Nairobi, WordPress development Kenya, best web hosting Kenya, HostPinnacle Kenya review, affordable SEO Nairobi, SEO services Kenya, POS software Nairobi, POS system Kenya M-Pesa, affordable graphic design Nairobi, logo design Kenya, best software developers Nairobi, CRM software Kenya, Android app development Nairobi, LMS Kenya, e-commerce Nairobi M-Pesa, digital marketing Nairobi, school management system Kenya, affordable websites Kenya, cheapest web design Nairobi" />
-        <link rel="canonical" href="https://devnovatech.co.ke/blog" />
+        <link rel="canonical" href="https://devnovatech.co.ke/blog/" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
 
         <meta property="og:type" content="blog" />
-        <meta property="og:url" content="https://devnovatech.co.ke/blog" />
+        <meta property="og:url" content="https://devnovatech.co.ke/blog/" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="DevNovaTech Blog | Best Web Developers Nairobi, Affordable SEO, POS, Graphic Design &amp; Software Dev Kenya 2025" />
         <meta property="og:description" content="Nairobi's most affordable web developers share expert tips on web design, WordPress, SEO, POS software, graphic design, Android apps and e-commerce with M-Pesa for Nairobi and Kenya businesses." />
@@ -384,9 +384,9 @@ export default function Blog() {
           {
             "@context": "https://schema.org",
             "@type": "Blog",
-            "@id": "https://devnovatech.co.ke/blog#blog",
+            "@id": "https://devnovatech.co.ke/blog/#blog",
             "name": "DevNovaTech Blog - Web Development & SEO Tips for Kenya",
-            "url": "https://devnovatech.co.ke/blog",
+            "url": "https://devnovatech.co.ke/blog/",
             "description": "Expert web development, SEO, hosting and digital strategy articles for Kenyan businesses by DevNovaTech Softwares Nairobi",
             "inLanguage": "en-KE",
             "publisher": {
@@ -402,7 +402,7 @@ export default function Blog() {
               "keywords": "${b.tags.join(', ')}",
               "author": { "@type": "Person", "name": "${b.author}", "jobTitle": "${b.role}" },
               "datePublished": "${b.date}",
-              "url": "https://devnovatech.co.ke/blog/${b.slug}",
+              "url": "https://devnovatech.co.ke/blog//${b.slug}",
               "publisher": { "@type": "Organization", "name": "DevNovaTech Softwares", "url": "https://devnovatech.co.ke" }
             }`).join(',')}]
           }
@@ -415,7 +415,7 @@ export default function Blog() {
             "@type": "BreadcrumbList",
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://devnovatech.co.ke" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://devnovatech.co.ke/blog" }
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://devnovatech.co.ke/blog/" }
             ]
           }
         `}</script>

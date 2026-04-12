@@ -233,12 +233,12 @@ ${form.description}`,
         <title>Get a Free Quote | Affordable Web & App Development Nairobi Kenya — DevNovaTech</title>
         <meta name="description" content="Get a free, no-obligation quote from DevNovaTech Softwares, Nairobi's best & most affordable web and Android app development company. Websites from KSh 25,000. Fast response within 24 hours." />
         <meta name="keywords" content="free website quote Kenya, web development quote Nairobi, affordable website Kenya, DevNovaTech quote, website cost Kenya, web design price Nairobi, Android app quote Kenya" />
-        <link rel="canonical" href="https://devnovatech.co.ke/quote" />
+        <link rel="canonical" href="https://devnovatech.co.ke/quote/" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.co.ke/quote" />
+        <meta property="og:url" content="https://devnovatech.co.ke/quote/" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Get a Free Quote | DevNovaTech — Web & App Development Kenya" />
         <meta property="og:description" content="Request a free, no-obligation web development quote from DevNovaTech Softwares. Websites from KSh 25,000. Serving all of Kenya from Nairobi." />
@@ -256,7 +256,7 @@ ${form.description}`,
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Get a Free Quote — DevNovaTech Softwares",
-            "url": "https://devnovatech.co.ke/quote",
+            "url": "https://devnovatech.co.ke/quote/",
             "description": "Request a free, no-obligation web and app development quote from DevNovaTech Softwares, Nairobi's most affordable web development company",
             "publisher": {
               "@type": "Organization",

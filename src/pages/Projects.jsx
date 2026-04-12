@@ -167,12 +167,12 @@ export default function Projects() {
         <title>Our Portfolio | Best Web Projects in Kenya — DevNovaTech Nairobi</title>
         <meta name="description" content="View DevNovaTech's portfolio of the best web development projects in Kenya — business websites, e-commerce stores, NGO platforms, pharmacy sites and more, delivered across Nairobi, Mombasa, Kisumu and Kenya." />
         <meta name="keywords" content="web development portfolio Kenya, best websites Nairobi, e-commerce Kenya, NGO website Kenya, DevNovaTech projects, web design portfolio Nairobi, Kenya web developer portfolio" />
-        <link rel="canonical" href="https://devnovatech.co.ke/projects" />
+        <link rel="canonical" href="https://devnovatech.co.ke/projects/" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="DevNovaTech Softwares" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.co.ke/projects" />
+        <meta property="og:url" content="https://devnovatech.co.ke/projects/" />
         <meta property="og:site_name" content="DevNovaTech Softwares" />
         <meta property="og:title" content="Our Portfolio | Best Web Projects in Kenya — DevNovaTech" />
         <meta property="og:description" content="Browse DevNovaTech's portfolio of professional websites, e-commerce stores and digital solutions delivered across Kenya." />
@@ -190,7 +190,7 @@ export default function Projects() {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": "DevNovaTech Portfolio — Best Web Projects in Kenya",
-            "url": "https://devnovatech.co.ke/projects",
+            "url": "https://devnovatech.co.ke/projects/",
             "description": "Portfolio of professional web development projects delivered by DevNovaTech across Kenya",
             "publisher": {
               "@type": "Organization",
