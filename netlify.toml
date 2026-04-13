@@ -2,8 +2,8 @@
   command = "npm run build && node prerender.mjs"
   publish = "dist"
 
-[build.environment]
-  NODE_VERSION = "18"
+[build.processing]
+  skip_processing = true
 
 [[redirects]]
   from = "/about"
