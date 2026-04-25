@@ -437,7 +437,7 @@ export default function Home() {
             "url": "https://devnovatech.co.ke",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://devnovatech.co.ke/favicon.jpg",
+              "url": "https://devnovatech.co.ke/favicon.png",
               "width": 512,
               "height": 512
             },

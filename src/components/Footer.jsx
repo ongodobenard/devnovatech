@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../assets/Devnovatechlogo.png'
+import logo from '../assets/Devnovatechlogo4.png'
 
 const SERVICES = [
   { label: 'Web Design & Development',  slug: 'web-design' },
@@ -48,6 +48,15 @@ function IconGlobe() {
   )
 }
 
+function IconMail() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.6 }}>
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </svg>
+  )
+}
+
 function IconWhatsApp() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -64,14 +73,14 @@ function ServiceLink({ label, slug }) {
     const el = document.getElementById(slug)
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top: top, behavior: 'smooth' })
+      window.scrollTo({ top, behavior: 'smooth' })
     } else {
       navigate('/services')
       setTimeout(function () {
         const target = document.getElementById(slug)
         if (target) {
           const top = target.getBoundingClientRect().top + window.scrollY - 80
-          window.scrollTo({ top: top, behavior: 'smooth' })
+          window.scrollTo({ top, behavior: 'smooth' })
         }
       }, 400)
     }
@@ -81,7 +90,8 @@ function ServiceLink({ label, slug }) {
     <a
       href={'/services#' + slug}
       onClick={handleClick}
-      className="block text-[13px] text-white/40 font-sans hover:text-cyan transition-colors duration-200"
+      className="block text-[13px] text-white/40 font-sans hover:text-[#00C8CC] transition-colors duration-200"
+      style={{ textDecoration: 'none' }}
     >
       {label}
     </a>
@@ -100,44 +110,60 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand */}
+          {/* ── Brand ─────────────────────────────────────────────── */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2.5 mb-4 group">
+            <Link to="/" className="flex items-center mb-4 group" style={{ textDecoration: 'none', gap: '10px' }}>
+
+              {/* Logo — NO border, NO background, NO borderRadius — drop-shadow only, identical to Navbar */}
               <img
                 src={logo}
                 alt="DevNovaTech Softwares Logo"
-                className="flex-shrink-0 transition-all duration-300 group-hover:scale-105 group-active:scale-95"
                 style={{
-                  height: '48px',
-                  width: '68px',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                  transform: 'scale(1.08)',
-                  borderRadius: '8px',
-                  border: '2.5px solid #00C8CC',
-                  boxShadow: '0 3px 12px 0 rgba(0,200,204,0.25)',
-                  transition: 'box-shadow 0.3s, border-color 0.3s, transform 0.3s',
+                  height: '52px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: 0,
+                  border: 'none',
+                  background: 'transparent',
+                  flexShrink: 0,
+                  filter: 'drop-shadow(0 2px 10px rgba(232,51,42,0.45)) drop-shadow(0 0 1px rgba(255,255,255,0.10))',
+                  transition: 'filter .3s, transform .3s',
                 }}
-                onMouseEnter={function (e) {
-                  e.currentTarget.style.boxShadow = '0 6px 20px 0 rgba(0,200,204,0.45)'
-                  e.currentTarget.style.borderColor = '#00e0e6'
+                onMouseEnter={e => {
+                  e.currentTarget.style.filter = 'drop-shadow(0 4px 18px rgba(232,51,42,0.70)) drop-shadow(0 0 2px rgba(255,255,255,0.15))'
+                  e.currentTarget.style.transform = 'scale(1.05)'
                 }}
-                onMouseLeave={function (e) {
-                  e.currentTarget.style.boxShadow = '0 3px 12px 0 rgba(0,200,204,0.25)'
-                  e.currentTarget.style.borderColor = '#00C8CC'
+                onMouseLeave={e => {
+                  e.currentTarget.style.filter = 'drop-shadow(0 2px 10px rgba(232,51,42,0.45)) drop-shadow(0 0 1px rgba(255,255,255,0.10))'
+                  e.currentTarget.style.transform = 'scale(1)'
                 }}
               />
-              <div>
-                <div className="font-serif font-black text-[16px] leading-tight">
-                  <span className="text-cyan">Dev</span>
-                  <span style={{ color: '#E8332A' }}>Nova</span>
-                  <span className="text-white">tech</span>
+
+              {/* Wordmark — exact same structure, fonts & colors as Navbar */}
+              <div style={{ minWidth: 0 }}>
+                <div style={{
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  fontWeight: 900,
+                  fontSize: 18,
+                  lineHeight: 1.1,
+                  letterSpacing: '0.01em',
+                  whiteSpace: 'nowrap',
+                }}>
+                  <span style={{ color: '#E8332A' }}>Dev</span>
+                  <span style={{ color: '#FFFFFF' }}>Nova</span>
+                  <span style={{ color: '#00C8CC' }}>tech</span>
                 </div>
-                <div className="text-[8px] tracking-[0.15em] uppercase font-sans leading-tight">
-                  <span className="text-cyan">The Spark </span>
-                  <span style={{ color: '#E8332A' }}>of </span>
-                  <span className="text-white/60">Innovations</span>
-                  <span className="text-cyan">&#8734;</span>
+                <div style={{
+                  fontSize: 8,
+                  letterSpacing: '0.10em',
+                  textTransform: 'uppercase',
+                  fontFamily: 'sans-serif',
+                  marginTop: 3,
+                  whiteSpace: 'nowrap',
+                }}>
+                  <span style={{ color: '#E8332A' }}>The Spark </span>
+                  <span style={{ color: '#00C8CC' }}>of Innovations</span>
+                  <span style={{ color: '#E8332A' }}> ∞</span>
                 </div>
               </div>
             </Link>
@@ -145,8 +171,8 @@ export default function Footer() {
             <p className="text-white/40 text-[13px] font-sans leading-relaxed mb-5">
               Kenya's leading web development and software solutions company based in Nairobi.
             </p>
-           <a
-            
+
+            <a
               href="https://wa.me/254796038686"
               target="_blank"
               rel="noopener noreferrer"
@@ -157,7 +183,7 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Services */}
+          {/* ── Services ──────────────────────────────────────────── */}
           <div>
             <div className="font-serif font-bold text-[13px] text-white mb-4 uppercase tracking-[0.1em]">Services</div>
             <div className="space-y-2.5">
@@ -167,7 +193,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Company */}
+          {/* ── Company ───────────────────────────────────────────── */}
           <div>
             <div className="font-serif font-bold text-[13px] text-white mb-4 uppercase tracking-[0.1em]">Company</div>
             <div className="space-y-2.5">
@@ -176,7 +202,8 @@ export default function Footer() {
                   <Link
                     key={l.to}
                     to={l.to}
-                    className="block text-[13px] text-white/40 font-sans hover:text-cyan transition-colors duration-200"
+                    className="block text-[13px] text-white/40 font-sans hover:text-[#00C8CC] transition-colors duration-200"
+                    style={{ textDecoration: 'none' }}
                   >
                     {l.label}
                   </Link>
@@ -185,7 +212,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact */}
+          {/* ── Contact ───────────────────────────────────────────── */}
           <div>
             <div className="font-serif font-bold text-[13px] text-white mb-4 uppercase tracking-[0.1em]">Contact</div>
             <div className="space-y-3">
@@ -197,16 +224,16 @@ export default function Footer() {
                   </div>
                 )
               })}
+
               <a
                 href="mailto:info@devnovatech.co.ke"
-                className="flex items-center gap-2 text-[13px] text-white/40 font-sans hover:text-cyan transition-colors duration-200"
+                className="flex items-center gap-2 text-[13px] text-white/40 font-sans hover:text-[#00C8CC] transition-colors duration-200"
+                style={{ textDecoration: 'none' }}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.6 }}>
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
+                <IconMail />
                 info@devnovatech.co.ke
               </a>
+
               <a
                 href="https://wa.me/254796038686"
                 target="_blank"
@@ -221,31 +248,84 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        {/* ════════════════════════════════════════════════════════
+            TWO-LAYER DIVIDER — red stripe on top, white below
+        ════════════════════════════════════════════════════════ */}
+        <div style={{ marginBottom: '28px' }}>
+          {/* Layer 1 — Red */}
+          <div style={{
+            width: '100%',
+            height: '2px',
+            background: '#E8332A',
+            opacity: 0.90,
+          }} />
+          {/* Layer 2 — White */}
+          <div style={{
+            width: '100%',
+            height: '1px',
+            background: 'rgba(255, 255, 255, 0.18)',
+            marginTop: '2px',
+          }} />
+        </div>
+
+        {/* ── Bottom bar ────────────────────────────────────────── */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '12px',
+        }}
+          className="sm:flex-row sm:justify-between">
+
           <p className="text-[11px] sm:text-[12px] text-white/25 font-sans text-center sm:text-left">
             2025 DevNovaTech Softwares. Best Web Development Company in Nairobi, Kenya
           </p>
-          <Link to="/" className="flex items-center gap-2 group">
+
+          {/* Bottom wordmark — logo + name tightly together, centered on mobile */}
+          <Link
+            to="/"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',           /* small tight margin between logo and name */
+              textDecoration: 'none',
+              justifyContent: 'center',  /* centered on mobile */
+            }}
+            className="group"
+          >
             <img
               src={logo}
               alt="DevNovaTech Softwares Logo"
-              className="flex-shrink-0 transition-all duration-300 group-hover:scale-105"
               style={{
-                height: '32px',
-                width: '46px',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                transform: 'scale(1.08)',
-                borderRadius: '6px',
-                border: '2px solid #00C8CC',
-                boxShadow: '0 2px 8px 0 rgba(0,200,204,0.2)',
+                height: '34px',
+                width: 'auto',
+                objectFit: 'contain',
+                border: 'none',
+                borderRadius: 0,
+                background: 'transparent',
+                flexShrink: 0,
+                filter: 'drop-shadow(0 2px 8px rgba(232,51,42,0.55))',
+                transition: 'filter .3s, transform .3s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.filter = 'drop-shadow(0 4px 14px rgba(232,51,42,0.70))'
+                e.currentTarget.style.transform = 'scale(1.05)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.filter = 'drop-shadow(0 2px 8px rgba(232,51,42,0.55))'
+                e.currentTarget.style.transform = 'scale(1)'
               }}
             />
-            <div className="font-serif font-black text-[13px] leading-none">
-              <span className="text-cyan">Dev</span>
-              <span style={{ color: '#E8332A' }}>Nova</span>
-              <span className="text-white">tech</span>
+            <div style={{
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontWeight: 900,
+              fontSize: 14,
+              lineHeight: 1,
+              letterSpacing: '0.01em',
+            }}>
+              <span style={{ color: '#E8332A' }}>Dev</span>
+              <span style={{ color: '#FFFFFF' }}>Nova</span>
+              <span style={{ color: '#00C8CC' }}>tech</span>
             </div>
           </Link>
         </div>

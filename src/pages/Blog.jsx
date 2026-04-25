@@ -393,7 +393,7 @@ export default function Blog() {
               "@type": "Organization",
               "name": "DevNovaTech Softwares",
               "url": "https://devnovatech.co.ke",
-              "logo": { "@type": "ImageObject", "url": "https://devnovatech.co.ke/favicon.jpg", "width": 512, "height": 512 }
+              "logo": { "@type": "ImageObject", "url": "https://devnovatech.co.ke/favicon.png", "width": 512, "height": 512 }
             },
             "blogPost": [${BLOGS.map(b => `{
               "@type": "BlogPosting",
