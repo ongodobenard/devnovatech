@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom'
 import founderImg from '../assets/founder.jpg'
 import aboutBg from '../assets/about-bg.jpg'
 import brandonImg from '../assets/BrandonJude.jpeg'
+import sarahImg from '../assets/sarah-wanjiku.png'
+
+/* ─── DESIGN TOKENS (matches logo palette) ───────────────────
+   --crimson   : #D7263D  (the red "D" in logo)
+   --teal      : #00C8CC  (the ">" symbol + "tech" text)
+   --navy      : #0A1228  (dark background of logo)
+   --navy-mid  : #111D35  (card backgrounds)
+   --offwhite  : #F4F5F7  (light section bg)
+   --slate     : #6B7A99  (body text)
+   No single color overused , red for impact points, teal for
+   interactive/tech elements, navy for structure, white for air.
+─────────────────────────────────────────────────────────────── */
 
 function useReveal() {
   const ref = useRef(null)
@@ -13,12 +25,11 @@ function useReveal() {
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('opacity-100', 'translate-y-0')
-          el.classList.remove('opacity-0', 'translate-y-8')
+          el.classList.add('is-visible')
           obs.disconnect()
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     )
     obs.observe(el)
     return () => obs.disconnect()
@@ -26,10 +37,14 @@ function useReveal() {
   return ref
 }
 
-function Reveal({ children, delay = 0 }) {
+function Reveal({ children, delay = 0, className = '' }) {
   const ref = useReveal()
   return (
-    <div ref={ref} className="opacity-0 translate-y-8 transition-all duration-700 ease-out" style={{ transitionDelay: `${delay}s` }}>
+    <div
+      ref={ref}
+      className={`reveal-block ${className}`}
+      style={{ transitionDelay: `${delay}s` }}
+    >
       {children}
     </div>
   )
@@ -64,28 +79,21 @@ function Typewriter({ lines }) {
           return next
         })
         setCharIdx(c => c + 1)
-      }, 45)
+      }, 42)
       return () => clearTimeout(t)
     } else {
-      const t = setTimeout(() => {
-        setLineIdx(l => l + 1)
-        setCharIdx(0)
-      }, 120)
+      const t = setTimeout(() => { setLineIdx(l => l + 1); setCharIdx(0) }, 110)
       return () => clearTimeout(t)
     }
   }, [started, lineIdx, charIdx, lines])
 
   return (
-    <h1
-      ref={ref}
-      className="font-serif font-black text-white mb-5 leading-tight break-words w-full"
-      style={{ fontSize: 'clamp(28px, 8vw, 64px)', minHeight: '3rem' }}
-    >
+    <h1 ref={ref} className="hero-headline">
       {lines.map((line, i) => (
-        <span key={i} className={line.className + ' block'}>
+        <span key={i} className={`block ${line.className}`}>
           {displayed[i] || ''}
           {i === lineIdx && started && lineIdx < lines.length && (
-            <span className="inline-block w-[3px] h-[1em] bg-cyan align-middle ml-0.5 animate-pulse" />
+            <span className="cursor-blink" />
           )}
         </span>
       ))}
@@ -109,788 +117,1393 @@ function CountUp({ target, suffix = '' }) {
   }, [])
 
   useEffect(() => {
-    if (!started) return
-    if (count >= target) return
-    const duration = 1800
-    const steps = target
-    const interval = duration / steps
-    const t = setTimeout(() => setCount(c => Math.min(c + 1, target)), interval)
+    if (!started || count >= target) return
+    const t = setTimeout(() => setCount(c => Math.min(c + 1, target)), 1800 / target)
     return () => clearTimeout(t)
   }, [started, count, target])
 
-  return (
-    <span ref={ref} className="font-serif font-black text-3xl text-cyan mb-1 block">
-      {count}{suffix}
-    </span>
-  )
+  return <span ref={ref} className="stat-number">{count}{suffix}</span>
 }
 
-/* ─── SVG ICON COMPONENTS ───────────────────────────────────── */
+/* ─── ICONS ──────────────────────────────────────────────────── */
+const icons = {
+  web:     { d: ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z', 'M2 12h20', 'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'] },
+  phone:   { d: ['M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z'] },
+  cart:    { d: ['M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z', 'M3 6h18', 'M16 10a4 4 0 0 1-8 0'] },
+  monitor: { d: ['M2 3h20a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M8 21h8', 'M12 17v4'] },
+  trend:   { d: ['M23 6 13.5 15.5 8.5 10.5 1 18', '17 6h6v6'] },
+  book:    { d: ['M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z', 'M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'] },
+  users:   { d: ['M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2', 'M23 21v-2a4 4 0 0 0-3-3.87', 'M16 3.13a4 4 0 0 1 0 7.75'], extra: <circle cx="9" cy="7" r="4" /> },
+  pen:     { d: ['M12 19l7-7 3 3-7 7-3-3z', 'M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z', 'M2 2l7.586 7.586'], extra: <circle cx="11" cy="11" r="2" /> },
+  wrench:  { d: ['M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'] },
+  target:  { d: ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z', 'M12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z', 'M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'] },
+  scope:   { d: ['M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z', 'M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83'] },
+}
 
-function IconWeb({ size = 20, color = '#00C8CC' }) {
+function SvgIcon({ name, size = 20, color = 'currentColor' }) {
+  const ic = icons[name]
+  if (!ic) return null
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {Array.isArray(ic.d)
+        ? ic.d.map((p, i) => <path key={i} d={p} />)
+        : <path d={ic.d} />}
+      {ic.extra}
     </svg>
   )
 }
-
-function IconSmartphone({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-      <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2.5" />
-    </svg>
-  )
-}
-
-function IconShoppingCart({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="9" cy="21" r="1" />
-      <circle cx="20" cy="21" r="1" />
-      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-    </svg>
-  )
-}
-
-function IconMonitor({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-      <line x1="8" y1="21" x2="16" y2="21" />
-      <line x1="12" y1="17" x2="12" y2="21" />
-    </svg>
-  )
-}
-
-function IconTrendingUp({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-      <polyline points="17 6 23 6 23 12" />
-    </svg>
-  )
-}
-
-function IconBookOpen({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-    </svg>
-  )
-}
-
-function IconUsers({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  )
-}
-
-function IconPenTool({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 19l7-7 3 3-7 7-3-3z" />
-      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-      <path d="M2 2l7.586 7.586" />
-      <circle cx="11" cy="11" r="2" />
-    </svg>
-  )
-}
-
-function IconWrench({ size = 20, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-  )
-}
-
-function IconTarget({ size = 24, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="6" />
-      <circle cx="12" cy="12" r="2" />
-    </svg>
-  )
-}
-
-function IconTelescope({ size = 24, color = '#00C8CC' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="2" />
-      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-    </svg>
-  )
-}
-
-/* ─── STORY GRID ITEMS ──────────────────────────────────────── */
-const STORY_ITEMS = [
-  { label: 'Web Development',  icon: <IconWeb /> },
-  { label: 'Android App Dev',  icon: <IconSmartphone /> },
-  { label: 'E-Commerce',       icon: <IconShoppingCart /> },
-  { label: 'POS Software',     icon: <IconMonitor /> },
-  { label: 'SEO & Marketing',  icon: <IconTrendingUp /> },
-  { label: 'LMS Platforms',    icon: <IconBookOpen /> },
-  { label: 'CRM Software',     icon: <IconUsers /> },
-  { label: 'Graphic Design',   icon: <IconPenTool /> },
-  { label: '24/7 Support',     icon: <IconWrench /> },
-]
-
-function CircuitMission() {
-  return (
-    <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 480 320" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.18 }}>
-      <defs>
-        <radialGradient id="cm-bright" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-          <stop offset="40%" stopColor="#00C8CC" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="cm-soft" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#00C8CC" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <line x1="0"   y1="55"  x2="80"  y2="55"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="80"  y1="55"  x2="80"  y2="95"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="80"  y1="95"  x2="200" y2="95"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200" y1="95"  x2="200" y2="55"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200" y1="55"  x2="320" y2="55"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="320" y1="55"  x2="320" y2="95"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="320" y1="95"  x2="480" y2="95"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="0"   y1="160" x2="110" y2="160" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="110" y1="160" x2="110" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="110" y1="190" x2="240" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="240" y1="190" x2="240" y2="160" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="240" y1="160" x2="370" y2="160" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="370" y1="160" x2="370" y2="195" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="370" y1="195" x2="480" y2="195" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="40"  y1="265" x2="40"  y2="290" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="40"  y1="290" x2="160" y2="290" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="160" y1="290" x2="160" y2="265" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="160" y1="265" x2="290" y2="265" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="290" y1="265" x2="290" y2="295" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="290" y1="295" x2="480" y2="295" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="80"  y1="95"  x2="80"  y2="160" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      <line x1="240" y1="95"  x2="240" y2="160" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      <line x1="370" y1="195" x2="370" y2="265" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      <line x1="160" y1="190" x2="160" y2="265" stroke="#00C8CC" strokeWidth="1" strokeDasharray="3 5" />
-      {[[80,55],[200,55],[320,55],[80,95],[200,95],[320,95],
-        [110,160],[240,160],[370,160],[110,190],[240,190],[370,195],
-        [40,290],[160,290],[290,295],[160,265],[290,265]
-      ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-      <circle cx="80"  cy="55"  r="14" fill="url(#cm-bright)" />
-      <circle cx="240" cy="95"  r="12" fill="url(#cm-soft)"   />
-      <circle cx="110" cy="190" r="14" fill="url(#cm-bright)" />
-      <circle cx="370" cy="160" r="12" fill="url(#cm-soft)"   />
-      <circle cx="290" cy="265" r="13" fill="url(#cm-bright)" />
-    </svg>
-  )
-}
-
-function CircuitCTA() {
-  return (
-    <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid slice" style={{ opacity: 0.14 }}>
-      <defs>
-        <radialGradient id="cc-bright" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-          <stop offset="45%" stopColor="#00C8CC" stopOpacity="0.65" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="cc-soft" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#00C8CC" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#00C8CC" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <line x1="0"    y1="60"  x2="100"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="60"  x2="100"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="100" x2="260"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="260"  y1="100" x2="260"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="260"  y1="60"  x2="420"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="420"  y1="60"  x2="420"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="420"  y1="100" x2="580"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="580"  y1="100" x2="580"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="580"  y1="60"  x2="740"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="740"  y1="60"  x2="740"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="740"  y1="100" x2="900"  y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="900"  y1="100" x2="900"  y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="900"  y1="60"  x2="1060" y2="60"  stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1060" y1="60"  x2="1060" y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1060" y1="100" x2="1200" y2="100" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="0"    y1="190" x2="130"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="130"  y1="190" x2="130"  y2="230" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="130"  y1="230" x2="310"  y2="230" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310"  y1="230" x2="310"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="310"  y1="190" x2="490"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="490"  y1="190" x2="490"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="490"  y1="235" x2="660"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="660"  y1="235" x2="660"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="660"  y1="190" x2="830"  y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="830"  y1="190" x2="830"  y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="830"  y1="235" x2="1000" y2="235" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1000" y1="235" x2="1000" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1000" y1="190" x2="1200" y2="190" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="50"   y1="310" x2="50"   y2="340" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="50"   y1="340" x2="200"  y2="340" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200"  y1="340" x2="200"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="200"  y1="310" x2="390"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="390"  y1="310" x2="390"  y2="350" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="390"  y1="350" x2="570"  y2="350" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="570"  y1="350" x2="570"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="570"  y1="310" x2="750"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="750"  y1="310" x2="750"  y2="355" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="750"  y1="355" x2="930"  y2="355" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="930"  y1="355" x2="930"  y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="930"  y1="310" x2="1100" y2="310" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1100" y1="310" x2="1100" y2="360" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="1100" y1="360" x2="1200" y2="360" stroke="#00C8CC" strokeWidth="1" />
-      <line x1="100"  y1="100" x2="100"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="260"  y1="100" x2="260"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="580"  y1="100" x2="580"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="740"  y1="100" x2="740"  y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="1060" y1="100" x2="1060" y2="190" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="310"  y1="230" x2="310"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="660"  y1="235" x2="660"  y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      <line x1="1000" y1="235" x2="1000" y2="310" stroke="#00C8CC" strokeWidth="1" strokeDasharray="4 6" />
-      {[
-        [100,60],[260,60],[420,60],[580,60],[740,60],[900,60],[1060,60],
-        [100,100],[260,100],[420,100],[580,100],[740,100],[900,100],[1060,100],
-        [130,190],[310,190],[490,190],[660,190],[830,190],[1000,190],
-        [130,230],[310,230],[490,235],[660,235],[830,235],[1000,235],
-        [50,340],[200,340],[390,350],[570,350],[750,355],[930,355],[1100,360],
-        [200,310],[390,310],[570,310],[750,310],[930,310],[1100,310],
-      ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill="#00C8CC" />)}
-      <circle cx="100"  cy="60"  r="16" fill="url(#cc-bright)" />
-      <circle cx="420"  cy="100" r="14" fill="url(#cc-soft)"   />
-      <circle cx="740"  cy="60"  r="18" fill="url(#cc-bright)" />
-      <circle cx="1060" cy="100" r="14" fill="url(#cc-soft)"   />
-      <circle cx="130"  cy="230" r="16" fill="url(#cc-bright)" />
-      <circle cx="490"  cy="190" r="14" fill="url(#cc-soft)"   />
-      <circle cx="830"  cy="235" r="16" fill="url(#cc-bright)" />
-      <circle cx="310"  cy="310" r="14" fill="url(#cc-soft)"   />
-      <circle cx="750"  cy="355" r="16" fill="url(#cc-bright)" />
-      <circle cx="1100" cy="310" r="14" fill="url(#cc-soft)"   />
-    </svg>
-  )
-}
-
-const VALUES = [
-  { title: 'Client First',    desc: 'Every decision we make is guided by what is best for our clients. Your success is our success. We treat every project as if it were our own business.' },
-  { title: 'Innovation',      desc: 'We stay ahead of digital trends and technologies so your business always has a competitive edge in the market.' },
-  { title: 'Integrity',       desc: 'We are honest, transparent and accountable. No hidden costs, no surprises, just straightforward communication throughout.' },
-  { title: 'Excellence',      desc: 'We do not settle for average. Every line of code, every design element and every strategy is crafted to the highest standard.' },
-  { title: 'Partnership',     desc: 'We build long-term relationships, not just websites. We become your digital partner invested in your growth for the long haul.' },
-  { title: 'Results Driven',  desc: 'We measure our success by the results we deliver, more traffic, more leads, more revenue for your business.' },
-]
-
-const MILESTONES = [
-  { year: '2020', title: 'Founded in Nairobi, Kenya',        desc: 'DevNovaTech was founded in Nairobi with a vision to provide world-class digital solutions to Kenyan businesses at affordable prices.' },
-  { year: '2021', title: 'First 20 Kenyan Clients',          desc: 'Grew rapidly to serve 20+ clients across Nairobi delivering websites, branding and SEO services to businesses in Nairobi CBD, Westlands and beyond.' },
-  { year: '2022', title: 'LMS & CRM Launch',                 desc: 'Expanded services to include custom LMS and CRM development for Kenyan enterprises, schools and universities across Kenya.' },
-  { year: '2023', title: '100+ Projects Across Kenya',       desc: 'Crossed the 100 projects milestone with clients across Nairobi, Mombasa, Kisumu, Nakuru, Uganda and Tanzania.' },
-  { year: '2024', title: 'POS Software & Android Apps',      desc: 'Launched affordable POS software for Kenyan shops, restaurants and pharmacies, plus Android app development for logistics, banking and healthcare businesses.' },
-  { year: '2026', title: '150+ Projects & Growing',          desc: 'Continued growth with 150+ delivered projects, websites, apps and software, with a dedicated Nairobi-based team serving businesses across Kenya and East Africa.' },
-]
 
 function EmailIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="16" x="2" y="4" rx="2"/>
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   )
 }
-
 function WhatsAppIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
     </svg>
   )
 }
-
 function LinkedInIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   )
 }
 
+/* ─── DATA ───────────────────────────────────────────────────── */
+const STORY_ITEMS = [
+  { label: 'Web Development',  icon: 'web' },
+  { label: 'Android App Dev',  icon: 'phone' },
+  { label: 'E-Commerce',       icon: 'cart' },
+  { label: 'POS Software',     icon: 'monitor' },
+  { label: 'SEO & Marketing',  icon: 'trend' },
+  { label: 'LMS Platforms',    icon: 'book' },
+  { label: 'CRM Software',     icon: 'users' },
+  { label: 'Graphic Design',   icon: 'pen' },
+  { label: '24/7 Support',     icon: 'wrench' },
+]
+
+const VALUES = [
+  { title: 'Client First',   desc: 'Every decision we make is guided by what is best for our clients. Your success is our success. We treat every project as if it were our own business.' },
+  { title: 'Innovation',     desc: 'We stay ahead of digital trends and technologies so your business always has a competitive edge in the market.' },
+  { title: 'Integrity',      desc: 'We are honest, transparent and accountable. No hidden costs, no surprises, just straightforward communication throughout.' },
+  { title: 'Excellence',     desc: 'We do not settle for average. Every line of code, every design element and every strategy is crafted to the highest standard.' },
+  { title: 'Partnership',    desc: 'We build long-term relationships, not just websites. We become your digital partner invested in your growth for the long haul.' },
+  { title: 'Results Driven', desc: 'We measure our success by the results we deliver , more traffic, more leads, more revenue for your business.' },
+]
+
+const MILESTONES = [
+  { year: '2020', title: 'Founded in Nairobi, Kenya',    desc: 'DevNovaTech was founded in Nairobi with a vision to provide world-class digital solutions to Kenyan businesses at affordable prices.' },
+  { year: '2021', title: 'First 20 Kenyan Clients',      desc: 'Grew rapidly to serve 20+ clients across Nairobi delivering websites, branding and SEO services to businesses in Nairobi CBD, Westlands and beyond.' },
+  { year: '2022', title: 'LMS & CRM Launch',             desc: 'Expanded services to include custom LMS and CRM development for Kenyan enterprises, schools and universities across Kenya.' },
+  { year: '2023', title: '100+ Projects Across Kenya',   desc: 'Crossed the 100 projects milestone with clients across Nairobi, Mombasa, Kisumu, Nakuru, Uganda and Tanzania.' },
+  { year: '2024', title: 'POS Software & Android Apps',  desc: 'Launched affordable POS software for Kenyan shops, restaurants and pharmacies, plus Android app development for logistics, banking and healthcare businesses.' },
+  { year: '2026', title: '150+ Projects & Growing',      desc: 'Continued growth with 150+ delivered projects with a dedicated Nairobi-based team serving businesses across Kenya and East Africa.' },
+]
+
+/* ─── DECORATIVE SVG CIRCUIT ─────────────────────────────────── */
+function CircuitBg({ light = false }) {
+  const stroke = light ? 'rgba(0,200,204,0.12)' : 'rgba(0,200,204,0.10)'
+  const dot = light ? 'rgba(0,200,204,0.22)' : 'rgba(0,200,204,0.18)'
+  return (
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+      <line x1="0" y1="80" x2="120" y2="80" stroke={stroke} strokeWidth="1" />
+      <line x1="120" y1="80" x2="120" y2="130" stroke={stroke} strokeWidth="1" />
+      <line x1="120" y1="130" x2="300" y2="130" stroke={stroke} strokeWidth="1" />
+      <line x1="300" y1="130" x2="300" y2="80" stroke={stroke} strokeWidth="1" />
+      <line x1="300" y1="80" x2="500" y2="80" stroke={stroke} strokeWidth="1" />
+      <line x1="500" y1="80" x2="500" y2="130" stroke={stroke} strokeWidth="1" />
+      <line x1="500" y1="130" x2="800" y2="130" stroke={stroke} strokeWidth="1" />
+      <line x1="0" y1="230" x2="180" y2="230" stroke={stroke} strokeWidth="1" />
+      <line x1="180" y1="230" x2="180" y2="270" stroke={stroke} strokeWidth="1" />
+      <line x1="180" y1="270" x2="400" y2="270" stroke={stroke} strokeWidth="1" />
+      <line x1="400" y1="270" x2="400" y2="230" stroke={stroke} strokeWidth="1" />
+      <line x1="400" y1="230" x2="600" y2="230" stroke={stroke} strokeWidth="1" />
+      <line x1="600" y1="230" x2="600" y2="275" stroke={stroke} strokeWidth="1" />
+      <line x1="600" y1="275" x2="800" y2="275" stroke={stroke} strokeWidth="1" />
+      <line x1="120" y1="130" x2="120" y2="230" stroke={stroke} strokeWidth="1" strokeDasharray="3 5" />
+      <line x1="400" y1="130" x2="400" y2="230" stroke={stroke} strokeWidth="1" strokeDasharray="3 5" />
+      {[[120,80],[300,80],[500,80],[120,130],[300,130],[500,130],
+        [180,230],[400,230],[600,230],[180,270],[400,270],[600,275]
+      ].map(([cx,cy],i) => <circle key={i} cx={cx} cy={cy} r="2.5" fill={dot} />)}
+    </svg>
+  )
+}
+
+/* ─── MAIN COMPONENT ─────────────────────────────────────────── */
 export default function About() {
   return (
-    <div className="font-sans overflow-x-hidden">
+    <>
+      <style>{`
+        :root {
+          --crimson: #D7263D;
+          --crimson-dark: #B01E30;
+          --teal: #00C8CC;
+          --teal-dim: rgba(0,200,204,0.12);
+          --navy: #0A1228;
+          --navy-mid: #111D35;
+          --navy-card: #162040;
+          --offwhite: #F4F5F7;
+          --border: #E2E6ED;
+          --slate: #6B7A99;
+          --white: #FFFFFF;
+        }
 
-      {/* ── SEO HEAD ── */}
-      <Helmet>
-        <title>About Us | DevNovaTech Softwares — #1 Web & App Developers Nairobi Kenya</title>
-        <meta name="description" content="DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company. Learn our story, mission, values and meet the team building digital solutions for businesses across Kenya — Nairobi, Mombasa, Kisumu, Nakuru & beyond." />
-        <meta name="keywords" content="about DevNovaTech, web developers Nairobi Kenya, software company Nairobi, best web development company Kenya, affordable web developers Kenya, Nairobi app developers, DevNovaTech team" />
-        <link rel="canonical" href="https://devnovatech.co.ke/about/" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <meta name="author" content="DevNovaTech Softwares" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devnovatech.co.ke/about/" />
-        <meta property="og:site_name" content="DevNovaTech Softwares" />
-        <meta property="og:title" content="About DevNovaTech | Best Web & App Developers Nairobi Kenya" />
-        <meta property="og:description" content="Meet the Nairobi-based team behind Kenya's best & most affordable web and app development company. Our story, mission and values." />
-        <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="DevNovaTech Softwares - Web & App Developers Nairobi Kenya" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About DevNovaTech | Web & App Developers Nairobi Kenya" />
-        <meta name="twitter:description" content="Nairobi's best & most affordable web and Android app developers. Learn our story, meet the team." />
-        <meta name="twitter:image" content="https://devnovatech.co.ke/og-image.jpg" />
-        <meta name="twitter:image:alt" content="DevNovaTech Softwares - Web Development Nairobi Kenya" />
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "AboutPage",
-            "name": "About DevNovaTech Softwares",
-            "url": "https://devnovatech.co.ke/about/",
-            "description": "Learn about DevNovaTech Softwares, Nairobi's best and most affordable web and Android app development company in Kenya",
-            "mainEntity": {
-              "@type": "Organization",
-              "name": "DevNovaTech Softwares",
-              "foundingDate": "2020",
-              "foundingLocation": "Nairobi, Kenya",
-              "url": "https://devnovatech.co.ke",
-              "numberOfEmployees": "3",
-              "areaServed": ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Kenya"],
-              "founder": {
-                "@type": "Person",
-                "name": "Benard Ongodo",
-                "jobTitle": "Founder & Lead Developer"
+        /* Reveal animation */
+        .reveal-block {
+          opacity: 0;
+          transform: translateY(28px);
+          transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal-block.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Hero headline */
+        .hero-headline {
+          font-family: 'Georgia', serif;
+          font-weight: 900;
+          color: var(--white);
+          margin-bottom: 1.25rem;
+          line-height: 1.1;
+          font-size: clamp(30px, 7vw, 62px);
+        }
+        .hero-headline .line-crimson { color: var(--crimson); }
+        .hero-headline .line-teal    { color: var(--teal); }
+        .hero-headline .line-white   { color: var(--white); }
+
+        /* Cursor blink */
+        .cursor-blink {
+          display: inline-block;
+          width: 3px;
+          height: 0.85em;
+          background: var(--teal);
+          vertical-align: middle;
+          margin-left: 2px;
+          animation: blink 0.9s step-end infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* Stat numbers */
+        .stat-number {
+          font-family: 'Georgia', serif;
+          font-weight: 900;
+          font-size: 2rem;
+          color: var(--teal);
+          display: block;
+          margin-bottom: 2px;
+        }
+
+        /* Section label badge */
+        .section-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--teal);
+          margin-bottom: 1rem;
+        }
+        .section-badge::before,
+        .section-badge::after {
+          content: '';
+          display: block;
+          width: 28px;
+          height: 2px;
+          background: var(--teal);
+          flex-shrink: 0;
+        }
+        .section-badge.left-only::after { display: none; }
+
+        /* Section headings */
+        .section-h2 {
+          font-family: 'Georgia', serif;
+          font-weight: 900;
+          color: var(--navy);
+          line-height: 1.15;
+          font-size: clamp(24px, 3.5vw, 42px);
+        }
+        .section-h2.light { color: var(--white); }
+
+        /* Red accent bar on headings */
+        .red-bar {
+          display: inline-block;
+          width: 40px;
+          height: 4px;
+          background: var(--crimson);
+          border-radius: 2px;
+          margin-bottom: 1.25rem;
+        }
+
+        /* ── HERO ── */
+        .hero-section {
+          background-color: var(--navy);
+          padding-top: 70px;
+          position: relative;
+          overflow: hidden;
+        }
+        .hero-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 4rem 1.5rem 0;
+        }
+        .hero-sub {
+          color: rgba(255,255,255,0.55);
+          font-size: clamp(13px, 1.5vw, 15px);
+          line-height: 1.75;
+          max-width: 580px;
+          margin-bottom: 0;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+          border-top: 1px solid rgba(255,255,255,0.07);
+          max-width: 1152px;
+          margin: 3rem auto 0;
+        }
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media(min-width:768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+        .stat-cell {
+          text-align: center;
+          padding: 1.75rem 1rem;
+          border-right: 1px solid rgba(255,255,255,0.07);
+          position: relative;
+        }
+        .stat-cell:last-child { border-right: none; }
+        .stat-cell::after {
+          content: '';
+          position: absolute;
+          bottom: 0; left: 50%;
+          transform: translateX(-50%);
+          width: 0; height: 2px;
+          background: var(--crimson);
+          transition: width 0.4s ease;
+        }
+        .stat-cell:hover::after { width: 60%; }
+        .stat-label {
+          font-size: 11px;
+          color: rgba(255,255,255,0.38);
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          margin-top: 4px;
+        }
+
+        /* ── STORY ── */
+        .story-section {
+          padding: 5rem 0;
+          background: var(--white);
+        }
+        .story-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3rem;
+          align-items: center;
+        }
+        @media(min-width:1024px) { .story-inner { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+        .story-body p {
+          color: var(--slate);
+          font-size: 14px;
+          line-height: 1.85;
+          margin-bottom: 1rem;
+        }
+
+        /* Service grid */
+        .service-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .service-card {
+          background: var(--offwhite);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 12px 14px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+          cursor: default;
+        }
+        .service-card:hover {
+          border-color: var(--teal);
+          background: rgba(0,200,204,0.05);
+          transform: translateY(-2px);
+        }
+        .service-card:nth-child(-n+4) .svc-icon { color: var(--teal); }
+        .service-card:nth-child(n+5):nth-child(-n+7) .svc-icon { color: var(--crimson); }
+        .service-card:nth-child(n+8) .svc-icon { color: var(--teal); }
+        .service-label {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--navy);
+          line-height: 1.3;
+        }
+
+        /* ── MISSION/VISION ── */
+        .mv-section {
+          padding: 5rem 0;
+          background: var(--offwhite);
+        }
+        .mv-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+        .mv-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        @media(min-width:768px) { .mv-grid { grid-template-columns: 1fr 1fr; } }
+
+        .mission-card {
+          background: var(--navy);
+          border-radius: 16px;
+          padding: 2.5rem;
+          position: relative;
+          overflow: hidden;
+          border-top: 3px solid var(--crimson);
+        }
+        .mission-icon-wrap {
+          width: 48px; height: 48px;
+          background: rgba(215,38,61,0.15);
+          border-radius: 12px;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+        .mission-card h3 {
+          font-family: 'Georgia', serif;
+          font-weight: 800;
+          font-size: 22px;
+          color: var(--white);
+          margin-bottom: 0.75rem;
+        }
+        .mission-card p {
+          color: rgba(255,255,255,0.55);
+          font-size: 14px;
+          line-height: 1.8;
+        }
+
+        .vision-card {
+          background: var(--white);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          padding: 2.5rem;
+          position: relative;
+          overflow: hidden;
+          border-top: 3px solid var(--teal);
+        }
+        .vision-icon-wrap {
+          width: 48px; height: 48px;
+          background: rgba(0,200,204,0.10);
+          border: 1px solid rgba(0,200,204,0.2);
+          border-radius: 12px;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+        .vision-card h3 {
+          font-family: 'Georgia', serif;
+          font-weight: 800;
+          font-size: 22px;
+          color: var(--navy);
+          margin-bottom: 0.75rem;
+        }
+        .vision-card p {
+          color: var(--slate);
+          font-size: 14px;
+          line-height: 1.8;
+        }
+
+        /* ── VALUES ── */
+        .values-section {
+          padding: 5rem 0;
+          background: var(--white);
+        }
+        .values-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+        .values-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+        @media(min-width:640px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(min-width:1024px) { .values-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .value-card {
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 2rem;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          background: var(--white);
+        }
+        .value-card:hover {
+          box-shadow: 0 20px 40px rgba(10,18,40,0.08);
+          transform: translateY(-4px);
+        }
+        .value-card:nth-child(odd)  .v-bar { background: var(--crimson); }
+        .value-card:nth-child(even) .v-bar { background: var(--teal); }
+        .v-bar {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          height: 3px;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+          border-radius: 0 0 14px 14px;
+        }
+        .value-card:hover .v-bar { transform: scaleX(1); }
+
+        .v-num {
+          font-family: 'Georgia', serif;
+          font-size: 52px;
+          font-weight: 900;
+          line-height: 1;
+          color: rgba(10,18,40,0.06);
+          margin-bottom: 0.5rem;
+          transition: color 0.3s;
+        }
+        .value-card:nth-child(odd):hover  .v-num { color: rgba(215,38,61,0.12); }
+        .value-card:nth-child(even):hover .v-num { color: rgba(0,200,204,0.12); }
+        .value-card h3 {
+          font-family: 'Georgia', serif;
+          font-size: 17px;
+          font-weight: 700;
+          color: var(--navy);
+          margin-bottom: 0.6rem;
+        }
+        .value-card p {
+          font-size: 13px;
+          color: var(--slate);
+          line-height: 1.75;
+        }
+
+        /* ══════════════════════════════════════════════════
+           ── MILESTONES / TIMELINE  (FIXED MOBILE)
+        ══════════════════════════════════════════════════ */
+        .milestones-section {
+          padding: 5rem 0;
+          background: var(--navy);
+          position: relative;
+          overflow: hidden;
+        }
+        .milestones-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+
+        /* ── MOBILE-FIRST: simple left-rail layout ── */
+        .timeline {
+          position: relative;
+        }
+
+        /* Vertical rail */
+        .timeline-line {
+          position: absolute;
+          /* sits at 16px from left — perfectly behind the 32px-wide dot column */
+          left: 16px;
+          top: 0;
+          bottom: 0;
+          width: 2px;
+          background: rgba(255,255,255,0.08);
+        }
+
+        .timeline-items {
+          display: flex;
+          flex-direction: column;
+          gap: 0; /* gaps handled by item padding */
+        }
+
+        /* Each row */
+        .timeline-item {
+          position: relative;
+          display: flex;
+          align-items: flex-start;
+          /* left padding = dot-column (32px) + gap (20px) */
+          padding: 0 0 2.5rem 52px;
+        }
+        /* Last item – no bottom padding */
+        .timeline-item:last-child {
+          padding-bottom: 0;
+        }
+
+        /* Dot */
+        .tl-dot {
+          position: absolute;
+          /* centre the 14px dot over the 2px rail at left:16px */
+          left: 10px;
+          top: 5px;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          border: 3px solid var(--navy);
+          z-index: 2;
+          flex-shrink: 0;
+        }
+        .timeline-item:nth-child(odd)  .tl-dot { background: var(--crimson); }
+        .timeline-item:nth-child(even) .tl-dot { background: var(--teal); }
+
+        /* Content block – full width on mobile */
+        .tl-content {
+          flex: 1;
+          min-width: 0; /* prevent overflow */
+        }
+
+        /* Spacer hidden on mobile */
+        .tl-spacer { display: none; }
+
+        /* Year pill */
+        .tl-year {
+          display: inline-block;
+          padding: 2px 10px;
+          border-radius: 4px;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          margin-bottom: 0.5rem;
+        }
+        .timeline-item:nth-child(odd)  .tl-year {
+          background: rgba(215,38,61,0.15);
+          color: #F26779;
+          border: 1px solid rgba(215,38,61,0.25);
+        }
+        .timeline-item:nth-child(even) .tl-year {
+          background: var(--teal-dim);
+          color: var(--teal);
+          border: 1px solid rgba(0,200,204,0.2);
+        }
+
+        .tl-content h3 {
+          font-family: 'Georgia', serif;
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--white);
+          margin-bottom: 0.4rem;
+        }
+        .tl-content p {
+          font-size: 13px;
+          color: rgba(255,255,255,0.45);
+          line-height: 1.75;
+        }
+
+        /* ── DESKTOP: alternating two-column layout ── */
+        @media (min-width: 768px) {
+          /* Re-centre the rail */
+          .timeline-line {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+          /* Reset mobile padding — desktop uses flex gap */
+          .timeline-item {
+            padding: 0 0 3rem 0;
+            align-items: flex-start;
+            gap: 0;
+          }
+          .timeline-item:last-child { padding-bottom: 0; }
+
+          /* Dot centred on the rail */
+          .tl-dot {
+            left: 50%;
+            top: 5px;
+            transform: translateX(-50%);
+          }
+
+          /* Content takes half width with inner padding */
+          .tl-content {
+            flex: 0 0 calc(50% - 1px);
+            max-width: calc(50% - 1px);
+          }
+
+          /* Odd items: content on LEFT, spacer on RIGHT */
+          .timeline-item:not(.even) .tl-content {
+            order: 1;
+            padding-right: 3rem;
+            text-align: right;
+          }
+          .timeline-item:not(.even) .tl-spacer {
+            order: 2;
+          }
+
+          /* Even items: spacer on LEFT, content on RIGHT */
+          .timeline-item.even .tl-spacer {
+            order: 1;
+          }
+          .timeline-item.even .tl-content {
+            order: 2;
+            padding-left: 3rem;
+            text-align: left;
+          }
+
+          /* Spacer visible on desktop */
+          .tl-spacer {
+            display: block;
+            flex: 0 0 calc(50% - 1px);
+          }
+        }
+        /* ══ end timeline fix ══ */
+
+        /* ── TEAM ── */
+        .team-section {
+          padding: 5rem 0;
+          background: var(--offwhite);
+        }
+        .team-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+        .team-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        @media(min-width:640px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(min-width:1024px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .team-card {
+          background: var(--white);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        .team-card:hover {
+          box-shadow: 0 24px 48px rgba(10,18,40,0.1);
+          transform: translateY(-5px);
+        }
+        .team-photo {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+          display: block;
+        }
+        .team-photo-fallback {
+          width: 100%;
+          height: 220px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .team-body {
+          padding: 1.5rem;
+          text-align: center;
+        }
+        .team-badge {
+          display: inline-block;
+          padding: 2px 10px;
+          border-radius: 4px;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          margin-bottom: 0.6rem;
+        }
+        .team-name {
+          font-family: 'Georgia', serif;
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--navy);
+          margin-bottom: 2px;
+        }
+        .team-role {
+          font-size: 12px;
+          font-weight: 600;
+          margin-bottom: 0.4rem;
+        }
+        .team-exp {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 11px;
+          color: var(--slate);
+          margin-bottom: 0.75rem;
+        }
+        .team-exp-dot {
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+        .team-bio {
+          font-size: 12px;
+          color: var(--slate);
+          line-height: 1.75;
+          margin-bottom: 1.25rem;
+        }
+        .team-socials {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding-top: 1rem;
+          border-top: 1px solid var(--border);
+        }
+        .social-btn {
+          width: 36px; height: 36px;
+          border-radius: 8px;
+          background: var(--offwhite);
+          border: 1px solid var(--border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--slate);
+          transition: all 0.2s ease;
+          text-decoration: none;
+        }
+
+        /* ── WHY US ── */
+        .whyus-section {
+          padding: 5rem 0;
+          background: var(--white);
+        }
+        .whyus-inner {
+          max-width: 1152px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3rem;
+          align-items: center;
+        }
+        @media(min-width:1024px) { .whyus-inner { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+        .whyus-body p { color: var(--slate); font-size: 14px; line-height: 1.8; margin-bottom: 1.75rem; }
+        .whyus-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 0.85rem 1.75rem;
+          background: var(--crimson);
+          color: var(--white);
+          font-weight: 700;
+          font-size: 13px;
+          letter-spacing: 0.05em;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: all 0.25s ease;
+        }
+        .whyus-cta:hover {
+          background: var(--crimson-dark);
+          box-shadow: 0 8px 24px rgba(215,38,61,0.35);
+          transform: translateY(-2px);
+        }
+        .why-list { display: flex; flex-direction: column; }
+        .why-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 1.25rem;
+          padding: 1.25rem 0;
+          border-bottom: 1px solid var(--border);
+        }
+        .why-item:last-child { border-bottom: none; }
+        .why-num {
+          font-family: 'Georgia', serif;
+          font-weight: 900;
+          font-size: 20px;
+          color: rgba(10,18,40,0.15);
+          flex-shrink: 0;
+          width: 28px;
+          padding-top: 2px;
+        }
+        .why-item:nth-child(odd)  .why-num { color: rgba(215,38,61,0.3); }
+        .why-item:nth-child(even) .why-num { color: rgba(0,200,204,0.3); }
+        .why-item h3 {
+          font-family: 'Georgia', serif;
+          font-size: 15px;
+          font-weight: 700;
+          color: var(--navy);
+          margin-bottom: 4px;
+        }
+        .why-item p { font-size: 13px; color: var(--slate); line-height: 1.7; }
+
+        /* ── CTA BAND ── */
+        .cta-section {
+          padding: 5rem 0;
+          background: var(--navy-mid);
+          position: relative;
+          overflow: hidden;
+        }
+        .cta-accent-red {
+          position: absolute;
+          top: 0; left: -10%;
+          width: 45%; height: 100%;
+          background: linear-gradient(135deg, rgba(215,38,61,0.08) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .cta-accent-teal {
+          position: absolute;
+          top: 0; right: -10%;
+          width: 45%; height: 100%;
+          background: linear-gradient(225deg, rgba(0,200,204,0.08) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .cta-inner {
+          max-width: 720px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+        }
+        .cta-inner h2 {
+          font-family: 'Georgia', serif;
+          font-weight: 900;
+          color: var(--white);
+          font-size: clamp(24px, 4vw, 44px);
+          line-height: 1.15;
+          margin-bottom: 1.25rem;
+        }
+        .cta-inner p {
+          color: rgba(255,255,255,0.5);
+          font-size: 15px;
+          line-height: 1.8;
+          margin-bottom: 2.25rem;
+        }
+        .cta-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          justify-content: center;
+          align-items: center;
+        }
+        @media(min-width:480px) { .cta-buttons { flex-direction: row; } }
+        .cta-btn-primary {
+          padding: 0.9rem 2rem;
+          background: var(--crimson);
+          color: var(--white);
+          font-weight: 700;
+          font-size: 14px;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: all 0.25s;
+          letter-spacing: 0.04em;
+        }
+        .cta-btn-primary:hover {
+          background: var(--crimson-dark);
+          box-shadow: 0 10px 28px rgba(215,38,61,0.4);
+          transform: translateY(-2px);
+        }
+        .cta-btn-outline {
+          padding: 0.9rem 2rem;
+          border: 2px solid rgba(0,200,204,0.35);
+          color: var(--teal);
+          font-weight: 600;
+          font-size: 14px;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: all 0.25s;
+          letter-spacing: 0.04em;
+        }
+        .cta-btn-outline:hover {
+          border-color: var(--teal);
+          background: rgba(0,200,204,0.07);
+          transform: translateY(-2px);
+        }
+
+        /* Section title center block */
+        .section-title-center { text-align: center; margin-bottom: 3rem; }
+        .section-sub {
+          color: var(--slate);
+          font-size: 14px;
+          max-width: 480px;
+          margin: 0.75rem auto 0;
+          line-height: 1.75;
+        }
+      `}</style>
+
+      <div className="font-sans overflow-x-hidden">
+
+        {/* ── SEO HEAD ── */}
+        <Helmet>
+          <title>About Us | DevNovaTech Softwares , #1 Web & App Developers Nairobi Kenya</title>
+          <meta name="description" content="DevNovaTech Softwares is Nairobi's best & most affordable web and Android app development company. Learn our story, mission, values and meet the team building digital solutions for businesses across Kenya." />
+          <meta name="keywords" content="about DevNovaTech, web developers Nairobi Kenya, software company Nairobi, best web development company Kenya, affordable web developers Kenya, Nairobi app developers, DevNovaTech team" />
+          <link rel="canonical" href="https://devnovatech.co.ke/about/" />
+          <meta name="robots" content="index, follow" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://devnovatech.co.ke/about/" />
+          <meta property="og:title" content="About DevNovaTech | Best Web & App Developers Nairobi Kenya" />
+          <meta property="og:description" content="Meet the Nairobi-based team behind Kenya's best & most affordable web and app development company." />
+          <meta property="og:image" content="https://devnovatech.co.ke/og-image.jpg" />
+          <script type="application/ld+json">{`
+            {
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              "name": "About DevNovaTech Softwares",
+              "url": "https://devnovatech.co.ke/about/",
+              "mainEntity": {
+                "@type": "Organization",
+                "name": "DevNovaTech Softwares",
+                "foundingDate": "2020",
+                "foundingLocation": "Nairobi, Kenya",
+                "url": "https://devnovatech.co.ke"
               }
             }
-          }
-        `}</script>
-      </Helmet>
+          `}</script>
+        </Helmet>
 
-      {/* ══ PAGE HERO ══ */}
-      <section className="bg-navy pt-[70px] relative overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(10,18,40,0.55) 0%, rgba(10,18,40,0.72) 100%), url(${aboutBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
-          <Reveal>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-7 h-[2px] bg-cyan flex-shrink-0" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.12em] sm:tracking-[0.18em] uppercase font-sans leading-snug">
-                Nairobi's Best · Affordable · Trusted
-              </span>
-            </div>
-            <Typewriter lines={[
-              { text: 'The Spark Behind', className: 'text-white' },
-              { text: 'DevNovaTech.', className: 'text-cyan' },
-            ]} />
-            <p className="text-white/60 text-[14px] sm:text-[16px] leading-relaxed font-sans max-w-2xl">
-              We are a passionate team of developers, designers and digital strategists proudly based in Nairobi, Kenya, building world-class websites, Android apps and digital solutions for businesses across Nairobi, Mombasa, Kisumu, Nakuru, Eldoret and the entire East Africa region.
-            </p>
-          </Reveal>
-        </div>
-
-        {/* Stats bar */}
-        <div className="border-t border-white/8 max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {[
-              { target: 150, suffix: '+', l: 'Projects Delivered' },
-              { target: 50,  suffix: '+', l: 'Happy Clients' },
-              { target: 5,   suffix: '+', l: 'Years Experience' },
-              { target: 10,  suffix: '+', l: 'Industries Served' },
-            ].map(s => (
-              <div key={s.l} className="text-center py-6 sm:py-8 px-2 sm:px-4 border-r border-white/8 last:border-r-0">
-                <CountUp target={s.target} suffix={s.suffix} />
-                <div className="text-[10px] sm:text-xs text-white/40 font-sans">{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ STORY ══ */}
-      <section className="py-14 sm:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* ══ HERO ══ */}
+        <section
+          className="hero-section"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, rgba(10,18,40,0.6) 0%, rgba(10,18,40,0.85) 100%), url(${aboutBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <CircuitBg />
+          <div className="hero-inner" style={{ position: 'relative', zIndex: 1 }}>
             <Reveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-7 h-[2px] bg-cyan flex-shrink-0" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.15em] uppercase font-sans">Best Web & App Developers in Nairobi, Kenya</span>
+              <div className="section-badge left-only" style={{ marginBottom: '1rem' }}>
+                Nairobi's Best · Affordable · Trusted
               </div>
-              <h2 className="font-serif font-black text-navy mb-6 leading-tight" style={{ fontSize: 'clamp(24px, 3.5vw, 42px)' }}>
-                Built to Power<br />Kenyan Businesses.
-              </h2>
-              <div className="space-y-4">
-                <p className="text-[#6b7280] text-[14px] sm:text-[15px] leading-relaxed font-sans">
-                  DevNovaTech Softwares, Nairobi's best & most affordable web and app development company, founded in 2020 with a single mission: to bridge the digital gap for Kenyan businesses with professional, budget-friendly web, mobile and software solutions.
+              <Typewriter lines={[
+                { text: 'The Spark Behind', className: 'line-white' },
+                { text: 'DevNova', className: 'line-white' },
+                { text: 'tech.', className: 'line-teal' },
+              ]} />
+              <p className="hero-sub">
+                We are a passionate team of developers, designers and digital strategists proudly based
+                in Nairobi, Kenya , building world-class websites, Android apps and digital solutions for
+                businesses across Kenya and East Africa.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Stats bar */}
+          <div className="stats-bar" style={{ position: 'relative', zIndex: 1 }}>
+            <div className="stats-grid">
+              {[
+                { target: 150, suffix: '+', l: 'Projects Delivered' },
+                { target: 50,  suffix: '+', l: 'Happy Clients' },
+                { target: 5,   suffix: '+', l: 'Years Experience' },
+                { target: 10,  suffix: '+', l: 'Industries Served' },
+              ].map(s => (
+                <div key={s.l} className="stat-cell">
+                  <CountUp target={s.target} suffix={s.suffix} />
+                  <div className="stat-label">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══ STORY ══ */}
+        <section className="story-section">
+          <div className="story-inner">
+            <Reveal>
+              <div className="story-body">
+                <div className="section-badge left-only">Best Web & App Developers in Nairobi, Kenya</div>
+                <div className="red-bar" />
+                <h2 className="section-h2" style={{ marginBottom: '1.5rem' }}>
+                  Built to Power<br />Kenyan Businesses.
+                </h2>
+                <p>
+                  DevNovaTech Softwares , Nairobi's best & most affordable web and app development company
+                  , was founded in 2020 with a single mission: bridge the digital gap for Kenyan businesses
+                  with professional, budget-friendly web, mobile and software solutions.
                 </p>
-                <p className="text-[#6b7280] text-[14px] sm:text-[15px] leading-relaxed font-sans">
-                  From a small Nairobi web design studio, we have grown into Kenya's top full-service digital agency, delivering fast, professional & affordable custom websites, Android apps, e-commerce platforms with M-Pesa integration, Point of Sale software, LMS systems, CRM software, SEO and graphic design across Nairobi, Mombasa, Kisumu, Nakuru and Eldoret.
+                <p>
+                  From a small Nairobi web design studio, we have grown into Kenya's top full-service digital
+                  agency delivering custom websites, Android apps, e-commerce platforms with M-Pesa integration,
+                  POS software, LMS systems, CRM software, SEO and graphic design across the country.
                 </p>
-                <p className="text-[#6b7280] text-[14px] sm:text-[15px] leading-relaxed font-sans">
-                  We believe every Kenyan business deserves a powerful, affordable digital presence that competes locally and globally. That belief drives everything we do.
+                <p>
+                  We believe every Kenyan business deserves a powerful, affordable digital presence that
+                  competes locally and globally. That belief drives everything we do.
                 </p>
               </div>
             </Reveal>
 
             <Reveal delay={0.15}>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="service-grid">
                 {STORY_ITEMS.map(item => (
-                  <div key={item.label} className="bg-[#f5f6f8] border border-[#e2e5ea] rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3 hover:border-cyan hover:bg-cyan/5 transition-all duration-200 min-w-0">
-                    <span className="flex items-center justify-center flex-shrink-0">{item.icon}</span>
-                    <span className="text-[12px] sm:text-[13px] font-semibold text-[#1a2233] font-sans leading-snug">{item.label}</span>
+                  <div key={item.label} className="service-card">
+                    <span className="svc-icon">
+                      <SvgIcon name={item.icon} size={18} color="currentColor" />
+                    </span>
+                    <span className="service-label">{item.label}</span>
                   </div>
                 ))}
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══ MISSION & VISION ══ */}
-      <section className="py-14 sm:py-24 bg-[#f5f6f8]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Reveal>
-            <div className="text-center mb-10 sm:mb-14">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-7 h-[2px] bg-cyan" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.15em] uppercase font-sans">Affordable & Professional, Nairobi, Kenya</span>
-                <span className="w-7 h-[2px] bg-cyan" />
-              </div>
-              <h2 className="font-serif font-black text-navy mb-3" style={{ fontSize: 'clamp(24px, 4vw, 42px)' }}>
-                Mission & Vision
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <Reveal delay={0.1}>
-              <div className="bg-navy rounded-xl p-7 sm:p-10 h-full relative overflow-hidden">
-                <CircuitMission />
-                <div className="relative z-10">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan/20 rounded-xl flex items-center justify-center mb-5 sm:mb-6">
-                    <IconTarget size={24} color="#00C8CC" />
-                  </div>
-                  <h3 className="font-serif font-black text-white text-[20px] sm:text-[24px] mb-3 sm:mb-4">Our Mission</h3>
-                  <p className="text-white/60 text-[14px] sm:text-[15px] leading-relaxed font-sans">
-                    To be Nairobi's best & most affordable web and app development company, empowering Kenyan businesses with fast, professional and budget-friendly websites, Android apps and digital solutions that drive growth, increase online visibility and create lasting competitive advantages across Kenya.
-                  </p>
-                </div>
+        {/* ══ MISSION & VISION ══ */}
+        <section className="mv-section">
+          <div className="mv-inner">
+            <Reveal>
+              <div className="section-title-center">
+                <div className="section-badge">Affordable & Professional · Nairobi, Kenya</div>
+                <div className="red-bar" style={{ display: 'block', margin: '0 auto 1.25rem' }} />
+                <h2 className="section-h2">Mission &amp; Vision</h2>
               </div>
             </Reveal>
 
-            <Reveal delay={0.2}>
-              <div className="bg-white border border-[#e2e5ea] rounded-xl p-7 sm:p-10 h-full relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan/10 border border-cyan/20 rounded-xl flex items-center justify-center mb-5 sm:mb-6">
-                  <IconTelescope size={24} color="#00C8CC" />
+            <div className="mv-grid">
+              <Reveal delay={0.1}>
+                <div className="mission-card">
+                  <CircuitBg />
+                  <div style={{ position: 'relative', zIndex: 1 }}>
+                    <div className="mission-icon-wrap">
+                      <SvgIcon name="target" size={24} color="#D7263D" />
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>
+                      To be Nairobi's best &amp; most affordable web and app development company, empowering
+                      Kenyan businesses with fast, professional and budget-friendly websites, Android apps and
+                      digital solutions that drive growth, increase online visibility and create lasting competitive
+                      advantages across Kenya.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-serif font-black text-navy text-[20px] sm:text-[24px] mb-3 sm:mb-4">Our Vision</h3>
-                <p className="text-[#6b7280] text-[14px] sm:text-[15px] leading-relaxed font-sans">
-                  To be Kenya's most trusted web and app development company, recognized for transforming businesses in Nairobi and across Kenya through technology, creativity and a relentless commitment to excellence and client success.
+              </Reveal>
+
+              <Reveal delay={0.2}>
+                <div className="vision-card">
+                  <div
+                    style={{
+                      position: 'absolute', top: 0, right: 0,
+                      width: 120, height: 120,
+                      background: 'rgba(0,200,204,0.05)',
+                      borderRadius: '50%',
+                      transform: 'translate(30%, -30%)',
+                    }}
+                  />
+                  <div style={{ position: 'relative', zIndex: 1 }}>
+                    <div className="vision-icon-wrap">
+                      <SvgIcon name="scope" size={24} color="#00C8CC" />
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>
+                      To be Kenya's most trusted web and app development company, recognized for transforming
+                      businesses in Nairobi and across Kenya through technology, creativity and a relentless
+                      commitment to excellence and client success.
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ VALUES ══ */}
+        <section className="values-section">
+          <div className="values-inner">
+            <Reveal>
+              <div className="section-title-center">
+                <div className="section-badge">Why We're Kenya's Best Choice</div>
+                <div className="red-bar" style={{ display: 'block', margin: '0 auto 1.25rem' }} />
+                <h2 className="section-h2">Our Core Values</h2>
+                <p className="section-sub">
+                  The principles guiding every project, every client relationship and every solution
+                  we build across Kenya.
                 </p>
               </div>
             </Reveal>
-          </div>
-        </div>
-      </section>
 
-      {/* ══ VALUES ══ */}
-      <section className="py-14 sm:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Reveal>
-            <div className="text-center mb-10 sm:mb-14">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-7 h-[2px] bg-cyan" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.15em] uppercase font-sans">Why We're Kenya's Best Choice</span>
-                <span className="w-7 h-[2px] bg-cyan" />
-              </div>
-              <h2 className="font-serif font-black text-navy mb-3" style={{ fontSize: 'clamp(24px, 4vw, 42px)' }}>
-                Our Core Values
-              </h2>
-              <p className="text-[#6b7280] text-[14px] sm:text-[15px] max-w-lg mx-auto leading-relaxed font-sans px-2">
-                The principles behind Nairobi's best & most affordable web and app development team, guiding every project, every client relationship and every solution we build across Kenya.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {VALUES.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.08}>
-                <div className="group bg-white border border-[#e2e5ea] rounded-xl p-6 sm:p-8 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1.5 transition-all duration-300 h-full relative overflow-hidden">
-                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-xl" />
-                  <div className="mb-4 flex items-end gap-2">
-                    <span
-                      className="font-serif font-black text-cyan/20 group-hover:text-cyan/40 transition-colors duration-300 leading-none"
-                      style={{ fontSize: '56px', lineHeight: 1 }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="w-8 h-[2px] bg-cyan mb-3 opacity-40 group-hover:opacity-100 transition-all duration-300" />
-                  </div>
-                  <h3 className="font-serif font-bold text-[16px] sm:text-[18px] text-navy mb-3">{v.title}</h3>
-                  <p className="text-[13px] sm:text-[14px] text-[#6b7280] leading-relaxed font-sans">{v.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ MILESTONES ══ */}
-      <section className="py-14 sm:py-24 bg-navy">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Reveal>
-            <div className="text-center mb-10 sm:mb-14">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-7 h-[2px] bg-cyan" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.15em] uppercase font-sans text-center">Nairobi's Top Web & App Dev Company Since 2020</span>
-                <span className="w-7 h-[2px] bg-cyan" />
-              </div>
-              <h2 className="font-serif font-black text-white mb-3" style={{ fontSize: 'clamp(24px, 4vw, 42px)' }}>
-                Key Milestones
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="relative">
-            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2" />
-            <div className="space-y-8 sm:space-y-10">
-              {MILESTONES.map((m, i) => (
-                <Reveal key={m.year} delay={i * 0.1}>
-                  <div className={`relative flex items-start gap-6 sm:gap-8 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                    <div className="absolute left-[20px] md:left-1/2 w-4 h-4 bg-cyan rounded-full border-4 border-navy -translate-x-1/2 mt-1.5 z-10 flex-shrink-0" />
-                    <div className={`ml-10 sm:ml-14 md:ml-0 md:w-[calc(50%-32px)] ${i % 2 === 0 ? 'md:text-right md:pr-8' : 'md:pl-8'}`}>
-                      <div className="inline-block px-3 py-1 bg-cyan/10 border border-cyan/20 rounded text-[11px] font-bold text-cyan tracking-[0.1em] font-sans mb-2 sm:mb-3">
-                        {m.year}
-                      </div>
-                      <h3 className="font-serif font-bold text-white text-[15px] sm:text-[18px] mb-1.5 sm:mb-2">{m.title}</h3>
-                      <p className="text-white/50 text-[13px] sm:text-[14px] leading-relaxed font-sans">{m.desc}</p>
-                    </div>
-                    <div className="hidden md:block md:w-[calc(50%-32px)]" />
+            <div className="values-grid">
+              {VALUES.map((v, i) => (
+                <Reveal key={v.title} delay={i * 0.07}>
+                  <div className="value-card">
+                    <div className="v-bar" />
+                    <div className="v-num">{String(i + 1).padStart(2, '0')}</div>
+                    <h3>{v.title}</h3>
+                    <p>{v.desc}</p>
                   </div>
                 </Reveal>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══ TEAM ══ */}
-      <section className="py-14 sm:py-24 bg-[#f5f6f8]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Reveal>
-            <div className="text-center mb-10 sm:mb-14">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-7 h-[2px] bg-cyan" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.15em] uppercase font-sans">Best Web & App Developers in Nairobi</span>
-                <span className="w-7 h-[2px] bg-cyan" />
-              </div>
-              <h2 className="font-serif font-black text-navy mb-3" style={{ fontSize: 'clamp(24px, 4vw, 42px)' }}>
-                Meet the Team
-              </h2>
-              <p className="text-[#6b7280] text-[14px] sm:text-[15px] max-w-lg mx-auto leading-relaxed font-sans px-2">
-                Nairobi's best & most affordable web and app development team, professionals passionate about delivering fast, professional and budget-friendly digital solutions for businesses across Kenya.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-
-            {/* Benard Ongodo */}
-            <Reveal delay={0}>
-              <div className="bg-white border border-[#e2e5ea] rounded-xl overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
-                <div className="h-1.5 w-full bg-gradient-to-r from-cyan to-cyan/40" />
-                <div className="w-full overflow-hidden bg-[#e8f9f9]" style={{ height: '220px' }}>
-                  <img
-                    src={founderImg}
-                    alt="Benard Ongoda - Founder & Lead Developer at DevNovaTech Nairobi Kenya"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }}
-                    onError={e => {
-                      e.currentTarget.style.display = 'none'
-                      e.currentTarget.parentElement.style.display = 'flex'
-                      e.currentTarget.parentElement.style.alignItems = 'center'
-                      e.currentTarget.parentElement.style.justifyContent = 'center'
-                      e.currentTarget.parentElement.innerHTML = `<span style="font-size:56px;font-weight:900;color:#00C8CC;font-family:serif">BO</span>`
-                    }}
-                  />
-                </div>
-                <div className="p-5 sm:p-6 flex flex-col items-center text-center">
-                  <span className="inline-block px-2.5 py-0.5 bg-cyan/10 border border-cyan/20 rounded text-[10px] font-bold text-cyan tracking-[0.12em] font-sans uppercase mb-2">Founder</span>
-                  <h3 className="font-serif font-bold text-[17px] sm:text-[18px] text-navy mb-0.5">Benard Ongodo</h3>
-                  <p className="text-[12px] sm:text-[13px] font-semibold text-cyan mb-1 font-sans">Founder & Lead Developer</p>
-                  <div className="flex items-center gap-1.5 mb-3 sm:mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan inline-block flex-shrink-0" />
-                    <span className="text-[11px] text-[#6b7280] font-sans">5+ Years in Software & App Development</span>
-                  </div>
-                  <p className="text-[12px] sm:text-[13px] text-[#6b7280] leading-relaxed font-sans mb-4 sm:mb-5">
-                    Nairobi's best & most affordable software and Android app developer. Benard leads Kenya's top web and app development team delivering fast, professional & budget-friendly websites, Android apps, e-commerce stores, POS software and custom software for businesses across Kenya.
-                  </p>
-                  <div className="flex items-center justify-center gap-3 pt-4 border-t border-[#e2e5ea] w-full">
-                    <a href="mailto:info@devnovatech.co.ke" title="Email Benard"
-                      className="w-9 h-9 rounded-lg bg-[#f5f6f8] border border-[#e2e5ea] flex items-center justify-center text-[#6b7280] hover:bg-cyan hover:text-white hover:border-cyan transition-all duration-200">
-                      <EmailIcon />
-                    </a>
-                    <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer" title="WhatsApp Benard"
-                      className="w-9 h-9 rounded-lg bg-[#f5f6f8] border border-[#e2e5ea] flex items-center justify-center text-[#6b7280] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-200">
-                      <WhatsAppIcon />
-                    </a>
-                    <a href="https://www.linkedin.com/in/benard-ongodo-2287ab357" target="_blank" rel="noopener noreferrer" title="Benard on LinkedIn"
-                      className="w-9 h-9 rounded-lg bg-[#f5f6f8] border border-[#e2e5ea] flex items-center justify-center text-[#6b7280] hover:bg-[#0077B5] hover:text-white hover:border-[#0077B5] transition-all duration-200">
-                      <LinkedInIcon />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Sarah Wanjiku */}
-            <Reveal delay={0.1}>
-              <div className="bg-white border border-[#e2e5ea] rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <div className="w-full h-52 sm:h-56 bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center font-serif font-black text-white text-2xl sm:text-3xl" style={{ background: '#a855f7' }}>SW</div>
-                </div>
-                <div className="p-5 sm:p-7">
-                  <h3 className="font-serif font-bold text-[17px] sm:text-[18px] text-navy mb-1">Sarah Wanjiku</h3>
-                  <p className="text-[12px] sm:text-[13px] font-semibold text-[#a855f7] mb-3 font-sans">UI/UX Designer</p>
-                  <p className="text-[12px] sm:text-[13px] text-[#6b7280] leading-relaxed font-sans">
-                    One of Nairobi's best UI/UX designers crafting beautiful, professional & affordable website and Android app designs for Kenyan businesses. Sarah ensures every site and app looks stunning and turns visitors into paying customers.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Brandon Jude */}
-            <Reveal delay={0.2}>
-              <div className="bg-white border border-[#e2e5ea] rounded-xl overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#f59e0b] to-[#f59e0b]/40" />
-                <div className="w-full overflow-hidden bg-[#fef9ee]" style={{ height: '220px' }}>
-                  <img
-                    src={brandonImg}
-                    alt="Brandon Jude - SEO & Digital Marketing Expert at DevNovaTech Kenya"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
-                    onError={e => {
-                      e.currentTarget.style.display = 'none'
-                      e.currentTarget.parentElement.style.display = 'flex'
-                      e.currentTarget.parentElement.style.alignItems = 'center'
-                      e.currentTarget.parentElement.style.justifyContent = 'center'
-                      e.currentTarget.parentElement.innerHTML = `<span style="font-size:56px;font-weight:900;color:#f59e0b;font-family:serif">BJ</span>`
-                    }}
-                  />
-                </div>
-                <div className="p-5 sm:p-6 flex flex-col items-center text-center">
-                  <span className="inline-block px-2.5 py-0.5 bg-[#f59e0b]/10 border border-[#f59e0b]/20 rounded text-[10px] font-bold text-[#f59e0b] tracking-[0.12em] font-sans uppercase mb-2">Team</span>
-                  <h3 className="font-serif font-bold text-[17px] sm:text-[18px] text-navy mb-0.5">Brandon Jude</h3>
-                  <p className="text-[12px] sm:text-[13px] font-semibold text-[#f59e0b] mb-1 font-sans">SEO & Digital Marketer</p>
-                  <div className="flex items-center gap-1.5 mb-3 sm:mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] inline-block flex-shrink-0" />
-                    <span className="text-[11px] text-[#6b7280] font-sans">SEO, Google Ads & Digital Growth</span>
-                  </div>
-                  <p className="text-[12px] sm:text-[13px] text-[#6b7280] leading-relaxed font-sans mb-4 sm:mb-5">
-                    Kenya's best & most affordable SEO & digital marketing expert. Brandon ranks Nairobi businesses at the top of Google driving organic traffic, qualified leads and measurable ROI for clients across Kenya.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ══ WHY US ══ */}
-      <section className="py-14 sm:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* ══ MILESTONES ══ */}
+        <section className="milestones-section">
+          <CircuitBg />
+          <div className="milestones-inner" style={{ position: 'relative', zIndex: 1 }}>
             <Reveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-7 h-[2px] bg-cyan flex-shrink-0" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-cyan tracking-[0.15em] uppercase font-sans">Nairobi's Best · Most Affordable</span>
+              <div className="section-title-center">
+                <div className="section-badge">Nairobi's Top Web & App Dev Company Since 2020</div>
+                <div className="red-bar" style={{ display: 'block', margin: '0 auto 1.25rem' }} />
+                <h2 className="section-h2 light">Key Milestones</h2>
               </div>
-              <h2 className="font-serif font-black text-navy mb-5 sm:mb-6 leading-tight" style={{ fontSize: 'clamp(24px, 3.5vw, 42px)' }}>
-                Why Kenyan Businesses<br />Trust DevNovaTech.
-              </h2>
-              <p className="text-[#6b7280] text-[14px] sm:text-[15px] leading-relaxed mb-6 sm:mb-8 font-sans">
-                With over 5 years of experience and 150+ successful projects across Nairobi and Kenya, we have earned the trust of businesses from Nairobi CBD to the Coast. Here is what sets us apart.
-              </p>
-              <Link to="/quote" className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-navy text-white font-bold text-[13px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-navy/90 hover:shadow-lg hover:-translate-y-0.5">
-                Start Your Project
-              </Link>
+            </Reveal>
+
+            <div className="timeline">
+              <div className="timeline-line" />
+              <div className="timeline-items">
+                {MILESTONES.map((m, i) => (
+                  <Reveal key={m.year} delay={i * 0.08}>
+                    <div className={`timeline-item ${i % 2 !== 0 ? 'even' : ''}`}>
+                      <div className="tl-dot" />
+                      <div className="tl-content">
+                        <div className="tl-year">{m.year}</div>
+                        <h3>{m.title}</h3>
+                        <p>{m.desc}</p>
+                      </div>
+                      <div className="tl-spacer" />
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ TEAM ══ */}
+        <section className="team-section">
+          <div className="team-inner">
+            <Reveal>
+              <div className="section-title-center">
+                <div className="section-badge">Best Web & App Developers in Nairobi</div>
+                <div className="red-bar" style={{ display: 'block', margin: '0 auto 1.25rem' }} />
+                <h2 className="section-h2">Meet the Team</h2>
+                <p className="section-sub">
+                  Nairobi's best &amp; most affordable web and app development team , professionals
+                  passionate about delivering fast, professional and budget-friendly digital solutions.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="team-grid">
+
+              {/* Benard Ongodo */}
+              <Reveal delay={0}>
+                <div className="team-card">
+                  <div style={{ height: 4, background: 'linear-gradient(90deg, #D7263D, rgba(215,38,61,0.3))' }} />
+                  <div className="team-photo-fallback" style={{ background: '#1a0810' }}>
+                    <img
+                      src={founderImg}
+                      alt="Benard Ongodo - Founder & Lead Developer at DevNovaTech Nairobi"
+                      className="team-photo"
+                      style={{ objectPosition: 'center 20%' }}
+                      onError={e => {
+                        e.currentTarget.style.display = 'none'
+                        e.currentTarget.parentElement.innerHTML = `<span style="font-size:52px;font-weight:900;color:#D7263D;font-family:Georgia,serif">BO</span>`
+                      }}
+                    />
+                  </div>
+                  <div className="team-body">
+                    <span className="team-badge" style={{ background: 'rgba(215,38,61,0.1)', border: '1px solid rgba(215,38,61,0.2)', color: '#D7263D' }}>Founder</span>
+                    <div className="team-name">Benard Ongodo</div>
+                    <div className="team-role" style={{ color: '#D7263D' }}>Founder & Lead Developer</div>
+                    <div className="team-exp">
+                      <span className="team-exp-dot" style={{ background: '#D7263D' }} />
+                      5+ Years in Software & App Development
+                    </div>
+                    <p className="team-bio">
+                      Leads Kenya's top web and app development team delivering fast, professional &amp;
+                      budget-friendly websites, Android apps, e-commerce stores, POS and custom software
+                      for businesses across Kenya.
+                    </p>
+                    <div className="team-socials">
+                      <a href="mailto:info@devnovatech.co.ke" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#D7263D'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='#D7263D'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <EmailIcon />
+                      </a>
+                      <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#25D366'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='#25D366'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <WhatsAppIcon />
+                      </a>
+                      <a href="https://www.linkedin.com/in/benard-ongodo-2287ab357" target="_blank" rel="noopener noreferrer" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#0077B5'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='#0077B5'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <LinkedInIcon />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Sarah Wanjiku */}
+              <Reveal delay={0.1}>
+                <div className="team-card">
+                  <div style={{ height: 4, background: 'linear-gradient(90deg, #00C8CC, rgba(0,200,204,0.3))' }} />
+                  <div className="team-photo-fallback" style={{ background: '#0a2428' }}>
+                    <img
+                      src={sarahImg}
+                      alt="Sarah Wanjiku - UI/UX Designer at DevNovaTech Nairobi Kenya"
+                      className="team-photo"
+                      style={{ objectPosition: 'center 10%' }}
+                      onError={e => {
+                        e.currentTarget.style.display = 'none'
+                        e.currentTarget.parentElement.innerHTML = `<span style="font-size:52px;font-weight:900;color:#00C8CC;font-family:Georgia,serif">SW</span>`
+                      }}
+                    />
+                  </div>
+                  <div className="team-body">
+                    <span className="team-badge" style={{ background: 'rgba(0,200,204,0.1)', border: '1px solid rgba(0,200,204,0.2)', color: '#00C8CC' }}>Team</span>
+                    <div className="team-name">Sarah Wanjiku</div>
+                    <div className="team-role" style={{ color: '#00C8CC' }}>UI/UX Designer</div>
+                    <div className="team-exp">
+                      <span className="team-exp-dot" style={{ background: '#00C8CC' }} />
+                      User Experience & Interface Design
+                    </div>
+                    <p className="team-bio">
+                      Crafts beautiful, professional &amp; affordable website and app designs for Kenyan
+                      businesses. Sarah ensures every site and app looks stunning and turns visitors
+                      into paying customers.
+                    </p>
+                    <div className="team-socials">
+                      <a href="mailto:info@devnovatech.co.ke" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#00C8CC'; e.currentTarget.style.color='#0A1228'; e.currentTarget.style.borderColor='#00C8CC'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <EmailIcon />
+                      </a>
+                      <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#25D366'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='#25D366'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <WhatsAppIcon />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Brandon Jude */}
+              <Reveal delay={0.2}>
+                <div className="team-card">
+                  <div style={{ height: 4, background: 'linear-gradient(90deg, #D7263D, #00C8CC)' }} />
+                  <div className="team-photo-fallback" style={{ background: '#1a1208' }}>
+                    <img
+                      src={brandonImg}
+                      alt="Brandon Jude - SEO & Digital Marketing Expert at DevNovaTech Kenya"
+                      className="team-photo"
+                      style={{ objectPosition: 'center 15%' }}
+                      onError={e => {
+                        e.currentTarget.style.display = 'none'
+                        e.currentTarget.parentElement.innerHTML = `<span style="font-size:52px;font-weight:900;color:#f59e0b;font-family:Georgia,serif">BJ</span>`
+                      }}
+                    />
+                  </div>
+                  <div className="team-body">
+                    <span className="team-badge" style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.2)', color: '#d97706' }}>Team</span>
+                    <div className="team-name">Brandon Jude</div>
+                    <div className="team-role" style={{ color: '#d97706' }}>SEO & Digital Marketer</div>
+                    <div className="team-exp">
+                      <span className="team-exp-dot" style={{ background: '#d97706' }} />
+                      SEO, Google Ads & Digital Growth
+                    </div>
+                    <p className="team-bio">
+                      Kenya's best &amp; most affordable SEO &amp; digital marketing expert. Brandon ranks
+                      Nairobi businesses at the top of Google driving organic traffic, qualified leads and
+                      measurable ROI.
+                    </p>
+                    <div className="team-socials">
+                      <a href="mailto:info@devnovatech.co.ke" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#d97706'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='#d97706'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <EmailIcon />
+                      </a>
+                      <a href="https://wa.me/254796038686" target="_blank" rel="noopener noreferrer" className="social-btn"
+                        onMouseEnter={e => { e.currentTarget.style.background='#25D366'; e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='#25D366'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background=''; e.currentTarget.style.color=''; e.currentTarget.style.borderColor=''; }}>
+                        <WhatsAppIcon />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ══ WHY US ══ */}
+        <section className="whyus-section">
+          <div className="whyus-inner">
+            <Reveal>
+              <div className="whyus-body">
+                <div className="section-badge left-only">Nairobi's Best · Most Affordable</div>
+                <div className="red-bar" />
+                <h2 className="section-h2" style={{ marginBottom: '1.25rem' }}>
+                  Why Kenyan Businesses<br />Trust DevNovaTech.
+                </h2>
+                <p>
+                  With over 5 years of experience and 150+ successful projects across Kenya, we have earned
+                  the trust of businesses from Nairobi CBD to the Coast. Here is what sets us apart.
+                </p>
+                <Link to="/quote" className="whyus-cta">
+                  Start Your Project
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </Link>
+              </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="space-y-0">
+              <div className="why-list">
                 {[
                   { num: '01', title: 'Nairobi-Based, Globally Minded',  desc: 'We are headquartered in Nairobi and understand the Kenyan market deeply while applying international standards of design, development and app engineering.' },
                   { num: '02', title: 'Fast Turnaround',                  desc: 'Most projects for Kenyan clients delivered within 2–4 weeks without compromising on quality or attention to detail.' },
                   { num: '03', title: 'Ongoing Support Across Kenya',     desc: 'We do not disappear after launch. We provide continuous support, updates and maintenance for all our clients across Kenya.' },
                   { num: '04', title: 'Transparent Kenyan Pricing',       desc: 'Clear, honest pricing in KSh with no hidden fees. You know exactly what you are paying for from day one.' },
                 ].map(item => (
-                  <div key={item.num} className="flex items-start gap-4 sm:gap-5 py-4 sm:py-5 border-b border-[#e2e5ea] last:border-b-0">
-                    <div className="font-serif font-black text-[20px] sm:text-[22px] text-cyan/40 flex-shrink-0 w-7 sm:w-8">{item.num}</div>
+                  <div key={item.num} className="why-item">
+                    <div className="why-num">{item.num}</div>
                     <div>
-                      <h3 className="font-serif font-bold text-[15px] sm:text-[16px] text-navy mb-1 sm:mb-1.5">{item.title}</h3>
-                      <p className="text-[13px] sm:text-[14px] text-[#6b7280] leading-relaxed font-sans">{item.desc}</p>
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══ CTA ══ */}
-      <section className="py-14 sm:py-24 bg-navy relative overflow-hidden">
-        <CircuitCTA />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-          <Reveal>
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="font-serif font-black text-white mb-4 sm:mb-5 leading-tight" style={{ fontSize: 'clamp(24px, 4vw, 44px)' }}>
-                Ready to Grow Your<br />Kenyan Business Online?
+        {/* ══ CTA ══ */}
+        <section className="cta-section">
+          <div className="cta-accent-red" />
+          <div className="cta-accent-teal" />
+          <CircuitBg />
+          <div className="cta-inner">
+            <Reveal>
+              <h2>
+                Ready to Grow Your<br />
+                <span style={{ color: '#D7263D' }}>Kenyan</span> Business{' '}
+                <span style={{ color: '#00C8CC' }}>Online?</span>
               </h2>
-              <p className="text-white/55 text-[14px] sm:text-[16px] leading-relaxed mb-8 sm:mb-10 font-sans px-2">
-                Join 50+ Kenyan businesses from Nairobi, Mombasa, Kisumu and beyond that trust DevNovaTech for websites, Android apps and custom software. Let's build something remarkable together, we respond within 24 hours.
+              <p>
+                Join 50+ Kenyan businesses from Nairobi, Mombasa, Kisumu and beyond that trust
+                DevNovaTech for websites, Android apps and custom software. Let's build something
+                remarkable together , we respond within 24 hours.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                <Link to="/quote" className="px-8 py-4 bg-cyan text-navy font-bold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:bg-cyan/90 hover:shadow-xl hover:shadow-cyan/30 hover:-translate-y-1 text-center">
-                  Get a Free Quote
-                </Link>
-                <Link to="/contact" className="px-8 py-4 border-2 border-white/20 text-white font-semibold text-[14px] rounded tracking-wide font-sans transition-all duration-300 hover:border-cyan hover:text-cyan text-center">
-                  Contact Us
-                </Link>
+              <div className="cta-buttons">
+                <Link to="/quote" className="cta-btn-primary">Get a Free Quote</Link>
+                <Link to="/contact" className="cta-btn-outline">Contact Us</Link>
               </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+            </Reveal>
+          </div>
+        </section>
 
-    </div>
+      </div>
+    </>
   )
 }
